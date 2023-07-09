@@ -2,26 +2,157 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: "Maven-Pro";
+  font-weight: 400;
+  src: url('/fonts/MavenPro-Regular.ttf');
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@font-face {
+  font-family: "Maven-Pro";
+  font-weight: 500;
+  src: url('/fonts/MavenPro-Medium.ttf');
+}
+
+@font-face {
+  font-family: "Maven-Pro";
+  font-weight: 600;
+  src: url('/fonts/MavenPro-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: "Maven-Pro";
+  font-weight: 700;
+  src: url('/fonts/MavenPro-Bold.ttf');
+}
+
+
+@layer base {
+
+  html {
+    font-size: 16px;   
   }
-}
+  
+  @media (max-width: 1390px) {
+    html {
+      font-size: 15px;
+    }
+  }
+  
+  @media (max-width: 1273px) {
+    html {
+      font-size: 14px;
+    }
+  }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  body {
+    font-family: "Maven-Pro";
+  }
+  
+
+  /* typography */
+  .w-text-display-4 {
+    @apply text-[3.125rem] font-bold;
+  }
+
+  .w-text-display-3 {
+    @apply text-[2.5rem] font-bold
+  }
+  
+  .w-text-display-2 {
+    @apply text-[2rem] font-bold;
+  }
+
+  .w-text-display-1 {
+    @apply text-[1.875rem] font-bold;
+  }
+
+  .w-text-headline-2 {
+    @apply text-[1.75rem] font-semibold;
+  }
+
+  .w-text-headline-1 {
+    @apply text-[1.5rem] font-semibold;
+  }
+
+  .w-text-title-2 {
+    @apply text-[1.375rem] font-medium;
+  }
+
+  .w-text-title-1 {
+    @apply text-[1.25rem] font-medium;
+  }
+
+  .w-text-subhead-2 {
+    @apply text-[1.125rem] font-bold;
+  }
+
+  .w-text-subhead-1 {
+    @apply text-[1rem] font-medium;
+  }
+
+  .w-text-body-2 {
+    @apply text-[1rem];
+  }
+
+  .w-text-body-1 {
+    @apply text-[0.875rem];
+  }
+
+  .w-text-caption {
+    @apply text-[0.75rem];
+  }
+
+  .w-text-button {
+    @apply text-[0.875rem] font-medium;
+  }
+
+  /* utility */
+  .trapezium-corner-tr-bl {
+    clip-path:
+      polygon(0% 0,
+        /* top left */
+        0px 0%,
+        /* top left */
+        calc(100% - 45px) 0%,
+        /* top right */
+        100% 45px,
+        /* top right */
+        100% 100%,
+        /* bottom right */
+        100% 100%,
+        /* bottom right */
+        45px 100%,
+        /* bottom left */
+        0 calc(100% - 45px)
+        /* bottom left */
+      );
+  }
+
+  ul.breadcrumb {
+    list-style: none;
+  }
+
+  ul.breadcrumb li {
+    display: inline;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #141414;
+  }
+  
+  ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: #141414;
+    content: "/\00a0";
+  }
+
+  ul.breadcrumb li a {
+    color: #141414;
+    text-decoration: none;
+  }
+  
+  /* Add a color on mouse-over */
+  ul.breadcrumb li a:hover {
+    text-decoration: underline;
+  }
 }
