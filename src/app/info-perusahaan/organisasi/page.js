@@ -43,7 +43,7 @@ export default function Index() {
                     {/* sidebar content */}
                     <div className="flex-auto flex flex-col">
                         <div className="inline-block text-jet w-text-title-1 font-bold">Sambutan Direktur Utama</div>
-                        <div className="inline-block text-jet w-text-title-1 leading-10 font-medium mt-[0.75rem]">"Pada tahun 2021, kebijakan strategis yang diimplementasikan berhasil membawa Perusahaan mewujudkan pencapaian yang menggembiraka. Kinerja finansial Perusahaan tercatat mengalami pertumbuhan seiring dengan sentimen positif yang tercermin pada berbagai apresiasi yang diraih, diantaranya yaitu rekor MURI untuk proyek Jakarta International Stadium dan Pit Building Mandalika."
+                        <div className="inline-block text-jet w-text-title-1 leading-10 font-medium mt-[0.75rem]">Pada tahun 2021, kebijakan strategis yang diimplementasikan berhasil membawa Perusahaan mewujudkan pencapaian yang menggembiraka. Kinerja finansial Perusahaan tercatat mengalami pertumbuhan seiring dengan sentimen positif yang tercermin pada berbagai apresiasi yang diraih, diantaranya yaitu rekor MURI untuk proyek Jakarta International Stadium dan Pit Building Mandalika.
                         </div>
                         <div className="mt-[1rem] cursor-pointer  flex flex-row items-center">
                             <span className="w-text-title-1 mr-[2.063rem] text-primary font-semibold">Read more </span>
