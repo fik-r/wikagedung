@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import Image from "next/image"
 
 const News = () => {
     const newsItems = [
@@ -31,9 +32,17 @@ const News = () => {
 
     const LargeNewsItem = ({ location, date, title, thumbnail }) => {
         return (
-            <div className={cn("hover:cursor-pointer relative col-span-1 h-[20rem] bg-cover bg-center bg-no-repeat items-start rounded-lg")} style={{
-                backgroundImage: `url("${thumbnail}")`
-            }}>
+            <div className={cn("hover:cursor-pointer relative col-span-1 h-[20rem] items-start rounded-lg")}>
+                <Image
+                    src={thumbnail}
+                    fill={true}
+                    quality={100}
+                    className="z-[-1] rounded-lg"
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL="data:image/webp"
+                    style={{ objectFit: "cover", objectPosition: "center" }}
+                />
                 <div className="absolute pt-[1.375rem] px-[1.5rem] pb-[2rem] bottom-0">
                     <div className="flex flex-row gap-x-[0.875rem] items-center">
                         <div className="w-text-body text-white font-semibold">{location}</div>
@@ -103,13 +112,13 @@ const News = () => {
                         date="24 Januari 2023"
                         title="WEGE Rampungkan Ikon Baru Purwakarta: Masjid Endan Andansih"
                         location="Tangerang"
-                        thumbnail="/images/dummy_news_1.svg"
+                        thumbnail="/images/dummy_news_1.webp"
                     />
                     <LargeNewsItem
                         date="24 Januari 2023"
                         title="WEGE Rampungkan Ikon Baru Purwakarta: Masjid Endan Andansih"
                         location="Tangerang"
-                        thumbnail="/images/dummy_news_2.svg"
+                        thumbnail="/images/dummy_news_2.webp"
                     />
                 </div>
                 <div className="grid grid-cols-3 gap-x-[2.5rem] mt-[2.5rem]">
@@ -117,19 +126,19 @@ const News = () => {
                         date="24 Januari 2023"
                         title="WEGE Ground Breaking Sekolah Kedinasan Milik BMKG, Mengusung Konsep Smart dan Green..."
                         location="Jakarta"
-                        thumbnail="/images/dummy_news_3.svg"
+                        thumbnail="/images/dummy_news_3.webp"
                     />
-                     <SmallNewsItem
+                    <SmallNewsItem
                         date="24 Januari 2023"
                         title="WEGE Turut Resmikan Revitalisasi PAUD Berbasis Modular yang Pertama di Indonesia"
                         location="Jakarta"
-                        thumbnail="/images/dummy_news_4.svg"
+                        thumbnail="/images/dummy_news_4.webp"
                     />
-                     <SmallNewsItem
+                    <SmallNewsItem
                         date="24 Januari 2023"
                         title="De Braga by Artotel Bandung, Sabet Penghargaan Industri Pariwisata Indonesia"
                         location="Jakarta"
-                        thumbnail="/images/dummy_news_5.svg"
+                        thumbnail="/images/dummy_news_5.webp"
                     />
                 </div>
             </div>

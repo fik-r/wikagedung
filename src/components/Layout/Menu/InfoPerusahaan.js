@@ -23,39 +23,91 @@ const InfoPerusahaan = (props) => {
             },
             {
                 title: "Organisasi",
-                route: "/info-perusahaan/organisasi",
-                child: ["Sambutan Direktur Utama", "Dewan Komisaris", "Dewan Direksi"]
+                route: "",
+                child: [
+                    {
+                        title: "Sambutan Direktur Utama",
+                        route: "/info-perusahaan/organisasi",
+                    },
+                    {
+                        title: "Dewan Komisaris",
+                        route: "/info-perusahaan/organisasi",
+                    },
+                    {
+                        title: "Dewan Direksi",
+                        route: "/info-perusahaan/organisasi",
+                    }
+                ]
             }
         ],
         [
             {
                 title: "Budaya Perusahaan",
                 route: "",
-                child: ["Visi & Misi", "Nilai Perusahaan"]
+                child: [
+                    {
+                        title: "Visi & Misi",
+                        route: "",
+                    },
+                    {
+                        title: "Nilai Perusahaan",
+                        route: "",
+                    }
+                ]
             },
             {
                 title: "Strukrur Perusahaan",
                 route: "",
-                child: ["Struktur Group Perusahaan", "Struktur Organisasi", "Perusahaan"]
+                child: [
+                    {
+                        title: "Struktur Group Perusahaan",
+                        route: "",
+                    },
+                    {
+                        title: "Struktur Organisasi",
+                        route: "",
+                    },
+                    {
+                        title: "Perusahaan",
+                        route: "",
+                    }
+                ]
             },
             {
                 title: "Alamat & Informasi Kontak",
                 route: "",
-                child: ["Kantor Pusat", "Anak Perusahaan", "Investasi & Konsensi"]
+                child: [
+                    {
+                        title: "Kantor Pusat",
+                        route: "",
+                    },
+                    {
+                        title: "Anak Perusahaan",
+                        route: "",
+                    },
+                    {
+                        title: "Investasi & Konsesi",
+                        route: "",
+                    }
+                ]
             },
         ]
     ]
 
     const Menu = ({ index, item, onClick }) => {
         return (
-            <div className="w-100 row-span-1 flex flex-col justify-center cursor-pointer" onClick={onClick}>
+            <div className="w-100 row-span-1 flex flex-col justify-center cursor-pointer" onClick={() => {
+                onClick(item)
+            }}>
                 <div tabIndex={index} className={cn(item.child.length > 0 ? "collapse-arrow" : "", "collapse cursor-pointer group")}>
                     <span className="collapse-title min-h-fit p-0 w-text-body-2 text-sooty font-medium h-[2.5rem] flex items-center group-focus:text-orange hover:text-orange">{item.title}</span>
                     {item.child.length > 0 &&
                         <div tabIndex={index} className="collapse-content flex flex-col min-h-fit p-0 group-focus:p-0">
                             {
                                 item.child.map((child, index) => {
-                                    return (<div key={index} className="w-text-body-2 text-sooty font-normal h-[2.5rem] flex items-center hover:text-orange">{child}</div>)
+                                    return (<div key={index} onClick={() => {
+                                        onClick(child)
+                                    }} className="w-text-body-2 text-sooty font-normal h-[2.5rem] flex items-center hover:text-orange">{child.title}</div>)
                                 })
                             }
                         </div>
@@ -85,7 +137,7 @@ const InfoPerusahaan = (props) => {
                                 {
                                     menu.map((data, index) => {
                                         return (
-                                            <Menu key={index} item={data} index={index} onClick={() => {
+                                            <Menu key={index} item={data} index={index} onClick={(data) => {
                                                 if (data.route != "") {
                                                     console.log(data)
                                                     router.push(data.route)

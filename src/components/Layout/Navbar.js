@@ -87,7 +87,7 @@ export default function Navbar(props) {
     }
 
     return (
-        <div id="navbar" className={cn(isSticky ? "fixed top-0 z-[999]" : "", theme == "light" ? "bg-white" : "", "flex flex-col w-full pt-[2.5rem]")}>
+        <div id="navbar" className={cn(props.className, isSticky ? "sticky top-0 z-[999]" : "", theme == "light" ? "bg-white" : "", "flex flex-col w-full pt-[2.5rem]")}>
             <div className="flex h-[2.625rem] px-[5rem]">
                 <img src="/images/ic_wika_gedung.svg" className="items-center hover:cursor-pointer" onClick={() => {
                     router.push("/")
@@ -113,8 +113,8 @@ export default function Navbar(props) {
                                         collapseMenu()
                                     }
                                 }}
-                                onClick={() => {   
-                                    if(item.route != "") 
+                                onClick={() => {
+                                    if (item.route != "")
                                         router.push(item.route)
                                 }}
                             >{item.title}</div>

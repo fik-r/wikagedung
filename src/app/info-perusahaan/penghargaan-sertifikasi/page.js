@@ -1,51 +1,68 @@
-import { Layout, Container } from "@/components/Layout"
-import cn from 'classnames'
-export default function Index() {
-    const SidebarItem = ({ number, text, active }) => {
-        return (
-            <div className="flex flex-row items-center cursor-pointer">
-                <div className="ml-[1rem] text-silver_spoon w-text-caption">{number}</div>
-                <div className={cn(active ? "underline text-sooty" : "", "ml-[0.875rem] hover:text-sooty w-text-title-1 text-more_than_a_week hover:underline")}>{text}</div>
-            </div>
-        )
-    }
+'use client'
+import Layout from "@/components/Layout/info-perusahaan"
+import { Tab } from "@/components/common"
+import { useState } from "react"
 
-    const TimelineTransformasiItem = ({ title, text }) => {
+const DocumentItem = ({ }) => {
+    const [hoveredItem, setHoveredItem] = useState(false)
+    return (
+        <div className="flex flex-col justify-center">
+            <div className="relative flex justify-center items-center">
+                <img className="w-full h-[16.563rem] rounded-lg hover:cursor-pointer" src={"/images/dummy_document.png"} onMouseEnter={() => {
+                    setHoveredItem(true)
+                }} />
+                {hoveredItem && <>
+                    <div className="w-full h-[16.563rem] rounded-lg opacity-60 z-9 absolute top-0 bg-overlay" onMouseLeave={() => {
+                        setHoveredItem(false)
+                    }} />
+                    <div className="min-h-[2.125rem] max-h-[2.125rem] h-[2.125rem] w-text-caption py-[0.625rem] px-[0.875rem] absolute btn bg-white border-0 text-secondary z-10 capitalize" onMouseEnter={() => {
+                        setHoveredItem(true)
+                    }}>Lihat Gambar</div>
+                </>}
+            </div>
+            <div className="mt-[0.625rem] w-text-subhead-1 text-jet text-center">ISO 9001 Sistem Manajemen Kualitas</div>
+        </div>
+    )
+}
+export default function index() {
+    const content = () => {
         return (
-            <div className="flex flex-col">
-                <div className="w-text-subhead-1 font-semibold text-sooty">{title}</div>
-                <div className="w-text-body-1 font-normal text-jet leading-7 mt-[0.75rem]">{text}</div>
+            <div className="flex flex-col w-full">
+                <div className="flex flex-row w-full justify-between">
+                    <div className="flex flex-row gap-x-[1.25rem]">
+                        <Tab active text="Penghargaan" />
+                        <Tab text="Sertifikasi" />
+                    </div>
+                    <div className="rounded-full bg-white border border-silver_spoon flex items-center px-[0.875rem] h-[2.75rem] gap-x-[0.875rem]">
+                        <img src="/icons/ic_search_black.svg" />
+                        <input
+                            type="text"
+                            placeholder="Cari"
+                            className="w-text-body-2 placeholder-robo_master bg-transparent border-none focus:ring-0 outline-none flex-grow"
+                        />
+                    </div>
+                </div>
+                <div className="w-full border border-aria rounded-lg mt-[1.25rem] py-[1.25rem] px-[1.875rem] flex flex-col">
+                    <div className="grid grid-cols-4 gap-x-[1.5rem] gap-y-[3.125rem]">
+                        <DocumentItem />
+                        <DocumentItem />
+                        <DocumentItem />
+                        <DocumentItem />
+                        <DocumentItem />
+                        <DocumentItem />
+                        <DocumentItem />
+                        <DocumentItem />
+                    </div>
+                </div>
             </div>
         )
     }
     return (
-        <Layout showBreadcrumb={true}>
-            <div className="w-full">
-                
-                {/* header, should change with dynamic data */}
-                <div className="px-[6.25rem] relative flex flex-col">
-                    <img className="absolute top-0 h-full right-0 z-[-1]" src="/images/bg_isolation_mode_title.svg" />
-                    <div className="w-text-subhead-2 text-secondary font-semibold mt-[2.5rem]">Info Perusahaan</div>
-                    <div className="w-text-display-4 text-sooty font-semibold mt-[0.625rem] pb-[2.5rem]">Penghargaan Sertifikasi</div>
-                </div>
-                {/* sidebar */}
-                <div className="px-[6.25rem] relative flex flex-row mt-[3.125rem] gap-x-[3.75rem] pb-[3.125rem]">
-                    {/* sidebar */}
-                    <div className="flex-none flex flex-col gap-y-[0.625rem]  border-l-4 border-l-secondary">
-                        <SidebarItem number={"01"} text={"Tentang Kami"} />
-                        <SidebarItem active number={"02"} text={"Penghargaan & Sertifikasi"} />
-                        <SidebarItem number={"03"} text={"Sekretaris Perusahaan"} />
-                        <SidebarItem number={"04"} text={"Organisasi"} />
-                        <SidebarItem number={"05"} text={"Budaya Perusahaan"} />
-                        <SidebarItem number={"06"} text={"Struktur Perusahaan"} />
-                        <SidebarItem number={"07"} text={"Alamat & Informasi Kontak"} />
-                    </div>
-                    {/* sidebar content */}
-                    
-                </div>
-            
-
-            </div>
-        </Layout>
+        <Layout
+            heading={"Info Perusahaan"}
+            subHeading={"Penghargaan dan Sertifikasi"}
+            activeSidebar={"Penghargaan & Sertifikasi"}
+            sidebarContent={content()}
+        />
     )
 }

@@ -1,7 +1,7 @@
-const Hero = () => {
+const Hero = (className) => {
     const navigationItems = ["Leading Solution", "Safety & Quality", "Innovative", "Sustainable", "Care", "Commitment", "Honesty", "Futuristic"]
     return (
-        <div className="flex flex-col mt-[28.75rem] w-full px-[7.5rem]">
+        <div className={"flex flex-col mt-[28.75rem] w-full px-[7.5rem] " + className}>
             <div className="flex flex-col">
                 <div className="w-text-display-4 text-white">World-Class Total Solution Contractor</div>
                 <div className="flex flex-row justify-between mt-[0.688rem]">

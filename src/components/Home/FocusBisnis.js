@@ -1,5 +1,6 @@
 
 import cn from 'classnames'
+import Image from "next/image"
 const FocusBisnis = ({ }) => {
     const cardItems = [
         {
