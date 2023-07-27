@@ -32,7 +32,7 @@ const News = () => {
 
     const LargeNewsItem = ({ location, date, title, thumbnail }) => {
         return (
-            <div className={cn("hover:cursor-pointer relative col-span-1 h-[20rem] items-start rounded-lg")}>
+            <div className={cn("zoom hover:cursor-pointer relative col-span-1 h-[20rem] items-start rounded-lg")}>
                 <Image
                     src={thumbnail}
                     fill={true}
@@ -59,7 +59,7 @@ const News = () => {
 
     const SmallNewsItem = ({ location, date, title, thumbnail }) => {
         return (
-            <div className="flex flex-row items-center gap-x-[1.5rem] hover:cursor-pointer">
+            <div className="zoom flex flex-row items-center gap-x-[1.5rem] hover:cursor-pointer">
                 <img src={thumbnail} className="rounded-lg w-[8.375rem] h-[8.375rem]" />
                 <div>
                     <div className="flex flex-row gap-x-[0.875rem] items-center">

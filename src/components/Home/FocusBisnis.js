@@ -1,6 +1,8 @@
 
 import cn from 'classnames'
-import Image from "next/image"
+import { useState } from 'react'
+import { Slide } from "react-awesome-reveal";
+
 const FocusBisnis = ({ }) => {
     const cardItems = [
         {
@@ -26,6 +28,47 @@ const FocusBisnis = ({ }) => {
         }
     ]
 
+    const CardFocusBisnis = ({ item }) => {
+        const [isHover, setIsHover] = useState(false)
+        return (
+            <div onMouseEnter={() => {
+                setIsHover(true)
+            }} onMouseLeave={() => {
+                setIsHover(false)
+            }} className={cn(item.bg, "hover:cursor-pointer relative col-span-1 h-[30.75rem] bg-cover bg-center bg-no-repeat items-start rounded-lg")}>
+                <div className="absolute w-full h-full rounded-lg" style={{
+                    "background": "linear-gradient(0deg, rgba(0, 0, 0, 0.6) 26.12%, rgba(249, 160, 27, 0) 84.35%)"
+                }} />
+                <div className="absolute w-full h-full rounded-lg" style={{
+                    "background": "rgba(249, 160, 27, 0.3)"
+                }} />
+                {!isHover && <>
+                    <img src={item.icon} className="pt-[19.063rem] px-[2.5rem] relative z-[100]" />
+                    <div className="text-neutral w-text-headline-1 mt-[1.5rem] px-[2.5rem] relative z-[100]">{item.title}</div>
+                </>
+                }
+                {isHover &&
+                    <div className='fade-in'>
+                        <div className="absolute w-full h-full rounded-lg" style={{
+                            "background": "#F9A01BCC"
+                        }} />
+                        <Slide direction='up' duration={300}>
+                            <img src={item.icon} className="pt-[4.5rem] px-[2.5rem] relative z-[100]" />
+                            <div className="text-neutral w-text-headline-1 mt-[1.5rem] px-[2.5rem] relative z-[100]">{item.title}</div>
+
+
+                            <div className="text-white w-text-body-2 relative z-[100] px-[2.5rem] pt-[1.25rem]">WIKA Gedung menyediakan layanan konstruksi terintegrasi dengan dukungan teknologi terdepan...</div>
+                            <div className='w-full px-[2.5rem] '>
+                                <div className="btn btn-ghost border border-white relative z-[100] text-white w-full mt-[1.688rem]">Pelajari lebih lanjut</div>
+                            </div>
+                        </Slide>
+
+                    </div>
+                }
+            </div>
+        )
+    }
+
     return (
         <>
             <div className="flex flex-row justify-between px-[2.5rem] gap-x-[6.25rem] mb-[5.688rem]">
@@ -42,16 +85,7 @@ const FocusBisnis = ({ }) => {
                 {
                     cardItems.map((item, index) => {
                         return (
-                            <div key={index} className={cn(item.bg, "hover:cursor-pointer relative col-span-1 h-[30.75rem] bg-cover bg-center bg-no-repeat items-start rounded-lg")}>
-                                <div className="absolute w-full h-full rounded-lg" style={{
-                                    "background": "linear-gradient(0deg, rgba(0, 0, 0, 0.6) 26.12%, rgba(249, 160, 27, 0) 84.35%)"
-                                }} />
-                                <div className="absolute w-full h-full rounded-lg" style={{
-                                    "background": "rgba(249, 160, 27, 0.3)"
-                                }} />
-                                <img src={item.icon} className="pt-[19.063rem] px-[2.5rem] relative z-[100]" />
-                                <div className="text-neutral w-text-headline-1 mt-[1.5rem] px-[2.5rem] relative z-[100]">{item.title}</div>
-                            </div>
+                            <CardFocusBisnis item={item} key={index} />
                         )
                     })
                 }

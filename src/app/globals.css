@@ -30,15 +30,15 @@
 @layer base {
 
   html {
-    font-size: 16px;   
+    font-size: 16px;
   }
-  
+
   @media (max-width: 1390px) {
     html {
       font-size: 15px;
     }
   }
-  
+
   @media (max-width: 1273px) {
     html {
       font-size: 14px;
@@ -48,7 +48,7 @@
   body {
     font-family: "Maven-Pro";
   }
-  
+
 
   /* typography */
   .w-text-display-4 {
@@ -58,7 +58,7 @@
   .w-text-display-3 {
     @apply text-[2.5rem] font-bold
   }
-  
+
   .w-text-display-2 {
     @apply text-[2rem] font-bold;
   }
@@ -139,7 +139,7 @@
     font-weight: 500;
     color: #141414;
   }
-  
+
   ul.breadcrumb li+li:before {
     padding: 8px;
     color: #141414;
@@ -150,9 +150,52 @@
     color: #141414;
     text-decoration: none;
   }
-  
+
   /* Add a color on mouse-over */
   ul.breadcrumb li a:hover {
     text-decoration: underline;
+  }
+
+  .zoom:hover {
+    transform: scale(1.1);
+
+    z-index: 99;
+    transition: transform 0.5s;
+  }
+
+  .fade-in {
+    animation: fadeIn 1s;
+  }
+
+  .line {
+    flex: 1;
+    min-width: 50px;
+    height: 2px;
+    background-color: #FEFFFF;
+  }
+
+  .slideUp-entering,
+  .slideUp-exiting {
+    opacity: 0;
+    transform: translateY(20px);
+    /* Adjust the value as needed */
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .slideUp-entered,
+  .slideUp-exited {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
   }
 }

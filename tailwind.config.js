@@ -23,7 +23,8 @@ module.exports = {
         lifeguard: "#E50000",
         white_smoke: "#F5F5F5",
         overlay: "#585858",
-        robo_master: '#ADADAD'
+        robo_master: '#ADADAD',
+        dark_blue: "#168FCF"
       },
       backgroundImage: {
         'konstruksi_gedung': "url('/images/illust_kontruksi_gedung.png')",
