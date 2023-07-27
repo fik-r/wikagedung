@@ -4,7 +4,7 @@ import cn from "classnames"
 import { Container } from "@/components/Layout"
 import { useState, useEffect } from "react"
 
-export default function index() {
+export default function Index() {
     const [activeIndex, setActiveIndex] = useState(0)
     const [contentOpacity, setContentOpacity] = useState(0);
 
