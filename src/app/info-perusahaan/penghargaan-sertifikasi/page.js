@@ -1,6 +1,6 @@
 'use client'
 import Layout from "@/components/Layout/info-perusahaan"
-import { Tab } from "@/components/common"
+import { CircleTab } from "@/components/common"
 import { useState } from "react"
 
 const DocumentItem = ({ }) => {
@@ -24,14 +24,14 @@ const DocumentItem = ({ }) => {
         </div>
     )
 }
-export default function index() {
+export default function Index() {
     const content = () => {
         return (
             <div className="flex flex-col w-full">
                 <div className="flex flex-row w-full justify-between">
                     <div className="flex flex-row gap-x-[1.25rem]">
-                        <Tab active text="Penghargaan" />
-                        <Tab text="Sertifikasi" />
+                        <CircleTab active text="Penghargaan" />
+                        <CircleTab text="Sertifikasi" />
                     </div>
                     <div className="rounded-full bg-white border border-silver_spoon flex items-center px-[0.875rem] h-[2.75rem] gap-x-[0.875rem]">
                         <img src="/icons/ic_search_black.svg" />

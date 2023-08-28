@@ -34,7 +34,7 @@ export default function Navbar(props) {
     },
     {
         title: "Lini Bisnis",
-        route: "",
+        route: "/lini-bisnis/konstruksi",
 
     },
     {
@@ -54,7 +54,7 @@ export default function Navbar(props) {
     },
     {
         title: "Media",
-        route: "",
+        route: "/berita",
 
     },
     {
@@ -131,17 +131,19 @@ export default function Navbar(props) {
             {theme == "light" && <hr className="mt-[1.656rem]" />}
             {props.showBreadcrumb && expandMenu == "" &&
                 <>
-                    <div className="flex flex-row justify-between mx-[6.25rem] my-[1.75rem] border-l-4 border-primary">
-                        <ul className="breadcrumb ml-[1.25rem]">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Info Perusahaan</a></li>
-                            <li><a href="#">Tentang Kami</a></li>
-                        </ul>
+                    <div className={cn("flex flex-row justify-between mx-[6.25rem] my-[1.75rem]", props.isOnDetailPage ? "" : "border-l-4 border-primary")}>
+                        {!props.isOnDetailPage &&
+                            <ul className="breadcrumb ml-[1.25rem]">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Info Perusahaan</a></li>
+                                <li><a href="#">Tentang Kami</a></li>
+                            </ul>
+                        }
                         <div className="flex flex-row cursor-pointer items-center gap-x-[0.875rem]" onClick={() => {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}>
-                            <img src="/icons/ic_circle_arrow_up.svg" />
-                            <div className="font-medium text-primary w-text-body-1">Kembali ke Atas</div>
+                            <img src={props.isOnDetailPage ? "/icons/ic_circle_arrow_back.svg" : "/icons/ic_circle_arrow_up.svg"} />
+                            <div className="font-medium text-primary w-text-body-1">Kembali ke {props.isOnDetailPage ? "Awal" : "Atas"}</div>
                         </div>
                     </div>
                     <hr />

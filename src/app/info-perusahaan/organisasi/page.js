@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout/info-perusahaan"
-import { Tab } from "@/components/common"
-export default function index() {
+import { CircleTab } from "@/components/common"
+export default function Index() {
     const ProfileItem = ({ job, name }) => {
         return (
             <div className="flex flex-col rounded-lg shadow-lg w-[22.5rem]">
@@ -15,8 +15,8 @@ export default function index() {
             <div className="border-t border-secondary flex flex-col items-center pt-[4.375rem] pb-[15.625rem]">
                 <div className="w-text-display-2 mb-[2rem]">Profil Dewan Komisaris dan Direksi</div>
                 <div className="flex flex-row gap-x-[1.25rem]">
-                    <Tab active text={"Komisaris"} />
-                    <Tab text={"Direksi"} />
+                    <CircleTab active text={"Komisaris"} />
+                    <CircleTab text={"Direksi"} />
                 </div>
                 <div className="px-[6.25rem] mt-[2.625rem] w-full flex flex-col">
                     <div className="border-t border-silver_spoon pb-[2.5rem]"></div>

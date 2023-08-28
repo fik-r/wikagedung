@@ -1,14 +1,13 @@
 import { Layout, Container } from "@/components/Layout"
-import { Sidebar } from "@/components/info-perusahaan"
-export default function Index({ heading, subHeading, activeSidebar, titlePage, descriptionPage, sidebarContent, content, isOnDetailPage }) {
+import { Sidebar } from "@/components/lini-bisnis"
+export default function Index({ heading, activeSidebar, titlePage, descriptionPage, sidebarContent, content, isOnDetailPage }) {
     return (
         <Layout showBreadcrumb={true} isOnDetailPage={isOnDetailPage}>
             <div className="w-full">
 
                 {/* header, should change with dynamic data */}
                 <div className="px-[6.25rem] relative flex flex-col">
-                    <div className="w-text-subhead-2 text-secondary font-semibold mt-[2.5rem]">{heading}</div>
-                    <div className="w-text-display-4 text-sooty font-semibold mt-[0.625rem] pb-[2.5rem]">{subHeading}</div>
+                    <div className="w-text-display-4 text-sooty font-semibold mt-[2.5rem] pb-[2.5rem]">{heading}</div>
                 </div>
                 {/* sidebar */}
                 <div className="px-[6.25rem] relative flex flex-row mt-[3.125rem] gap-x-[3.75rem] pb-[3.125rem]">

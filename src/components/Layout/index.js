@@ -3,10 +3,10 @@ import Navbar from "./Navbar";
 import Container from "./Container";
 import Footer from "./Footer";
 
-const Layout = ({ children, showBreadcrumb }) => {
+const Layout = ({ children, showBreadcrumb, isOnDetailPage }) => {
     return (
         <>
-            <Navbar theme="light" showBreadcrumb={showBreadcrumb} />
+            <Navbar theme="light" showBreadcrumb={showBreadcrumb} isOnDetailPage={isOnDetailPage} />
             {children}
             <Footer />
         </>

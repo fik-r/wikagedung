@@ -1,4 +1,5 @@
 'use client'
 
-import Tab from "./Tab"
-export { Tab }
+import CircleTab from "./CircleTab"
+import SidebarMenu from "./SidebarMenu"
+export { CircleTab, SidebarMenu }

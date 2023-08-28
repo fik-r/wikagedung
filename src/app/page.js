@@ -1,5 +1,6 @@
 import { Navbar, Container, Footer } from "@/components/Layout"
-import { Hero, FocusBisnis, News, Sponsor, ProjectOverview, Awards, CompanyProfile } from "@/components/Home"
+import { Hero, FocusBisnis, News, Sponsor, ProjectOverview, Awards, CompanyProfile } from "@/components/home"
+import { SidebarMenu } from "@/components/common"
 
 export default function Index() {
     return (
@@ -11,13 +12,7 @@ export default function Index() {
                     className="absolute w-full z-[-1] h-[60.5rem]"
                     style={{ objectFit: "cover", objectPosition: "center" }}
                 />
-                <div className="flex flex-col bg-dark_blue rounded-tl-lg rounded-bl-lg fixed top-0 mt-[18.75rem] right-0 z-[999] p-4">
-                    <img src="/icons/ic_newspaper.svg" className="w-8 h-8 my-2 hover:cursor-pointer zoom" />
-                    <hr className="my-2" />
-                    <img src="/icons/ic_focus-target.svg" className="w-8 h-8 my-2 hover:cursor-pointer zoom" />
-                    <hr className="my-2" />
-                    <img src="/icons/ic_building.svg" className="w-8 h-8 my-2 hover:cursor-pointer zoom" />
-                </div>
+                <SidebarMenu/>
                 {/* navbar */}
                 <Navbar theme="dark" />
                 {/* hero content */}

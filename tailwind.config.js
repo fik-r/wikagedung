@@ -24,7 +24,10 @@ module.exports = {
         white_smoke: "#F5F5F5",
         overlay: "#585858",
         robo_master: '#ADADAD',
-        dark_blue: "#168FCF"
+        dark_blue: "#168FCF",
+        snowflake: "#F0F0F0",
+        black_oaf: "#4F4F4F",
+        lynx_white: "#F7F7F7"
       },
       backgroundImage: {
         'konstruksi_gedung': "url('/images/illust_kontruksi_gedung.png')",
