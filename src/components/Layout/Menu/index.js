@@ -1,2 +1,2 @@
-import InfoPerusahaan from "./InfoPerusahaan";
-export { InfoPerusahaan }
+import ChildMenu from "./ChildMenu";
+export { ChildMenu }

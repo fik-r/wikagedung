@@ -1,8 +1,8 @@
 import { Layout, Container } from "@/components/Layout"
-import { Sidebar } from "@/components/lini-bisnis"
-export default function Index({ heading, activeSidebar, titlePage, descriptionPage, sidebarContent, content, isOnDetailPage }) {
+import { Sidebar } from "@/components/common"
+export default function Index({ heading, titlePage, descriptionPage, sidebarContent, content, isOnDetailPage, dataHomepage, dataMenuHeader, dataContact }) {
     return (
-        <Layout showBreadcrumb={true} isOnDetailPage={isOnDetailPage}>
+        <Layout showBreadcrumb={true} isOnDetailPage={isOnDetailPage}  dataMenuHeader={dataMenuHeader} dataHomepage={dataHomepage} dataContact={dataContact}>
             <div className="w-full">
 
                 {/* header, should change with dynamic data */}
@@ -12,7 +12,7 @@ export default function Index({ heading, activeSidebar, titlePage, descriptionPa
                 {/* sidebar */}
                 <div className="px-[6.25rem] relative flex flex-row mt-[3.125rem] gap-x-[3.75rem] pb-[3.125rem]">
                     {/* sidebar */}
-                    <Sidebar active={activeSidebar} />
+                    <Sidebar data={dataMenuHeader[1].child} />
                     {/* sidebar content text */}
                     {!sidebarContent && <div className="flex-auto flex flex-col">
                         {titlePage && <div className="inline-block text-jet w-text-title-1 font-bold mb-[0.75rem]">{titlePage}</div>}

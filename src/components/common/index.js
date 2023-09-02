@@ -2,4 +2,5 @@
 
 import CircleTab from "./CircleTab"
 import SidebarMenu from "./SidebarMenu"
-export { CircleTab, SidebarMenu }
+import Sidebar from "./Sidebar"
+export { CircleTab, SidebarMenu, Sidebar }

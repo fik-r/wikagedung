@@ -1,15 +1,12 @@
 import Layout from "@/components/Layout/info-perusahaan"
 import { CircleTab } from "@/components/common"
-export default function Index() {
-    const ProfileItem = ({ job, name }) => {
-        return (
-            <div className="flex flex-col rounded-lg shadow-lg w-[22.5rem]">
-                <img src="/images/dummy_komisaris.png" className="rounded-t-lg bg-white_smoke w-full h-[20.25rem]" />
-                <div className="w-text-body-2 text-sooty mx-[1rem] mt-[1.25rem]">{job}</div>
-                <div className="w-text-headline-1 text-primary mx-[1rem] mb-[1.25rem]">{name}</div>
-            </div>
-        )
-    }
+import { getContact, getHomepageData, getMenuHeader } from "@/api/wege-service"
+import { ProfileItem } from "@/components/info-perusahaan"
+export default async function Index() {
+    const dataMenuHeader = await getMenuHeader()
+    const dataHomepage = await getHomepageData()
+    const dataContact = await getContact()
+
     const content = () => {
         return (
             <div className="border-t border-secondary flex flex-col items-center pt-[4.375rem] pb-[15.625rem]">
@@ -36,10 +33,12 @@ export default function Index() {
         <Layout
             heading={"Info Perusahaan"}
             subHeading={"Organisasi"}
-            activeSidebar={"Organisasi"}
             titlePage={"Sambutan Direktur Utama"}
             descriptionPage={"Pada tahun 2021, kebijakan strategis yang diimplementasikan berhasil membawa Perusahaan mewujudkan pencapaian yang menggembiraka. Kinerja finansial Perusahaan tercatat mengalami pertumbuhan seiring dengan sentimen positif yang tercermin pada berbagai apresiasi yang diraih, diantaranya yaitu rekor MURI untuk proyek Jakarta International Stadium dan Pit Building Mandalika."}
             content={content()}
+            dataContact={dataContact.data.data[0]}
+            dataHomepage={dataHomepage.data.data[0]}
+            dataMenuHeader={dataMenuHeader.data.data}
         />
     )
 }

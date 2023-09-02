@@ -1,5 +1,23 @@
+'use client'
 import { useRouter } from 'next/navigation'
-const Awards = () => {
+import { LANGUAGE, ENGLISH } from '@/utils/constants'
+import { useState, useEffect } from "react"
+
+const Awards = ({ data }) => {
+    const [language, setLanguage] = useState("")
+
+    useEffect(() => {
+        function setLanguageOnStorageChange() {
+            setLanguage(localStorage.getItem(LANGUAGE))
+        }
+        setLanguageOnStorageChange()
+
+        window.addEventListener('storage', setLanguageOnStorageChange)
+        return () => {
+            window.removeEventListener('storage', setLanguageOnStorageChange)
+        }
+    }, [])
+
     const router = useRouter()
     const AwardsItem = ({ logo, desc }) => {
         return (
@@ -15,9 +33,9 @@ const Awards = () => {
         <div className="flex flex-col items-center">
             <div className="w-text-headline-1 text-sooty font-bold pb-[3rem]">Our Awards & Commitment</div>
             <div className="flex flex-row gap-x-[5rem]">
-                <AwardsItem logo="/images/illust_awards.svg" desc="More than 50 Awards" />
-                <AwardsItem logo="/images/illust_iso.svg" desc="More than 10 ISO Certified" />
-                <AwardsItem logo="/images/illust_green_building.svg" desc="Green Building Award Indonesia" />
+                <AwardsItem logo="/images/illust_awards.svg" desc={language == ENGLISH ? data[0].award_text_en : data[0].award_text} />
+                <AwardsItem logo="/images/illust_iso.svg" desc={language == ENGLISH ? data[1].award_text_en : data[1].award_text} />
+                <AwardsItem logo="/images/illust_green_building.svg" desc={language == ENGLISH ? data[2].award_text_en : data[2].award_text} />
             </div>
         </div>
     )

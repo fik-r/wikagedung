@@ -1,42 +1,43 @@
-import { Navbar, Container, Footer } from "@/components/Layout"
-import { Hero, FocusBisnis, News, Sponsor, ProjectOverview, Awards, CompanyProfile } from "@/components/home"
+import { Container, Footer } from "@/components/Layout"
+import { Header, FocusBisnis, News, Sponsor, ProjectOverview, Awards, CompanyProfile } from "@/components/home"
 import { SidebarMenu } from "@/components/common"
+import { getBanner, getMenuHeader, getMemberOfWika, getSustainability, getContact, getHomepageData, getLatestNews } from "@/api/wege-service"
 
-export default function Index() {
+export default async function Index() {
+    const dataMenuHeader = await getMenuHeader()
+    const dataBanner = await getBanner()
+    const dataMemberOfWika = await getMemberOfWika()
+    const dataSustainability = await getSustainability()
+    const dataContact = await getContact()
+    const dataHomepage = await getHomepageData()
+    const dataNews = await getLatestNews()
+
     return (
         <>
             {/* hero */}
             <div className="relative flex flex-col">
-                <img
-                    src="/images/hero.jpg"
-                    className="absolute w-full z-[-1] h-[60.5rem]"
-                    style={{ objectFit: "cover", objectPosition: "center" }}
-                />
-                <SidebarMenu/>
-                {/* navbar */}
-                <Navbar theme="dark" />
-                {/* hero content */}
-                <Hero />
+                <Header dataMenuHeader={dataMenuHeader.data.data} dataBanner={dataBanner.data.data} dataHomepage={dataHomepage.data.data[0]} />
                 <Container className="relative bg-primary">
-                    <ProjectOverview />
+                    <ProjectOverview data={dataHomepage.data.data[0].project_ovw}/>
                 </Container>
                 <Container className="pt-[5rem] pb-[5.188rem]">
-                    <FocusBisnis />
+                    <FocusBisnis data={dataHomepage.data.data[0]} />
                 </Container>
+                <SidebarMenu />
                 <Container className="pt-[3.75rem] pb-[5.188rem]">
-                    <Awards />
+                    <Awards data={dataHomepage.data.data[0].award}/>
                 </Container>
 
                 <Container className="pt-[7.5rem]">
-                    <News />
+                    <News data={dataHomepage.data.data[0]} news={dataNews.data.data}/>
                 </Container>
-                <CompanyProfile />
+                <CompanyProfile data={dataSustainability.data.data} />
                 <Container className="pt-[2.75rem]">
-                    <Sponsor />
+                    <Sponsor data={dataMemberOfWika.data.data} dataHomepage={dataHomepage.data.data[0]}/>
                 </Container>
 
                 {/* footer */}
-                <Footer />
+                <Footer data={dataContact.data.data[0]}/>
             </div>
 
             {/* content */}

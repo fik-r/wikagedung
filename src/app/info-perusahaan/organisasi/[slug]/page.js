@@ -1,7 +1,15 @@
-import { Layout, Container } from "@/components/Layout"
-export default function index() {
+import { Layout } from "@/components/Layout"
+import { getMenuHeader, getContact, getHomepageData } from "@/api/wege-service"
+
+export default async function index() {
+    const dataContact = await getContact()
+    const dataHomepage = await getHomepageData()
+    const dataMenuHeader = await getMenuHeader()
     return (
-        <Layout showBreadcrumb={true} isOnDetailPage={true}>
+        <Layout showBreadcrumb={true} isOnDetailPage={true}
+            dataContact={dataContact.data.data[0]}
+            dataHomepage={dataHomepage.data.data[0]}
+            dataMenuHeader={dataMenuHeader.data.data}>
             <div className="w-full px-[6.25rem]">
                 <div className="relative flex flex-col">
                     <div className="w-text-display-2 text-sooty] mt-[2.5rem]">Profil Dewan Komisaris</div>

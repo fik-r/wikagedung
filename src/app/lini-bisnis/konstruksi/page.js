@@ -1,21 +1,12 @@
-'use client'
 import Layout from "@/components/Layout/lini-bisnis"
 import { CircleTab } from "@/components/common"
-import { useRouter } from "next/navigation"
+import { getMenuHeader, getHomepageData, getContact } from "@/api/wege-service"
+import { KonstruksiItem } from "@/components/lini-bisnis"
+export default async function Index() {
+    const dataMenuHeader = await getMenuHeader()
+    const dataHomepage = await getHomepageData()
+    const dataContact = await getContact()
 
-export default function Index() {
-    const router = useRouter()
-    const KonstruksiItem = ({ type, name }) => {
-        return (
-            <div className="flex flex-col rounded-lg shadow-lg w-[16.25rem] hover:cursor-pointer zoom" onClick={() => {
-                router.push("/lini-bisnis/konstruksi/detail")
-            }}>
-                <img src="/images/ic_dummy_apartemen.png" className="rounded-t-lg bg-white_smoke w-full h-[20.25rem]" />
-                <div className="w-text-subhead-1 font-normal text-sooty mx-[1rem] mt-[1.25rem]">{type}</div>
-                <div className="w-text-subhead-1 font-bold text-primary mx-[1rem] mt-[0.5rem] mb-[1.25rem]">{name}</div>
-            </div>
-        )
-    }
     const content = () => {
         return (
             <div className="border-t border-secondary flex flex-col items-center pt-[4.375rem] pb-[15.625rem] px-[6.25rem]">
@@ -58,10 +49,12 @@ export default function Index() {
     return (
         <Layout
             heading={"Lini Bisnis"}
-            activeSidebar={"Konstruksi"}
             titlePage={"Lingkup Usaha Konstruksi"}
             descriptionPage={"WIKA Gedung menyediakan layanan konstruksi terintegrasi dengan dukungan teknologi terdepan dalam memberikan solusi pekerjaan konstruksi secara menyeluruh dengan mengutamakan quality & safety untuk melayani pasar pemerintah, BUMN/BUMD dan swasta di Indonesia."}
             content={content()}
+            dataHomepage={dataHomepage.data.data[0]}
+            dataMenuHeader={dataMenuHeader.data.data}
+            dataContact={dataContact.data.data[0]}
         />
     )
 }

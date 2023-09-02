@@ -6,4 +6,5 @@ import Sponsor from "./Sponsor"
 import ProjectOverview from "./ProjectOverview"
 import Awards from "./Awards"
 import CompanyProfile from "./CompanyProfile"
-export { Hero, FocusBisnis, News, Sponsor, ProjectOverview, Awards, CompanyProfile }
+import Header from "./Header"
+export { Hero, FocusBisnis, News, Sponsor, ProjectOverview, Awards, CompanyProfile, Header }

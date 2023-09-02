@@ -1,6 +1,10 @@
 import { Layout } from "@/components/Layout"
-export default function Index() {
-    const ProjectItem = ({title, description}) => {
+import { getContact, getHomepageData, getMenuHeader } from "@/api/wege-service"
+export default async function Index() {
+    const dataMenuHeader = await getMenuHeader()
+    const dataHomepage = await getHomepageData()
+    const dataContact = await getContact()
+    const ProjectItem = ({ title, description }) => {
         return (
             <div className="flex flex-col">
                 <div className="w-text-title-1 text-sooty">{title}</div>
@@ -9,7 +13,9 @@ export default function Index() {
         )
     }
     return (
-        <Layout showBreadcrumb={true} isOnDetailPage={true}>
+        <Layout showBreadcrumb={true} isOnDetailPage={true} dataHomepage={dataHomepage.data.data[0]}
+            dataMenuHeader={dataMenuHeader.data.data}
+            dataContact={dataContact.data.data[0]}>
             <div className="flex flex-col w-full px-[6.25rem]">
                 <div className="flex flex-row justify-between my-[2.5rem]">
                     <div className="flex flex-col">
@@ -27,9 +33,9 @@ export default function Index() {
                         <div className="w-text-body-2 text-jet mt-[1.5rem]">Berlokasi di daerah Wiyung, Surabaya, proyek apartemen ini merupakan proyek rancang bangun (design & build) yang diperkirakan akan menghabiskan waktu pengerjaan selama 960 hari. Puncak CBD Wiyung adalah proyek dari PT Surya Bumimegah Sejahtera terdiri dari 3 tower, area komersial sebanyak 268 unit ruko, dan total luas area 25.000 meter persegi.</div>
                     </div>
                     <div className="flex flex-col bg-lynx_white p-[1.5rem] gap-y-[1.5rem] rounded-lg">
-                        <ProjectItem title="Project Owner" description="WIKA TIRTA JAYA JATILUHUR"/>
-                        <ProjectItem title="Project Category" description="Sistem Penyediaan Air Minum"/>
-                        <ProjectItem title="Project Target" description="2022 - 2023"/>
+                        <ProjectItem title="Project Owner" description="WIKA TIRTA JAYA JATILUHUR" />
+                        <ProjectItem title="Project Category" description="Sistem Penyediaan Air Minum" />
+                        <ProjectItem title="Project Target" description="2022 - 2023" />
                     </div>
                 </div>
 
