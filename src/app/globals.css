@@ -57,6 +57,10 @@
 
 
   /* typography */
+  .w-text-display-mobile {
+    @apply text-[2.125rem] font-bold;
+  }
+
   .w-text-display-4 {
     @apply text-[3.125rem] font-bold;
   }

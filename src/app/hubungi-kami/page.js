@@ -1,5 +1,9 @@
-import { Layout, Container } from "@/components/Layout"
-export default function Index() {
+import { Layout } from "@/components/Layout"
+import { getContact, getHomepageData, getMenuHeader } from "@/api/wege-service"
+export default async function Index() {
+    const dataMenuHeader = await getMenuHeader()
+    const dataHomepage = await getHomepageData()
+    const dataContact = await getContact()
     const InformationItem = ({ title, description }) => {
         return (
             <div className="flex flex-row gap-x-[1.5rem] mt-[1.25rem]">
@@ -24,7 +28,9 @@ export default function Index() {
     }
 
     return (
-        <Layout showBreadcrumb={true}>
+        <Layout showBreadcrumb={true} dataContact={dataContact.data.data[0]}
+            dataHomepage={dataHomepage.data.data[0]}
+            dataMenuHeader={dataMenuHeader.data.data}>
             <div className="w-full pb-[5rem]">
 
                 {/* header, should change with dynamic data */}

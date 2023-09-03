@@ -18,26 +18,18 @@ export default async function Index() {
             <div className="relative flex flex-col">
                 <Header dataMenuHeader={dataMenuHeader.data.data} dataBanner={dataBanner.data.data} dataHomepage={dataHomepage.data.data[0]} />
                 <Container className="relative bg-primary">
-                    <ProjectOverview data={dataHomepage.data.data[0].project_ovw}/>
+                    <ProjectOverview data={dataHomepage.data.data[0].project_ovw} />
                 </Container>
-                <Container className="pt-[5rem] pb-[5.188rem]">
-                    <FocusBisnis data={dataHomepage.data.data[0]} />
-                </Container>
+                <FocusBisnis data={dataHomepage.data.data[0]} />
                 <SidebarMenu />
-                <Container className="pt-[3.75rem] pb-[5.188rem]">
-                    <Awards data={dataHomepage.data.data[0].award}/>
-                </Container>
-
-                <Container className="pt-[7.5rem]">
-                    <News data={dataHomepage.data.data[0]} news={dataNews.data.data}/>
-                </Container>
+                <Awards data={dataHomepage.data.data[0].award} />
+                <News data={dataHomepage.data.data[0]} news={dataNews.data.data} />
                 <CompanyProfile data={dataSustainability.data.data} />
-                <Container className="pt-[2.75rem]">
-                    <Sponsor data={dataMemberOfWika.data.data} dataHomepage={dataHomepage.data.data[0]}/>
-                </Container>
+                <Sponsor data={dataMemberOfWika.data.data} dataHomepage={dataHomepage.data.data[0]} />
+
 
                 {/* footer */}
-                <Footer data={dataContact.data.data[0]}/>
+                <Footer data={dataContact.data.data[0]} />
             </div>
 
             {/* content */}

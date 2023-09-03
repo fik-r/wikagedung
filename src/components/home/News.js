@@ -5,8 +5,11 @@ import { LANGUAGE, ENGLISH } from '@/utils/constants';
 import Index from '@/app/page';
 import moment from "moment"
 import { useRouter } from 'next/navigation';
+import { Container } from '@/components/Layout';
+import useResponsive from '@/utils/media-query';
 
 const News = ({ data, news }) => {
+    const { isMobile } = useResponsive()
     const router = useRouter()
     const [language, setLanguage] = useState("")
 
@@ -79,20 +82,41 @@ const News = ({ data, news }) => {
             </div>
         )
     }
-    return (
-        <>
-            <div className="grid grid-cols-3 mx-[2.5rem]">
-                <div className="col-span-1 flex flex-col">
-                    <div className="text-orange w-text-body-1 font-bold">{language == ENGLISH ? "News" : "Berita"}</div>
-                    <div className="text-sooty w-text-headline-1 leading-[3.125rem] pr-[1rem]">{language == ENGLISH ? data.news_title_en : data.news_title}</div>
-                </div>
-                <div className="col-span-2 flex flex-col">
-                    <div className="text-jet w-text-body-2 font-normal leading-[2rem]">{language == ENGLISH ? data.news_text_en : data.news_text}</div>
-                    <div className="btn btn-outline btn-warning mt-[1.5rem] w-[10.75rem] px-0 capitalize">{language == ENGLISH ? "See More" : "Lihat Selengkapnya"}</div>
+
+    const MobileNewsItem = ({ location, date, title, thumbnail, alias }) => {
+        return (
+            <div onClick={() => {
+                router.push("/media/berita/" + alias)
+            }} className="rounded-xl shadow-md zoom flex flex-col items-center hover:cursor-pointer min-w-[14.5rem] h-[20rem] mb-[5px]">
+                <img src="/images/dummy_news_2.webp" className="rounded-t-lg min-w-[14.5rem] h-[10.125rem]" />
+                <div className="p-[1.5rem]">
+                    <div className="flex flex-row gap-x-[0.875rem] items-center">
+                        <div className="w-text-caption text-jet font-semibold">{location}</div>
+                        <div className="w-text-subhead-1 text-aria">|</div>
+                        <div className="w-text-caption font-normal text-hard_coal">{date}</div>
+                    </div>
+                    <div className="mt-[0.875rem] w-text-body-1 font-semibold text-sooty">
+                        {title}
+                    </div>
                 </div>
             </div>
+        )
+    }
+    return (
+        <Container className={cn(isMobile ? "pt-[2rem]" : "pt-[7.5rem]")}>
+            <div className={cn(isMobile ? "flex flex-col mx-[0.875rem]" : "mx-[2.5rem] grid grid-cols-3")}>
+                <div className={cn("flex flex-col", isMobile ? "" : "col-span-1")}>
+                    <div className="text-orange w-text-body-1 font-bold">{language == ENGLISH ? "News" : "Berita"}</div>
+                    <div className={cn("text-sooty pr-[1rem]", isMobile ? "w-text-body-2" : "leading-[3.125rem] w-text-headline-1")}>{language == ENGLISH ? data.news_title_en : data.news_title}</div>
+                    {isMobile && <div className={cn("text-jet font-normal mt-[0.875rem] w-text-body-1")}>{language == ENGLISH ? data.news_text_en : data.news_text}</div>}
+                </div>
+                {!isMobile && <div className="col-span-2 flex flex-col">
+                    <div className="text-jet w-text-body-2 font-normal leading-[2rem]">{language == ENGLISH ? data.news_text_en : data.news_text}</div>
+                    <div className="btn btn-outline btn-warning mt-[1.5rem] w-[10.75rem] px-0 capitalize">{language == ENGLISH ? "See More" : "Lihat Selengkapnya"}</div>
+                </div>}
+            </div>
             {/* card news */}
-            <div className="flex flex-col mt-[6.938rem] justify-center mb-[8.75rem]">
+            {!isMobile && <div className="flex flex-col mt-[6.938rem] justify-center mb-[8.75rem]">
                 <div className="grid grid-cols-2 gap-x-[1.313rem]">
                     {getLargeNews().map((news, index) => {
                         return (
@@ -123,8 +147,26 @@ const News = ({ data, news }) => {
                         })}
                     </div>
                 }
-            </div>
-        </>
+            </div>}
+
+
+            {isMobile && <div className='flex flex-row overflow-x-auto mx-[0.875rem] gap-x-[0.875rem] mt-[1.875rem] '>
+                {news.map((news, index) => {
+                    return (
+                        <MobileNewsItem
+                            key={Index}
+                            date={moment(news.news_date).format("D MMMM YYYY")}
+                            title={language == ENGLISH ? news.news_title_en : news.news_title}
+                            location={news.news_place}
+                            thumbnail={process.env.NEXT_PUBLIC_BASE_URL + news.news_file_path}
+                            alias={news.news_alias}
+                        />
+                    )
+                })}
+            </div>}
+
+            {isMobile && <div className="btn btn-outline btn-warning mt-[2.5rem] w-[10.75rem] btn-sm px-0 capitalize mx-auto">{language == ENGLISH ? "See More" : "Lihat Selengkapnya"}</div>}
+        </Container>
     )
 }
 

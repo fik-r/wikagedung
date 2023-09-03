@@ -2,8 +2,11 @@
 import { useState } from "react";
 import { Navbar } from "../Layout";
 import Hero from "./Hero";
+import useResponsive from "@/utils/media-query"
+import cn from "classnames"
 
 const Header = ({ dataMenuHeader, dataBanner, dataHomepage }) => {
+    const { isMobile } = useResponsive()
     const [index, setIndex] = useState(0);
     const totalBanner = dataBanner.length;
     const handleIndexChange = newIndex => {
@@ -16,18 +19,14 @@ const Header = ({ dataMenuHeader, dataBanner, dataHomepage }) => {
         }
     };
     return (
-        <>
-            <img
-                src={process.env.NEXT_PUBLIC_BASE_URL + dataBanner[index][`banner${index + 1}_image_url`]}
-                className="absolute w-full z-[-1] h-[60.5rem] max-h-[60.5rem]"
-                style={{ objectFit: "cover", objectPosition: "center" }}
-            />
-
+        <div className="flex flex-col bg-cover bg-center bg-no-repeat" style={{
+            backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL + dataBanner[index][`banner${index + 1}_image_url`]})`
+        }}>
             {/* navbar */}
-            <Navbar theme="dark" data={dataMenuHeader} dataHomepage={dataHomepage}/>
+            <Navbar theme="dark" data={dataMenuHeader} dataHomepage={dataHomepage} />
             {/* hero content */}
             <Hero data={dataBanner} onIndexChange={handleIndexChange} index={index} />
-        </>
+        </div>
     )
 }
 

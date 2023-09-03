@@ -16,6 +16,7 @@ export default function Navbar(props) {
     const dataHomepage = props.dataHomepage
     const [isSticky, setIsSticky] = useState(false)
     const [expandMenu, setExpandMenu] = useState(false)
+    const [expandMenuMobile, setExpandMenuMobile] = useState(false)
     const [theme, setTheme] = useState(props.theme)
     const [dataChildMenu, setDataChildMenu] = useState([])
     const [language, setLanguage] = useState("")
@@ -34,8 +35,13 @@ export default function Navbar(props) {
     function getBreadcumbsText() {
         var segments = pathname.split('/').filter(segment => segment !== '');
         var middle = segments[0].charAt(0).toUpperCase() + segments[0].slice(1).replace(/-/g, ' ');
-        var end = segments[1].charAt(0).toUpperCase() + segments[1].slice(1).replace(/-/g, ' ');
-        return [middle, end]
+        if (segments.length == 2) {
+
+            var end = segments[1].charAt(0).toUpperCase() + segments[1].slice(1).replace(/-/g, ' ');
+            return [middle, end]
+        } else {
+            return [middle]
+        }
     }
 
     const stickyListener = (e) => {
@@ -92,7 +98,6 @@ export default function Navbar(props) {
                                     key={index}
                                     className={cn(pathname.replace(/[\/-]/g, ' ').includes(item.menu_name.toLowerCase()) ? "text-democrat" : theme == "light" ? "text-sooty" : "text-white", "w-text-subhead-1 cursor-pointer hover:text-democrat")}
                                     onMouseEnter={() => {
-                                        console.log("onmouseenter")
                                         expandChildrenMenu()
                                         setDataChildMenu(item.child)
                                     }}
@@ -119,7 +124,7 @@ export default function Navbar(props) {
                                 <ul className="breadcrumb ml-[1.25rem]">
                                     <li><a href="/">Home</a></li>
                                     <li><a href="#" className="capitalize">{getBreadcumbsText()[0]}</a></li>
-                                    <li><a href="#" className="capitalize">{getBreadcumbsText()[1]}</a></li>
+                                    {getBreadcumbsText()[1] && <li><a href="#" className="capitalize">{getBreadcumbsText()[1]}</a></li>}
                                 </ul>
                             }
                             <div className="flex flex-row cursor-pointer items-center gap-x-[0.875rem]" onClick={() => {
@@ -146,32 +151,44 @@ export default function Navbar(props) {
                 }
             </div>}
             {/* mobile */}
-            {isMobile && <div id="navbar" className="sticky top-0 z-[995] bg-white h-[4rem] flex flex-row justify-between">
-                <div className="flex flex-row my-[1.25rem]">
-                    <img className="w-[1.5rem] h-[1.5rem] mx-[0.875rem] cursor-pointer" onClick={() => {
-
-                    }} src="/icons/ic_menu.svg" />
-                    <img className="w-[8.5rem] h-[1.5rem]" src="/images/ic_wika_gedung.svg" />
-                </div>
-                <div className="flex flex-row my-[1.25rem]">
-                    <div className="flex flex-row items-center gap-x-[0.625rem]">
-                        <div className={cn("w-text-body-1 cursor-pointer", language == INDONESIA ? "text-secondary font-semibold" : "text-aria font-normal")} onClick={() => {
-                            setDesiredLanguage(INDONESIA)
-                        }}>ID</div>
-                        <div className="text-aria">|</div>
-                        <div className={cn("w-text-body-1 cursor-pointer", language == ENGLISH ? "text-secondary font-semibold" : "text-aria font-normal")} onClick={() => {
-                            setDesiredLanguage(ENGLISH)
-                        }}>EN</div>
+            {isMobile && <div id="navbar" className="w-full fixed top-0 z-[995] bg-white">
+                <div className="flex flex-row bg-[#424242] py-[0.625rem] px-[0.875rem]">
+                    <div className={cn("text-white w-text-caption font-medium self-center")}>WEGE - IDR {dataHomepage.nilai_saham}</div>
+                    <div className="flex items-center ml-[0.625rem]"><img className="w-[1.125rem] h-[1.125rem]" src="/icons/ic_trending_up.svg" />
+                        <span className="w-text-caption text-garnish ml-[0.25rem]">+{dataHomepage.grafik_saham} %</span>
                     </div>
-                    <img src={"/icons/ic_search_black.svg"} className="cursor-pointer mx-[0.875rem]" />
+                </div>
+                <div className="flex flex-row justify-between h-[4rem]">
+                    <div className="flex flex-row my-[1.25rem]">
+                        <img className="w-[1.5rem] h-[1.5rem] mx-[0.875rem] cursor-pointer" onClick={() => {
+                            setExpandMenuMobile(true)
+                        }} src="/icons/ic_menu.svg" />
+                        <img className="w-[8.5rem] h-[1.5rem] cursor-pointer" src="/images/ic_wika_gedung.svg" onClick={() => {
+                            router.push("/")
+                        }} />
+                    </div>
+                    <div className="flex flex-row my-[1.25rem]">
+                        <div className="flex flex-row items-center gap-x-[0.625rem]">
+                            <div className={cn("w-text-body-1 cursor-pointer", language == INDONESIA ? "text-secondary font-semibold" : "text-aria font-normal")} onClick={() => {
+                                setDesiredLanguage(INDONESIA)
+                            }}>ID</div>
+                            <div className="text-aria">|</div>
+                            <div className={cn("w-text-body-1 cursor-pointer", language == ENGLISH ? "text-secondary font-semibold" : "text-aria font-normal")} onClick={() => {
+                                setDesiredLanguage(ENGLISH)
+                            }}>EN</div>
+                        </div>
+                        <img src={"/icons/ic_search_black.svg"} className="cursor-pointer mx-[0.875rem]" />
+                    </div>
                 </div>
 
 
             </div>}
 
-            {isMobile && <div className="absolute w-full top-0 fixed h-full bg-black bg-opacity-50 z-[999]">
+            {isMobile && expandMenuMobile && <div className="w-full top-0 fixed h-full bg-black bg-opacity-50 z-[999]">
                 <div className="w-[80%] h-full bg-white p-[1.5rem] flex flex-col">
-                    <img className="w-[9.625rem] h-[1.625rem] mb-[1.5rem]" src="/images/ic_wika_gedung.svg" />
+                    <img className="w-[9.625rem] h-[1.625rem] mb-[1.5rem] cursor-pointer" src="/images/ic_wika_gedung.svg" onClick={() => {
+                        setExpandMenuMobile(false)
+                    }} />
                     <ChildMenu
                         data={data} />
                 </div>

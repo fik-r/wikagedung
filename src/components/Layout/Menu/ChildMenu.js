@@ -12,6 +12,7 @@ const ChildMenu = (props) => {
     const [language, setLanguage] = useState("")
 
     useEffect(() => {
+
         function setLanguageOnStorageChange() {
             setLanguage(localStorage.getItem(LANGUAGE))
         }
@@ -38,31 +39,54 @@ const ChildMenu = (props) => {
 
     const Menu = ({ index, item, onClick }) => {
         return (
-            <div className="w-100 row-span-1 flex flex-col justify-center">
-                <div tabIndex={index} className={cn(item.child && item.child.length > 0 ? "collapse-arrow" : "", "collapse group")}>
+            <div className={cn("w-100 row-span-1 flex flex-col justify-center")}>
+                <div
+                    tabIndex={index}
+                    className={cn("collapse group", item.child && item.child.length > 0 ? "collapse-arrow" : "")}>
+                    {isMobile && <input type="checkbox" className="h-[2.5rem] min-h-[2.5rem]" />}
                     <span onClick={() => {
-                        if (item.alias)
+                        if (item.alias && !isMobile)
                             onClick(item)
                     }} className="cursor-pointer collapse-title min-h-fit p-0 w-text-body-2 text-sooty font-medium h-[2.5rem] flex items-center group-focus:text-orange hover:text-orange">
                         {language == ENGLISH ? item.menu_name_en : item.menu_name}
                     </span>
                     {item.child && item.child.length > 0 &&
-                        <div tabIndex={index} className="collapse-content flex flex-col min-h-fit p-0 group-focus:p-0">
-                            {
-                                item.child.map((child, index) => {
-                                    return (<div key={index} onClick={() => {
-                                        if (child.alias) {
-                                            var path = child.alias;
-                                            var segments = path.split('/');
-                                            var queryParam = segments.pop();
+                        <>
+                            <div className="collapse-content flex flex-col min-h-fit p-0 group-focus:p-0">
+                                {
+                                    item.child.map((child, index) => {
+                                        return (
+                                            <>
+                                                <div key={index} onClick={() => {
+                                                    if (child.alias && !isMobile) {
+                                                        var path = child.alias;
+                                                        var segments = path.split('/');
+                                                        var queryParam = segments.pop();
 
-                                            var newPath = segments.join('/') + '?q=' + queryParam;
-                                            router.push(newPath)
-                                        }
-                                    }} className="cursor-pointer w-text-body-2 text-sooty font-normal h-[2.5rem] flex items-center hover:text-orange">{language == ENGLISH ? child.menu_name_en : child.menu_name}</div>)
-                                })
-                            }
-                        </div>
+                                                        var newPath = segments.join('/') + '?q=' + queryParam;
+                                                        router.push(newPath)
+                                                    }
+
+                                                    if (isMobile) {
+                                                        if (child.alias) {
+                                                            router.push(child.alias)
+                                                        } else {
+                                                            var path = child.child[0].alias;
+                                                            var segments = path.split('/');
+                                                            var queryParam = segments.pop();
+
+                                                            var newPath = segments.join('/') + '?q=' + queryParam;
+                                                            router.push(newPath)
+                                                        }
+                                                    }
+                                                }} className={cn("cursor-pointer text-sooty font-normal h-[2.5rem] flex items-center hover:text-orange", isMobile ? "w-text-body-1" : "w-text-body-2")}>{language == ENGLISH ? child.menu_name_en : child.menu_name}</div>
+                                                {isMobile && <hr />}
+                                            </>
+                                        )
+                                    })
+                                }
+                            </div>
+                        </>
                     }
                 </div>
                 {!isMobile && <hr />}
@@ -70,7 +94,6 @@ const ChildMenu = (props) => {
         )
     }
 
-    console.log(data)
     return (
         <>
             {!isMobile &&
@@ -108,9 +131,9 @@ const ChildMenu = (props) => {
                 </div>
             }
             {isMobile &&
-                <div className="w-full flex flex-col">
+                <div className="w-full flex flex-col gap-y-[1.5rem]">
                     {data.map((item, index) => {
-                        return <Menu key={index} item={item} />
+                        return <Menu key={index} item={item} index={index} />
                     })}
                 </div>
             }
