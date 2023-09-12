@@ -10,7 +10,7 @@ export default async function Index() {
     const dataSustainability = await getSustainability()
     const dataContact = await getContact()
     const dataHomepage = await getHomepageData()
-    const dataNews = await getLatestNews()
+    const dataNews = await getLatestNews(5)
 
     return (
         <>
@@ -26,14 +26,10 @@ export default async function Index() {
                 <News data={dataHomepage.data.data[0]} news={dataNews.data.data} />
                 <CompanyProfile data={dataSustainability.data.data} />
                 <Sponsor data={dataMemberOfWika.data.data} dataHomepage={dataHomepage.data.data[0]} />
-
-
                 {/* footer */}
                 <Footer data={dataContact.data.data[0]} />
             </div>
-
             {/* content */}
-
         </>
     )
 }

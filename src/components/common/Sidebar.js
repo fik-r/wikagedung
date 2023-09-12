@@ -36,10 +36,13 @@ const Sidebar = ({ data }) => {
     }
 
     return (
-        <div className="flex-none flex flex-col gap-y-[0.625rem] border-l-4 border-l-secondary h-fit">
+        <div className="flex-none flex flex-col gap-y-[0.625rem] border-l-4 border-l-secondary h-fit w-[19em]">
             {data.map((item, index) => {
                 return (
-                    <SidebarItem key={index} active={item.menu_name.replace('& ', '') == getLastPathname()} number={index > 9 ? index + 1 : `0${index + 1}`} text={language == ENGLISH ? item.menu_name_en : item.menu_name}
+                    <SidebarItem key={index}
+                        active={item.menu_name.replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, ' ').trim().toLowerCase().includes(getLastPathname().toLowerCase())}
+                        number={index > 8 ? index + 1 : `0${index + 1}`}
+                        text={language == ENGLISH ? item.menu_name_en : item.menu_name}
                         onClick={() => {
                             if (item.alias)
                                 router.push(item.alias)

@@ -19,6 +19,7 @@ export default function Navbar(props) {
     const [expandMenuMobile, setExpandMenuMobile] = useState(false)
     const [theme, setTheme] = useState(props.theme)
     const [dataChildMenu, setDataChildMenu] = useState([])
+    const [dataParent, setDataParent] = useState({title: "", description: ""})
     const [language, setLanguage] = useState("")
 
     useEffect(() => {
@@ -100,6 +101,7 @@ export default function Navbar(props) {
                                     onMouseEnter={() => {
                                         expandChildrenMenu()
                                         setDataChildMenu(item.child)
+                                        setDataParent({title: language == ENGLISH ? item.menu_name_en : item.menu_name, description: language == ENGLISH ? item.description_en : item.description})
                                     }}
                                 >{language == ENGLISH ? item.menu_name_en : item.menu_name}</div>
                             })
@@ -147,6 +149,8 @@ export default function Navbar(props) {
                             expandChildrenMenu()
                         }}
                         data={dataChildMenu}
+                        title={dataParent.title}
+                        description={dataParent.description}
                         onMouseLeave={collapseMenu} />
                 }
             </div>}

@@ -1,25 +1,37 @@
 import Layout from "@/components/Layout/info-perusahaan"
 import { Container } from "@/components/Layout"
-import { getContact, getHomepageData, getMenuHeader } from "@/api/wege-service"
+import { getContact, getHomepageData, getMenuHeader, getMenuContentByAlias, getTimelinePerusahaan } from "@/api/wege-service"
 import { TimelineInformasi } from "@/components/info-perusahaan"
+import { headers } from "next/headers";
 
 export default async function Index() {
-    const dataMenuHeader = await getMenuHeader()
-    const dataHomepage = await getHomepageData()
-    const dataContact = await getContact()
+    const headersList = headers();
+    const pathname = (headersList.get("x-invoke-path") || "").replace(/^\//, '');
+
+    function getLastPathname() {
+        const pathParts = pathname.split('/');
+        const lastPart = pathParts[pathParts.length - 1];
+        const words = lastPart.split('-');
+        const result = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        return result
+    }
+
+    const [dataMenuHeader, dataHomepage, dataContact, dataContent, dataTimeline] =
+        await Promise.all([
+            getMenuHeader(), getHomepageData(), getContact(), getMenuContentByAlias(pathname), getTimelinePerusahaan()])
+
 
     const content = () => {
         return (
             <Container className="py-[5rem] px-[2.5rem]">
-                <TimelineInformasi />
+                <TimelineInformasi data={dataTimeline.data.data} />
             </Container>
         )
     }
     return (
         <Layout
-            heading={"Info Perusahaan"}
-            subHeading={"Tentang Kami"}
-            descriptionPage={"Lebih dari satu dekade berkarya, PT Wijaya Karya Bangunan Gedung Tbk (WIKA Gedung dengan kode emiten WEGE), secara konsisten memberikan yang terbaik bagi setiap pemangku kepentingan dalam perannya sebagai Total Solution Contractor pada bidang konstruksi bangunan dan konsesi dengan mengedepankan safety & quality dalam menciptakan ruang (space) untuk kehidupan manusia yang lebih baik."}
+            name={getLastPathname()}
+            dataContent={dataContent.data.data[0]}
             content={content()}
             dataHomepage={dataHomepage.data.data[0]}
             dataMenuHeader={dataMenuHeader.data.data}

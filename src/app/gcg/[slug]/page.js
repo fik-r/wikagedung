@@ -1,11 +1,13 @@
 import Layout from "@/components/Layout/info-perusahaan"
-import { getContact, getHomepageData, getMenuHeader, getMenuContentByAlias, getListSertikasiDanPenghargaan } from "@/api/wege-service"
-import { PenghargaanSertifikat } from "@/components/info-perusahaan"
+import { getContact, getHomepageData, getMenuHeader, getMenuContentByAlias } from "@/api/wege-service"
+
 import { headers } from "next/headers";
+import { Template } from "@/components/common";
 
 export default async function Index() {
     const headersList = headers();
     const pathname = (headersList.get("x-invoke-path") || "").replace(/^\//, '');
+
     function getLastPathname() {
         const pathParts = pathname.split('/');
         const lastPart = pathParts[pathParts.length - 1];
@@ -13,21 +15,20 @@ export default async function Index() {
         const result = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
         return result
     }
-    const [dataMenuHeader, dataHomepage, dataContact, dataContent, dataPenghargaan, dataSertifikat] =
+
+    const [dataMenuHeader, dataHomepage, dataContact, dataContent] =
         await Promise.all([
-            getMenuHeader(), getHomepageData(), getContact(), getMenuContentByAlias(pathname),
-            getListSertikasiDanPenghargaan("Penghargaan"), getListSertikasiDanPenghargaan("Sertifikat")])
+            getMenuHeader(), getHomepageData(), getContact(), getMenuContentByAlias(pathname)])
 
     const content = () => {
         return (
-            <PenghargaanSertifikat penghargaan={dataPenghargaan.data.data} sertifikat={dataSertifikat.data.data} />
+            <Template data={dataContent.data.data[0]} />
         )
     }
     return (
         <Layout
             name={getLastPathname()}
             sidebarContent={content()}
-            dataContent={dataContent.data.data[0]}
             dataHomepage={dataHomepage.data.data[0]}
             dataMenuHeader={dataMenuHeader.data.data}
             dataContact={dataContact.data.data[0]}

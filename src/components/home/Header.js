@@ -20,7 +20,7 @@ const Header = ({ dataMenuHeader, dataBanner, dataHomepage }) => {
     };
     return (
         <div className="flex flex-col bg-cover bg-center bg-no-repeat" style={{
-            backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_URL + dataBanner[index][`banner${index + 1}_image_url`]})`
+            backgroundImage: `url(${dataBanner[index][`banner${index + 1}_image_url`]})`
         }}>
             {/* navbar */}
             <Navbar theme="dark" data={dataMenuHeader} dataHomepage={dataHomepage} />

@@ -125,7 +125,7 @@ const News = ({ data, news }) => {
                                 date={moment(news.news_date).format("D MMMM YYYY")}
                                 title={language == ENGLISH ? news.news_title_en : news.news_title}
                                 location={news.news_place}
-                                thumbnail={process.env.NEXT_PUBLIC_BASE_URL + news.news_file_path}
+                                thumbnail={news.news_file_path}
                                 alias={news.news_alias}
                             />
                         )
@@ -140,7 +140,7 @@ const News = ({ data, news }) => {
                                     date={moment(news.news_date).format("D MMMM YYYY")}
                                     title={language == ENGLISH ? news.news_title_en : news.news_title}
                                     location={news.news_place}
-                                    thumbnail={process.env.NEXT_PUBLIC_BASE_URL + news.news_file_path}
+                                    thumbnail={news.news_file_path}
                                     alias={news.news_alias}
                                 />
                             )
@@ -158,7 +158,7 @@ const News = ({ data, news }) => {
                             date={moment(news.news_date).format("D MMMM YYYY")}
                             title={language == ENGLISH ? news.news_title_en : news.news_title}
                             location={news.news_place}
-                            thumbnail={process.env.NEXT_PUBLIC_BASE_URL + news.news_file_path}
+                            thumbnail={news.news_file_path}
                             alias={news.news_alias}
                         />
                     )

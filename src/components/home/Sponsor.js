@@ -33,7 +33,7 @@ const Sponsor = ({ data, dataHomepage }) => {
                             {
                                 data.slice(0, numItemsToShow).map((sponsor, index) => {
                                     return (
-                                        <img key={index} src={process.env.NEXT_PUBLIC_BASE_URL + sponsor.image_url} alt={sponsor.image_name} className={cn(isMobile ? "w-[5.375rem] h-[2.438rem]" : "w-[13.75rem] h-[6.125rem]", "fade-in hover:cursor-pointer")} onClick={() => {
+                                        <img key={index} src={sponsor.image_url} alt={sponsor.image_name} className={cn(isMobile ? "w-[5.375rem] h-[2.438rem]" : "w-[13.75rem] h-[6.125rem]", "fade-in hover:cursor-pointer")} onClick={() => {
                                             window.open(sponsor.link, "_blank")
                                         }} />
                                     )

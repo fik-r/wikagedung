@@ -9,6 +9,8 @@ const ChildMenu = (props) => {
     const { isMobile } = useResponsive()
     const router = useRouter()
     const data = props.data
+    const title = props.title
+    const description = props.description
     const [language, setLanguage] = useState("")
 
     useEffect(() => {
@@ -102,10 +104,10 @@ const ChildMenu = (props) => {
                 <img src="/images/bg_menu_2.svg" className="absolute bottom-0 left-0" /> */}
                     <div className="col-span-1 flex flex-col">
                         <div className="text-primary w-text-display-3">
-                            Info Perusahaan
+                            {title}
                         </div>
                         <div className="leading-[1.875rem] w-text-body-2 text-sooty mt-[1.5rem]">
-                            Melalui perjalanan panjang sejarah yang telah diukir, senantiasa selalu berkomitmen untuk memberikan kontribusi terbaik
+                            {description}
                         </div>
                     </div>
                     <div className={cn("col-span-2 gap-x-[2.5rem]", data.length > 4 ? "grid grid-cols-2" : "flex flex-col")}>

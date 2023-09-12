@@ -52,7 +52,7 @@ const NewsDetail = ({ data }) => {
                     </div>
                 </div>
                 <div className="flex flex-col mt-[2.5rem]">
-                    <img src={process.env.NEXT_PUBLIC_BASE_URL + data.image_url} className="w-[79rem] h-[34.375rem] rounded-lg" />
+                    <img src={data.image_url} className="w-[79rem] h-[34.375rem] rounded-lg" />
                     <div className="flex flex-row pt-[2.5rem] gap-x-[3.125rem]">
                         <div className="w-text-body-1 text-jet leading-[1.5rem]">
                             <div dangerouslySetInnerHTML={{ __html: language == ENGLISH ? data.news_content_en : data.news_content }}></div>

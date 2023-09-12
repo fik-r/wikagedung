@@ -4,8 +4,10 @@ const getMenuHeader = () => {
     return API.get("/api/getMenuHeader")
 }
 
-const getLatestNews = () => {
-    return API.get("/api/getLatestNews")
+const getLatestNews = (limit) => {
+    return API.post("/api/getLatestNews", {
+        limit: limit
+    })
 }
 
 const getBanner = () => {
@@ -34,4 +36,40 @@ const getNewsContentByAlias = (alias) => {
     })
 }
 
-export { getMenuHeader, getBanner, getLatestNews, getSustainability, getContact, getMemberOfWika, getHomepageData, getNewsContentByAlias }
+const getMenuContentByAlias = (alias) => {
+    return API.post("api/getMenuContentByAlias", {
+        alias: alias
+    })
+}
+
+const getTimelinePerusahaan = () => {
+    return API.get("/api/getTimelinePerusahaan")
+}
+
+const getListSertikasiDanPenghargaan = (tipe) => {
+    return API.post("/api/getListSertikasiDanPenghargaan", {
+        tipe: tipe
+    })
+}
+
+const getListOrganisasi = (tipe) => {
+    return API.post("/api/getListOrganisasi", {
+        tipe: tipe
+    })
+}
+
+const getListAlamatDanKontak = (tipe) => {
+    return API.post("/api/getListAlamatDanKontak", {
+        tipe: tipe
+    })
+}
+export {
+    getListAlamatDanKontak,
+    getListOrganisasi,
+    getTimelinePerusahaan,
+    getMenuContentByAlias,
+    getMenuHeader, getBanner,
+    getLatestNews, getSustainability, getContact, getMemberOfWika, getHomepageData,
+    getNewsContentByAlias,
+    getListSertikasiDanPenghargaan
+}

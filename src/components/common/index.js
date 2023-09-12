@@ -3,4 +3,6 @@
 import CircleTab from "./CircleTab"
 import SidebarMenu from "./SidebarMenu"
 import Sidebar from "./Sidebar"
-export { CircleTab, SidebarMenu, Sidebar }
+import Pagination from "./Pagination"
+import Template from "./Template"
+export { CircleTab, SidebarMenu, Sidebar, Pagination, Template }

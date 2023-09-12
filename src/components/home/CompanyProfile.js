@@ -33,7 +33,7 @@ const CompanyProfile = ({ data }) => {
     return (
         <> {!isMobile &&
             <div className="relative">
-                <img className="rounded-lg absolute left-0 top-6 bottom-0 z-[3] h-[25.438rem] ml-[8.75rem] w-[17.813rem]" src={process.env.NEXT_PUBLIC_BASE_URL + data[index].image_url} alt={data[index].image_name} />
+                <img className="rounded-lg absolute left-0 top-6 bottom-0 z-[3] h-[25.438rem] ml-[8.75rem] w-[17.813rem]" src={data[index].image_url} alt={data[index].image_name} />
                 <div className="relative bg-primary w-100 mt-[3.75rem] py-[2.125rem] h-[20.938rem]">
                     <div className="relative flex flex-col z-[2] ml-[30.375rem]">
                         <div className="w-text-title-1 text-white h-[1.5rem]">{data[index].year}</div>
