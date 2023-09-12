@@ -24,7 +24,9 @@ export default function Index({ showSidebar = true, name, sidebarContent, conten
 
     function findMenuAndParentByName(menuArray, name, parentMenu = null) {
         for (const menu of menuArray) {
-            if (menu.menu_name && menu.menu_name.replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, ' ').trim().toLowerCase() == name.toLowerCase()) {
+            if ((menu.menu_name && menu.menu_name.replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, ' ').trim().toLowerCase() == name.toLowerCase()) || 
+            menu.menu_name_en && menu.menu_name_en.replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, ' ').trim().toLowerCase() == name.toLowerCase()
+            ) {
                 return { child: menu, parent: parentMenu };
             }
 

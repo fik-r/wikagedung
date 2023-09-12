@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout/info-perusahaan"
-import { getContact, getHomepageData, getMenuHeader, getMenuContentByAlias, getListOrganisasi } from "@/api/wege-service"
+import { getMenuHeader, getHomepageData, getContact, getLatestNews } from "@/api/wege-service"
 import { headers } from "next/headers";
-import { SekretarisPerusahaan } from "@/components/info-perusahaan";
+import { ListNews } from "@/components/news";
 
 export default async function Index() {
     const headersList = headers();
@@ -13,26 +13,27 @@ export default async function Index() {
         const result = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
         return result
     }
-    const [dataMenuHeader, dataHomepage, dataContact, dataSekretaris] =
+    const [dataMenuHeader, dataHomepage, dataContact, dataNews] =
         await Promise.all([
-            getMenuHeader(), getHomepageData(), getContact(), getListOrganisasi("Sekretaris Perusahaan")])
-
-
-            console.log(dataSekretaris.data.data)
+            getMenuHeader(), getHomepageData(), getContact(), getLatestNews()])
 
     const content = () => {
         return (
-            <SekretarisPerusahaan data={dataSekretaris.data.data[0]} />
+            <ListNews />
         )
     }
+
     return (
         <Layout
             name={getLastPathname()}
-            content={content()}
+            showSidebar={false}
+            showBreadcrumb={true}
+            isOnDetailPage={false}
             dataHomepage={dataHomepage.data.data[0]}
             dataMenuHeader={dataMenuHeader.data.data}
             dataContact={dataContact.data.data[0]}
-            showSidebar={false}
-        />
+            content={content()}>
+
+        </Layout>
     )
 }

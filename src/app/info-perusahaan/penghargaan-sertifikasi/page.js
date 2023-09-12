@@ -23,6 +23,7 @@ export default async function Index() {
             <PenghargaanSertifikat penghargaan={dataPenghargaan.data.data} sertifikat={dataSertifikat.data.data} />
         )
     }
+
     return (
         <Layout
             name={getLastPathname()}

@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout/info-perusahaan"
-import { getContact, getHomepageData, getMenuHeader, getMenuContentByAlias, getListOrganisasi } from "@/api/wege-service"
+import { getContact, getHomepageData, getMenuHeader } from "@/api/wege-service"
 import { headers } from "next/headers";
-import { SekretarisPerusahaan } from "@/components/info-perusahaan";
+import { BerkarirBersamaKami } from "@/components/karir";
 
 export default async function Index() {
     const headersList = headers();
@@ -13,16 +13,15 @@ export default async function Index() {
         const result = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
         return result
     }
-    const [dataMenuHeader, dataHomepage, dataContact, dataSekretaris] =
+    const [dataMenuHeader, dataHomepage, dataContact] =
         await Promise.all([
-            getMenuHeader(), getHomepageData(), getContact(), getListOrganisasi("Sekretaris Perusahaan")])
+            getMenuHeader(), getHomepageData(), getContact()])
 
 
-            console.log(dataSekretaris.data.data)
 
     const content = () => {
         return (
-            <SekretarisPerusahaan data={dataSekretaris.data.data[0]} />
+            <BerkarirBersamaKami/>
         )
     }
     return (

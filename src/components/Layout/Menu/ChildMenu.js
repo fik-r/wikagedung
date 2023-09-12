@@ -63,10 +63,14 @@ const ChildMenu = (props) => {
                                                     if (child.alias && !isMobile) {
                                                         var path = child.alias;
                                                         var segments = path.split('/');
-                                                        var queryParam = segments.pop();
+                                                        if (segments.length > 2) {
+                                                            var queryParam = segments.pop();
 
-                                                        var newPath = segments.join('/') + '?q=' + queryParam;
-                                                        router.push(newPath)
+                                                            var newPath = segments.join('/') + '?q=' + queryParam;
+                                                            router.push(newPath)
+                                                        } else {
+                                                            router.push(path)
+                                                        }
                                                     }
 
                                                     if (isMobile) {
