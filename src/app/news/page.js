@@ -2,7 +2,7 @@ import Layout from "@/components/Layout/info-perusahaan"
 import { getMenuHeader, getHomepageData, getContact, getLatestNews } from "@/api/wege-service"
 import { headers } from "next/headers";
 import { ListNews } from "@/components/news";
-
+export const dynamic = 'force-dynamic'
 export default async function Index() {
     const headersList = headers();
     const pathname = (headersList.get("x-invoke-path") || "").replace(/^\//, '');
@@ -17,7 +17,6 @@ export default async function Index() {
         await Promise.all([
             getMenuHeader(), getHomepageData(), getContact(), getLatestNews()])
 
-    console.log(dataNews)
     const content = () => {
         return (
             <ListNews data={dataNews.data} />

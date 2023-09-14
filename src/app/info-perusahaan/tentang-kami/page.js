@@ -3,7 +3,7 @@ import { Container } from "@/components/Layout"
 import { getContact, getHomepageData, getMenuHeader, getMenuContentByAlias, getTimelinePerusahaan } from "@/api/wege-service"
 import { TimelineInformasi } from "@/components/info-perusahaan"
 import { headers } from "next/headers";
-
+export const dynamic = 'force-dynamic'
 export default async function Index() {
     const headersList = headers();
     const pathname = (headersList.get("x-invoke-path") || "").replace(/^\//, '');

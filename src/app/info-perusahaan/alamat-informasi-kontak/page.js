@@ -2,7 +2,7 @@ import Layout from "@/components/Layout/info-perusahaan"
 import { getContact, getHomepageData, getMenuHeader, getListAlamatDanKontak } from "@/api/wege-service"
 import { headers } from "next/headers";
 import { AlamatInformasiKontak } from "@/components/info-perusahaan";
-
+export const dynamic = 'force-dynamic'
 export default async function Index() {
     const headersList = headers();
     const pathname = (headersList.get("x-invoke-path") || "").replace(/^\//, '');

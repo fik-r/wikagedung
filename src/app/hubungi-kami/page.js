@@ -1,5 +1,6 @@
 import { Layout } from "@/components/Layout"
 import { getContact, getHomepageData, getMenuHeader } from "@/api/wege-service"
+export const dynamic = 'force-dynamic'
 export default async function Index() {
     const dataMenuHeader = await getMenuHeader()
     const dataHomepage = await getHomepageData()

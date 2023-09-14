@@ -2,8 +2,8 @@ import { Layout } from "@/components/Layout"
 import { getContact, getHomepageData, getMenuContentByAlias, getMenuHeader } from "@/api/wege-service"
 import { DetailProyek } from "@/components/lini-bisnis"
 import { headers } from "next/headers";
+export const dynamic = 'force-dynamic'
 export default async function Index({ searchParams }) {
-
     const headersList = headers();
     const pathname = (headersList.get("x-invoke-path") || "").replace(/^\//, '');
     function getLastPathname() {

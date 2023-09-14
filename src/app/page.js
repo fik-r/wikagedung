@@ -2,7 +2,7 @@ import { Container, Footer } from "@/components/Layout"
 import { Header, FocusBisnis, News, Sponsor, ProjectOverview, Awards, CompanyProfile } from "@/components/home"
 import { SidebarMenu } from "@/components/common"
 import { getBanner, getMenuHeader, getMemberOfWika, getSustainability, getContact, getHomepageData, getLatestNews } from "@/api/wege-service"
-
+export const dynamic = 'force-dynamic'
 export default async function Index() {
 
     const [dataMenuHeader, dataHomepage, dataContact,
