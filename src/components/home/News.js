@@ -45,7 +45,7 @@ const News = ({ data, news }) => {
             <div className={cn("zoom hover:cursor-pointer relative col-span-1 h-[20rem] items-start rounded-lg bg-cover bg-center bg-no-repeat")}
                 style={{ backgroundImage: `url(${thumbnail})` }}
                 onClick={() => {
-                    router.push("/media/berita/" + alias)
+                    router.push("/news/" + alias)
                 }}
             >
                 <div className="absolute pt-[1.375rem] px-[1.5rem] pb-[2rem] bottom-0">
@@ -66,7 +66,7 @@ const News = ({ data, news }) => {
         return (
             <div className="zoom flex flex-row items-center gap-x-[1.5rem] hover:cursor-pointer"
                 onClick={() => {
-                    router.push("/media/berita/" + alias)
+                    router.push("/news/" + alias)
                 }}>
                 <img src={thumbnail} className="rounded-lg w-[8.375rem] h-[8.375rem]" />
                 <div>
@@ -86,7 +86,7 @@ const News = ({ data, news }) => {
     const MobileNewsItem = ({ location, date, title, thumbnail, alias }) => {
         return (
             <div onClick={() => {
-                router.push("/media/berita/" + alias)
+                router.push("/news/" + alias)
             }} className="rounded-xl shadow-md zoom flex flex-col items-center hover:cursor-pointer min-w-[14.5rem] h-[20rem] mb-[5px]">
                 <img src="/images/dummy_news_2.webp" className="rounded-t-lg min-w-[14.5rem] h-[10.125rem]" />
                 <div className="p-[1.5rem]">
