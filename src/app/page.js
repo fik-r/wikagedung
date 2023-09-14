@@ -4,30 +4,35 @@ import { SidebarMenu } from "@/components/common"
 import { getBanner, getMenuHeader, getMemberOfWika, getSustainability, getContact, getHomepageData, getLatestNews } from "@/api/wege-service"
 
 export default async function Index() {
-    const dataMenuHeader = await getMenuHeader()
-    const dataBanner = await getBanner()
-    const dataMemberOfWika = await getMemberOfWika()
-    const dataSustainability = await getSustainability()
-    const dataContact = await getContact()
-    const dataHomepage = await getHomepageData()
-    const dataNews = await getLatestNews(5)
+
+    const [dataMenuHeader, dataHomepage, dataContact,
+        dataSustainability, dataMemberOfWika, dataBanner, dataNews] =
+        await Promise.all([
+            getMenuHeader(), getHomepageData(), getContact(),
+            getSustainability(),
+            getMemberOfWika(),
+            getBanner(),
+            getLatestNews(5)
+
+        ])
+
 
     return (
         <>
             {/* hero */}
             <div className="relative flex flex-col">
-                <Header dataMenuHeader={dataMenuHeader.data.data} dataBanner={dataBanner.data.data} dataHomepage={dataHomepage.data.data[0]} />
+                <Header dataMenuHeader={dataMenuHeader.data} dataBanner={dataBanner.data} dataHomepage={dataHomepage.data[0]} />
                 <Container className="relative bg-primary">
-                    <ProjectOverview data={dataHomepage.data.data[0].project_ovw} />
+                    <ProjectOverview data={dataHomepage.data[0].project_ovw} />
                 </Container>
-                <FocusBisnis data={dataHomepage.data.data[0]} />
+                <FocusBisnis data={dataHomepage.data[0]} />
                 <SidebarMenu />
-                <Awards data={dataHomepage.data.data[0].award} />
-                <News data={dataHomepage.data.data[0]} news={dataNews.data.data} />
-                <CompanyProfile data={dataSustainability.data.data} />
-                <Sponsor data={dataMemberOfWika.data.data} dataHomepage={dataHomepage.data.data[0]} />
+                <Awards data={dataHomepage.data[0].award} />
+                <News data={dataHomepage.data[0]} news={dataNews.data} />
+                <CompanyProfile data={dataSustainability.data} />
+                <Sponsor data={dataMemberOfWika.data} dataHomepage={dataHomepage.data[0]} />
                 {/* footer */}
-                <Footer data={dataContact.data.data[0]} />
+                <Footer data={dataContact.data[0]} />
             </div>
             {/* content */}
         </>

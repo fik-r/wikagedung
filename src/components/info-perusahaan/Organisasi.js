@@ -47,7 +47,7 @@ const Organisasi = ({ direksi = [], komisaris = [] }) => {
                 <div className="flex flex-row flex-wrap justify-center gap-x-[2.5rem] gap-y-[2.5rem]">
                     {data.length > 0 && data.map((item, key) => {
                         return (
-                            <ProfileItem image={item.foto} job={item.position} name={item.name} index={key} isDireksi={isDireksi} />
+                            <ProfileItem key={key} image={item.foto} job={item.position} name={item.name} index={key} isDireksi={isDireksi} />
                         )
                     })}
                 </div>

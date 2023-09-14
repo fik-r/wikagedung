@@ -1,10 +1,11 @@
 'use client'
-import moment, { lang } from "moment"
+import moment from "moment"
 import { useState, useEffect } from "react"
 import { LANGUAGE, ENGLISH } from "@/utils/constants"
-const NewsDetail = ({ data }) => {
+import { useRouter } from "next/navigation"
+const NewsDetail = ({ data, news }) => {
     const [language, setLanguage] = useState("")
-
+    const router = useRouter()
     useEffect(() => {
         function setLanguageOnStorageChange() {
             setLanguage(localStorage.getItem(LANGUAGE))
@@ -16,9 +17,13 @@ const NewsDetail = ({ data }) => {
             window.removeEventListener('storage', setLanguageOnStorageChange)
         }
     }, [])
-    const SmallNewsItem = ({ location, date, title, thumbnail }) => {
+    const SmallNewsItem = ({ location, date, title, thumbnail, alias }) => {
         return (
-            <div className="w-[21.938rem] h-[8.375rem] zoom flex flex-row items-center gap-x-[1.5rem] hover:cursor-pointer">
+            <div className="w-[21.938rem] h-[8.375rem] zoom flex flex-row items-center gap-x-[1.5rem] hover:cursor-pointer"
+                onClick={() => {
+                    router.push("/news/" + alias)
+                }}
+            >
                 <img src={thumbnail} className="rounded-lg w-[8.375rem] h-[8.375rem]" />
                 <div>
                     <div className="flex flex-row gap-x-[0.875rem] items-center">
@@ -58,8 +63,20 @@ const NewsDetail = ({ data }) => {
                             <div dangerouslySetInnerHTML={{ __html: language == ENGLISH ? data.news_content_en : data.news_content }}></div>
                         </div>
                         <div className="flex flex-col">
-                            <div className="w-text-title-1 font-bold text-sooty mb-[1.5rem]">Rekomendasi Berita</div>
-                            <SmallNewsItem thumbnail={"/images/dummy_news_2.webp"} date="10 April 2023" location={"Jakarta"} title={"Bahas Kinerja Perusahaan dan Strategi, WEGE Gelar Investor dan Analyst Meeting"} />
+                            <div className="w-text-title-1 font-bold text-sooty mb-[1.5rem]">{language == ENGLISH ? "News Recommendations" : "Rekomendasi Berita"}</div>
+                            {news.map((item, key) => {
+                                return (
+                                    <div key={key}>
+                                        <SmallNewsItem
+                                            alias={item.news_alias}
+                                            thumbnail={item.news_file_path}
+                                            date={moment(item.news_date).format("D MMMM YYYY")} location={item.news_place}
+                                            title=
+                                            {language == ENGLISH ? item.news_title_en : item.news_title} />
+                                        <hr className="my-[1rem]" />
+                                    </div>
+                                )
+                            })}
                         </div>
                     </div>
                 </div>

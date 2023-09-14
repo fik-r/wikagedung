@@ -14,16 +14,15 @@ export default async function index({ searchParams }) {
         return result
     }
 
-    console.log(searchParams)
     const [dataMenuHeader, dataHomepage, dataContact, dataKomisaris] =
         await Promise.all([
             getMenuHeader(), getHomepageData(), getContact(), getListOrganisasi(searchParams.q ? searchParams.q : "Komisaris")])
     return (
         <Layout showBreadcrumb={true} isOnDetailPage={true}
-            dataContact={dataContact.data.data[0]}
-            dataHomepage={dataHomepage.data.data[0]}
-            dataMenuHeader={dataMenuHeader.data.data}>
-            <DetailOrganisasi data={dataKomisaris.data.data} type={searchParams.q} index={getLastPathname() - 1} />
+            dataContact={dataContact.data[0]}
+            dataHomepage={dataHomepage.data[0]}
+            dataMenuHeader={dataMenuHeader.data}>
+            <DetailOrganisasi data={dataKomisaris.data} type={searchParams.q} index={getLastPathname() - 1} />
         </Layout>
     )
 }

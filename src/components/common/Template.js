@@ -15,7 +15,7 @@ const Template = ({ data }) => {
         }
     }, [])
     return (
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full overflow-x-auto">
             <div dangerouslySetInnerHTML={{ __html: language == ENGLISH ? data.content_data_en : data.content_data }}></div>
         </div>
     )

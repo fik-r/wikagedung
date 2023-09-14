@@ -18,20 +18,19 @@ export default async function Index() {
             getMenuHeader(), getHomepageData(), getContact(), getListOrganisasi("Sekretaris Perusahaan")])
 
 
-            console.log(dataSekretaris.data.data)
-
+        
     const content = () => {
         return (
-            <SekretarisPerusahaan data={dataSekretaris.data.data[0]} />
+            <SekretarisPerusahaan data={dataSekretaris.data[0]} />
         )
     }
     return (
         <Layout
             name={getLastPathname()}
             content={content()}
-            dataHomepage={dataHomepage.data.data[0]}
-            dataMenuHeader={dataMenuHeader.data.data}
-            dataContact={dataContact.data.data[0]}
+            dataHomepage={dataHomepage.data[0]}
+            dataMenuHeader={dataMenuHeader.data}
+            dataContact={dataContact.data[0]}
             showSidebar={false}
         />
     )

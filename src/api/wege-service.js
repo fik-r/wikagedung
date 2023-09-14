@@ -1,69 +1,110 @@
 import API from "@/utils/api"
 
 const getMenuHeader = () => {
-    return API.get("/api/getMenuHeader")
+    return API("/api/getMenuHeader")
 }
 
 const getLatestNews = (limit) => {
-    return API.post("/api/getLatestNews", {
-        limit: limit
+    return API("/api/getLatestNews", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: limit ? `limit=${limit}` : ""
     })
 }
 
 const getBanner = () => {
-    return API.get("/api/getBanner")
+    return API("/api/getBanner")
 }
 
 const getMemberOfWika = () => {
-    return API.get("/api/getMemberOfWika")
+    return API("/api/getMemberOfWika")
 }
 
 const getSustainability = () => {
-    return API.get("/api/getSustainability")
+    return API("/api/getSustainability")
 }
 
 const getContact = () => {
-    return API.get("/api/getContact")
+    return API("/api/getContact")
 }
 
 const getHomepageData = () => {
-    return API.get("/api/getHomepageData")
+    return API("/api/getHomepageData")
 }
 
 const getNewsContentByAlias = (alias) => {
-    return API.post("api/getNewsContentByAlias", {
-        alias: alias
+    return API("/api/getNewsContentByAlias", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            // Add any other headers if needed
+        },
+        body: alias ? `alias=${alias}` : ""
     })
 }
 
 const getMenuContentByAlias = (alias) => {
-    return API.post("api/getMenuContentByAlias", {
-        alias: alias
+    return API("/api/getMenuContentByAlias", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            // Add any other headers if needed
+        },
+        body: alias ? `alias=${alias}` : ""
     })
 }
 
 const getTimelinePerusahaan = () => {
-    return API.get("/api/getTimelinePerusahaan")
+    return API("/api/getTimelinePerusahaan")
 }
 
 const getListSertikasiDanPenghargaan = (tipe) => {
-    return API.post("/api/getListSertikasiDanPenghargaan", {
-        tipe: tipe
+    return API("/api/getListSertikasiDanPenghargaan", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            // Add any other headers if needed
+        },
+        body: tipe ? `tipe=${tipe}` : ""
     })
 }
 
 const getListOrganisasi = (tipe) => {
-    return API.post("/api/getListOrganisasi", {
-        tipe: tipe
+    return API("/api/getListOrganisasi", {
+        method: "POST",
+        body: {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                // Add any other headers if needed
+            },
+            body: tipe ? `tipe=${tipe}` : ""
+        }
     })
 }
 
 const getListAlamatDanKontak = (tipe) => {
-    return API.post("/api/getListAlamatDanKontak", {
-        tipe: tipe
+    return API("/api/getListAlamatDanKontak", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            // Add any other headers if needed
+        },
+        body: tipe ? `tipe=${tipe}` : ""
     })
 }
+
+const getKarirData = () => {
+    return API("/api/getKarirData")
+}
+
+const getKategoriProyek = () => {
+    return API("/api/getKategoriProyek")
+}
 export {
+    getKategoriProyek,
+    getKarirData,
     getListAlamatDanKontak,
     getListOrganisasi,
     getTimelinePerusahaan,

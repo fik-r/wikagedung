@@ -24,18 +24,18 @@ export default async function Index() {
     const content = () => {
         return (
             <Container className="py-[5rem] px-[2.5rem]">
-                <TimelineInformasi data={dataTimeline.data.data} />
+                <TimelineInformasi data={dataTimeline.data} />
             </Container>
         )
     }
     return (
         <Layout
             name={getLastPathname()}
-            dataContent={dataContent.data.data[0]}
+            dataContent={dataContent.data[0]}
             content={content()}
-            dataHomepage={dataHomepage.data.data[0]}
-            dataMenuHeader={dataMenuHeader.data.data}
-            dataContact={dataContact.data.data[0]}
+            dataHomepage={dataHomepage.data[0]}
+            dataMenuHeader={dataMenuHeader.data}
+            dataContact={dataContact.data[0]}
         />
     )
 }

@@ -17,9 +17,10 @@ export default async function Index() {
         await Promise.all([
             getMenuHeader(), getHomepageData(), getContact(), getLatestNews()])
 
+    console.log(dataNews)
     const content = () => {
         return (
-            <ListNews />
+            <ListNews data={dataNews.data} />
         )
     }
 
@@ -29,9 +30,9 @@ export default async function Index() {
             showSidebar={false}
             showBreadcrumb={true}
             isOnDetailPage={false}
-            dataHomepage={dataHomepage.data.data[0]}
-            dataMenuHeader={dataMenuHeader.data.data}
-            dataContact={dataContact.data.data[0]}
+            dataHomepage={dataHomepage.data[0]}
+            dataMenuHeader={dataMenuHeader.data}
+            dataContact={dataContact.data[0]}
             content={content()}>
 
         </Layout>

@@ -40,7 +40,7 @@ const Sidebar = ({ data }) => {
             {data.map((item, index) => {
                 return (
                     <SidebarItem key={index}
-                        active={item.menu_name.replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, ' ').trim().toLowerCase().includes(getLastPathname().toLowerCase())}
+                        active={item.menu_name.replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, ' ').trim().toLowerCase() == getLastPathname().toLowerCase()}
                         number={index > 8 ? index + 1 : `0${index + 1}`}
                         text={language == ENGLISH ? item.menu_name_en : item.menu_name}
                         onClick={() => {

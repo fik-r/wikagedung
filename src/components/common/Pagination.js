@@ -35,14 +35,14 @@ const Pagination = (props) => {
                 if (props.currentPage > i + 1) {
                     if (rightTruncatedCount < (props.isMobile ? 1 : 2)) {
                         rightTruncatedCount++;
-                        return <div>...</div>;
+                        return <div key={i}>...</div>;
                     } else {
                         return <></>;
                     }
                 } else {
                     if (leftTruncatedCount < (props.isMobile ? 1 : 2)) {
                         leftTruncatedCount++;
-                        return <div>...</div>;
+                        return <div key={i}>...</div>;
                     } else {
                         return <></>;
                     }

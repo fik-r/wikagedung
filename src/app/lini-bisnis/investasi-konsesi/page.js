@@ -15,9 +15,9 @@ export default async function Index() {
     const [dataMenuHeader, dataHomepage, dataContact, dataContent, dataProyekBerjalan, dataProyekSelesai, dataKategori] =
         await Promise.all([
             getMenuHeader(), getHomepageData(), getContact(),
-            getMenuContentByAlias("lini-bisnis/konstruksi/lingkup-usaha"),
-            getMenuContentByAlias("lini-bisnis/knst/proyek-berjalan"),
-            getMenuContentByAlias("lini-bisnis/knst/proyek-sebelumnya"),
+            getMenuContentByAlias("lini-bisnis/investasi-konsesi/lingkup-usaha"),
+            getMenuContentByAlias("lini-bisnis/knsi/proyek-berjalan"),
+            getMenuContentByAlias("lini-bisnis/knsi/proyek-sebelumnya"),
             getKategoriProyek()
         ])
 
@@ -25,7 +25,7 @@ export default async function Index() {
     const content = () => {
         return (
             <LiniBisnis
-                route={"/lini-bisnis/konstruksi/"}
+                route={"/lini-bisnis/investasi-konsesi/"}
                 dataProyekBerjalan={dataProyekBerjalan.data} dataProyekSelesai={dataProyekSelesai.data} dataKategori={dataKategori.data} />
         )
     }
@@ -37,7 +37,6 @@ export default async function Index() {
             dataMenuHeader={dataMenuHeader.data}
             dataContact={dataContact.data[0]}
             dataContent={dataContent.data[0]}
-
         />
     )
 }

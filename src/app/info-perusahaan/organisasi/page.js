@@ -19,17 +19,17 @@ export default async function Index() {
 
     const content = () => {
         return (
-            <Organisasi direksi={dataDireksi.data.data} komisaris={dataKomisaris.data.data} />
+            <Organisasi direksi={dataDireksi.data} komisaris={dataKomisaris.data} />
         )
     }
     return (
         <Layout
             name={getLastPathname()}
-            dataContent={dataContent.data.data[0]}
+            dataContent={dataContent.data[0]}
             content={content()}
-            dataHomepage={dataHomepage.data.data[0]}
-            dataMenuHeader={dataMenuHeader.data.data}
-            dataContact={dataContact.data.data[0]}
+            dataHomepage={dataHomepage.data[0]}
+            dataMenuHeader={dataMenuHeader.data}
+            dataContact={dataContact.data[0]}
         />
     )
 }

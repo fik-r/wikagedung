@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout/info-perusahaan"
-import { getContact, getHomepageData, getMenuHeader } from "@/api/wege-service"
+import { getContact, getHomepageData, getKarirData, getMenuHeader } from "@/api/wege-service"
 import { headers } from "next/headers";
 import { BerkarirBersamaKami } from "@/components/karir";
 
@@ -13,24 +13,24 @@ export default async function Index() {
         const result = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
         return result
     }
-    const [dataMenuHeader, dataHomepage, dataContact] =
+    const [dataMenuHeader, dataHomepage, dataContact, dataKarir] =
         await Promise.all([
-            getMenuHeader(), getHomepageData(), getContact()])
+            getMenuHeader(), getHomepageData(), getContact(), getKarirData()])
 
 
 
     const content = () => {
         return (
-            <BerkarirBersamaKami/>
+            <BerkarirBersamaKami data={dataKarir.data[0]}/>
         )
     }
     return (
         <Layout
             name={getLastPathname()}
             content={content()}
-            dataHomepage={dataHomepage.data.data[0]}
-            dataMenuHeader={dataMenuHeader.data.data}
-            dataContact={dataContact.data.data[0]}
+            dataHomepage={dataHomepage.data[0]}
+            dataMenuHeader={dataMenuHeader.data}
+            dataContact={dataContact.data[0]}
             showSidebar={false}
         />
     )

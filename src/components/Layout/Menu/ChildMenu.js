@@ -60,10 +60,23 @@ const ChildMenu = (props) => {
                                         return (
                                             <>
                                                 <div key={index} onClick={() => {
-                                                    if (child.alias && !isMobile) {
-                                                        var path = child.alias;
+                                                    var alias = child.alias
+                                                    if (alias.includes("pctk")) {
+                                                        alias = child.alias.replace("pctk", "konstruksi-off-site-pracetak-gedung")
+                                                    }
+                                                    if (alias.includes("mdlr")) {
+                                                        alias = child.alias.replace("mdlr", "konstruksi-off-site-modular")
+                                                    }
+                                                    if (alias.includes("knsi")) {
+                                                        alias = child.alias.replace("knsi", "investasi-konsesi")
+                                                    }
+                                                    if (alias.includes("knst")) {
+                                                        alias = child.alias.replace("knst", "konstruksi")
+                                                    }
+                                                    if (alias && !isMobile) {
+                                                        var path = alias;
                                                         var segments = path.split('/');
-                                                        if (segments.length > 2) {
+                                                        if (segments.length > 2 && (!alias.includes("media") && !alias.includes("press-kit"))) {
                                                             var queryParam = segments.pop();
 
                                                             var newPath = segments.join('/') + '?q=' + queryParam;
@@ -74,8 +87,8 @@ const ChildMenu = (props) => {
                                                     }
 
                                                     if (isMobile) {
-                                                        if (child.alias) {
-                                                            router.push(child.alias)
+                                                        if (alias || (alias.includes("media") && alias.includes("press-kit"))) {
+                                                            router.push(alias)
                                                         } else {
                                                             var path = child.child[0].alias;
                                                             var segments = path.split('/');

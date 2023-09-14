@@ -22,16 +22,16 @@ export default async function Index() {
 
     const content = () => {
         return (
-            <Template data={dataContent.data.data[0]} />
+            <Template data={dataContent.data[0]} />
         )
     }
     return (
         <Layout
             name={getLastPathname()}
             sidebarContent={content()}
-            dataHomepage={dataHomepage.data.data[0]}
-            dataMenuHeader={dataMenuHeader.data.data}
-            dataContact={dataContact.data.data[0]}
+            dataHomepage={dataHomepage.data[0]}
+            dataMenuHeader={dataMenuHeader.data}
+            dataContact={dataContact.data[0]}
         />
     )
 }

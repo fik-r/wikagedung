@@ -20,7 +20,7 @@ export default async function Index() {
 
     const content = () => {
         return (
-            <PenghargaanSertifikat penghargaan={dataPenghargaan.data.data} sertifikat={dataSertifikat.data.data} />
+            <PenghargaanSertifikat penghargaan={dataPenghargaan.data} sertifikat={dataSertifikat.data} />
         )
     }
 
@@ -28,10 +28,10 @@ export default async function Index() {
         <Layout
             name={getLastPathname()}
             sidebarContent={content()}
-            dataContent={dataContent.data.data[0]}
-            dataHomepage={dataHomepage.data.data[0]}
-            dataMenuHeader={dataMenuHeader.data.data}
-            dataContact={dataContact.data.data[0]}
+            dataContent={dataContent.data[0]}
+            dataHomepage={dataHomepage.data[0]}
+            dataMenuHeader={dataMenuHeader.data}
+            dataContact={dataContact.data[0]}
         />
     )
 }

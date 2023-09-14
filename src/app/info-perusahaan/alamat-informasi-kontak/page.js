@@ -20,9 +20,9 @@ export default async function Index() {
     const content = () => {
         return (
             <AlamatInformasiKontak
-                dataAlamatAnakPerusahaan={dataAlamatAnakPerusahaan.data.data}
-                dataAlamatKantorPusat={dataAlamatKantorPusat.data.data}
-                dataAlamatInvestasi={dataAlamatInvestasi.data.data}
+                dataAlamatAnakPerusahaan={dataAlamatAnakPerusahaan.data}
+                dataAlamatKantorPusat={dataAlamatKantorPusat.data}
+                dataAlamatInvestasi={dataAlamatInvestasi.data}
             />
         )
     }
@@ -30,9 +30,9 @@ export default async function Index() {
         <Layout
             name={getLastPathname()}
             sidebarContent={content()}
-            dataContact={dataContact.data.data[0]}
-            dataHomepage={dataHomepage.data.data[0]}
-            dataMenuHeader={dataMenuHeader.data.data}
+            dataContact={dataContact.data[0]}
+            dataHomepage={dataHomepage.data[0]}
+            dataMenuHeader={dataMenuHeader.data}
         />
     )
 }
