@@ -64,7 +64,7 @@ const LiniBisnis = ({ dataProyekBerjalan, dataProyekSelesai, dataKategori, route
                 </div>
             </div>
 
-            <div className="flex flex-row flex-wrap gap-[2.5rem] px-[2.5rem]">
+            <div className="flex flex-row flex-wrap gap-[2.5rem] px-[2.5rem] justify-center">
                 {(category === 0 ? data : data.filter(item => item.ctgr_id === category)).map((item, key) => {
                     return (
                         <KonstruksiItem

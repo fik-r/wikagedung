@@ -5,6 +5,7 @@ import { Pagination } from "../common"
 import { News } from "../media"
 import moment from "moment"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 const ListNews = ({ data }) => {
     const [news, setNews] = useState(data)
     const [language, setLanguage] = useState("")
@@ -34,11 +35,12 @@ const ListNews = ({ data }) => {
     }
 
     const pagination = dataAsPagination()
-
     return (
         <div className="w-full">
             <div className="flex flex-row gap-x-[2.5rem] mt-[3.125rem] items-center mx-[6.25rem]">
-                <img src={news[0].news_file_path} className="rounded-xl w-[42.5rem] h-[30rem]" />
+                <div className="rounded-xl min-w-[42.5rem] min-h-[30rem] max-w-[42.5rem] max-h-[30rem] relative">
+                    <Image src={news[0].news_file_path} fill className="rounded-lg" />
+                </div>
                 <div className="flex flex-col">
                     <div className="flex flex-row gap-x-[0.875rem] items-center">
                         <div className="w-text-body-1 font-bold text-jet">{news[0].news_place}</div>
@@ -46,7 +48,8 @@ const ListNews = ({ data }) => {
                         <div className="w-text-body-1 text-hard_coal">{moment(news[0].news_date).format("D MMMM YYYY")}</div>
                     </div>
                     <div className="mt-[0.875rem] w-text-display-2 text-sooty">{language == ENGLISH ? news[0].news_title_en : news[0].news_title}</div>
-                    <div className="mt-[1.5rem] leading-[2rem] w-text-body-2 text-jet line-clamp-5" dangerouslySetInnerHTML={{ __html: language == ENGLISH ? news[0].news_content_en : news[0].news_content }}></div>
+                    {/* <div dangerouslySetInnerHTML={{ __html: language == ENGLISH ? news[0].news_content_en : news[0].news_content }}></div> */}
+
                     <button className="mt-[1.5rem] btn btn-warning px-0 capitalize text-white w-text-button btn-outline w-[9.813rem]"
                         onClick={() => {
                             router.push("/news/" + news[0].news_alias)

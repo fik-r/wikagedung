@@ -5,6 +5,8 @@ import { Slide } from "react-awesome-reveal";
 import { LANGUAGE, ENGLISH } from '@/utils/constants';
 import { Container } from '../Layout';
 import useResponsive from '@/utils/media-query';
+import Image from "next/image"
+
 const FocusBisnis = ({ data }) => {
     const [language, setLanguage] = useState("")
     const { isMobile } = useResponsive()
@@ -20,30 +22,6 @@ const FocusBisnis = ({ data }) => {
         }
     }, [])
 
-    // const cardItems = [
-    //     {
-    //         bg: "bg-konstruksi_gedung",
-    //         icon: "/icons/ic_konstruksi.svg",
-    //         title: "Konstruksi Gedung"
-    //     },
-    //     {
-    //         bg: "bg-offsite_modular",
-    //         icon: "/icons/ic_offsite.svg",
-    //         title: "Konstruksi Off Site Modular"
-    //     },
-    //     {
-
-    //         bg: "bg-offsite_pracetak",
-    //         icon: "/icons/ic_offsite.svg",
-    //         title: "Konstruksi Off Site Pracetak Gedung"
-    //     },
-    //     {
-    //         bg: "bg-konsensi",
-    //         icon: "/icons/ic_konsensi.svg",
-    //         title: "Konsensi & Investasi"
-    //     }
-    // ]
-
     const CardFocusBisnis = ({ item }) => {
         const [isHover, setIsHover] = useState(false)
         return (
@@ -53,8 +31,8 @@ const FocusBisnis = ({ data }) => {
                 setIsHover(false)
             }} className={cn(
                 isMobile ? "max-h-[20rem] min-h-[20rem] min-w-[14.563rem]" : "col-span-1 h-[30.75rem]",
-                "bg-konsensi",
-                "hover:cursor-pointer relative  bg-cover bg-center bg-no-repeat items-start rounded-lg")}>
+                "hover:cursor-pointer relative items-start rounded-lg")}>
+                <Image src={item.lini_bisnis_background} fill className='rounded-lg' />
                 <div className="absolute w-full h-full rounded-lg" style={{
                     "background": "linear-gradient(0deg, rgba(0, 0, 0, 0.6) 26.12%, rgba(249, 160, 27, 0) 84.35%)"
                 }} />
@@ -62,7 +40,8 @@ const FocusBisnis = ({ data }) => {
                     "background": "rgba(249, 160, 27, 0.3)"
                 }} />
                 {!isHover && <>
-                    <img src={isMobile ? "/icons/ic_konstruksi_small.svg" : "/icons/ic_konstruksi.svg"} className={cn("relative z-[100]", isMobile ? "pt-[10.813rem] px-[1.5rem]" : "pt-[19.063rem] px-[2.5rem]")} />
+                    <img src={isMobile ? item.lini_bisnis_icon : item.lini_bisnis_icon}
+                        className={cn("relative z-[100]", isMobile ? "pt-[10.813rem] px-[1.5rem]" : "pt-[19.063rem] px-[2.5rem]")} />
                     <div className={cn("text-neutral relative z-[100]", isMobile ? "w-text-subhead-2 mt-[0.875rem] px-[1.5rem]" : "w-text-headline-1 mt-[1.5rem] px-[2.5rem]")}>{LANGUAGE == ENGLISH ? item.lini_bisnis_title_en : item.lini_bisnis_title}</div>
                 </>
                 }
@@ -72,11 +51,9 @@ const FocusBisnis = ({ data }) => {
                             "background": "#F9A01BCC"
                         }} />
                         <Slide direction='up' duration={300}>
-                            <img src={item.icon} className="pt-[4.5rem] px-[2.5rem] relative z-[100]" />
+                            <img src={item.lini_bisnis_icon} className="pt-[4.5rem] px-[2.5rem] relative z-[100]" />
                             <div className="text-neutral w-text-headline-1 mt-[1.5rem] px-[2.5rem] relative z-[100]">{item.title}</div>
-
-
-                            <div className="text-white w-text-body-2 relative z-[100] px-[2.5rem] pt-[1.25rem]">WIKA Gedung menyediakan layanan konstruksi terintegrasi dengan dukungan teknologi terdepan...</div>
+                            <div className="text-white w-text-body-2 relative z-[100] px-[2.5rem] pt-[1.25rem]">{item.lini_bisnis_hover_text}</div>
                             <div className='w-full px-[2.5rem] '>
                                 <div className="btn btn-ghost border border-white relative z-[100] text-white w-full mt-[1.688rem]">Pelajari lebih lanjut</div>
                             </div>

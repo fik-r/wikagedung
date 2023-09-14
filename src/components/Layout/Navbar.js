@@ -77,7 +77,7 @@ export default function Navbar(props) {
     return (
         <>
             {/* desktop */}
-            {!isMobile && <div id="navbar" className={cn(props.className, isSticky ? "sticky top-0 z-[999]" : "", theme == "light" ? "bg-white fade-in" : "", "flex flex-col w-full pt-[2.5rem]")}>
+            {!isMobile && <div id="navbar" className={cn(props.className, isSticky ? "fixed top-0 z-[999]" : "", theme == "light" ? "bg-white fade-in" : "", "flex flex-col w-full pt-[2.5rem]")}>
                 {/* image wika */}
                 <div className="flex h-[2.625rem] px-[5rem]">
                     <img src="/images/ic_wika_gedung.svg" className="items-center hover:cursor-pointer" onClick={() => {

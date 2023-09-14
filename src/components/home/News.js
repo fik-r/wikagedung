@@ -2,12 +2,11 @@
 import cn from 'classnames';
 import { useState, useEffect } from 'react';
 import { LANGUAGE, ENGLISH } from '@/utils/constants';
-import Index from '@/app/page';
 import moment from "moment"
 import { useRouter } from 'next/navigation';
 import { Container } from '@/components/Layout';
 import useResponsive from '@/utils/media-query';
-
+import Image from 'next/image';
 const News = ({ data, news }) => {
     const { isMobile } = useResponsive()
     const router = useRouter()
@@ -42,12 +41,12 @@ const News = ({ data, news }) => {
 
     const LargeNewsItem = ({ location, date, title, thumbnail, alias }) => {
         return (
-            <div className={cn("zoom hover:cursor-pointer relative col-span-1 h-[20rem] items-start rounded-lg bg-cover bg-center bg-no-repeat")}
-                style={{ backgroundImage: `url(${thumbnail})` }}
+            <div className={cn("zoom hover:cursor-pointer relative col-span-1 h-[20rem] items-start rounded-lg")}
                 onClick={() => {
                     router.push("/news/" + alias)
                 }}
             >
+                <Image src={thumbnail} fill className="rounded-lg" />
                 <div className="absolute pt-[1.375rem] px-[1.5rem] pb-[2rem] bottom-0">
                     <div className="flex flex-row gap-x-[0.875rem] items-center">
                         <div className="w-text-body text-white font-semibold">{location}</div>
@@ -68,7 +67,9 @@ const News = ({ data, news }) => {
                 onClick={() => {
                     router.push("/news/" + alias)
                 }}>
-                <img src={thumbnail} className="rounded-lg w-[8.375rem] h-[8.375rem]" />
+                <div className='min-w-[8.375rem] min-h-[8.375rem] max-w-[8.375rem] max-h-[8.375rem] relative'>
+                    <Image src={thumbnail} className="rounded-lg" fill />
+                </div>
                 <div>
                     <div className="flex flex-row gap-x-[0.875rem] items-center">
                         <div className="w-text-caption text-jet font-semibold">{location}</div>
@@ -136,7 +137,7 @@ const News = ({ data, news }) => {
                         {getSmallNews().map((news, index) => {
                             return (
                                 <SmallNewsItem
-                                    key={Index}
+                                    key={index}
                                     date={moment(news.news_date).format("D MMMM YYYY")}
                                     title={language == ENGLISH ? news.news_title_en : news.news_title}
                                     location={news.news_place}

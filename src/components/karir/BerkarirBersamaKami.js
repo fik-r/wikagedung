@@ -2,6 +2,7 @@ import { LANGUAGE, ENGLISH } from '@/utils/constants';
 import { useState, useEffect } from 'react'
 import useResponsive from '@/utils/media-query';
 import cn from "classnames"
+import Image from 'next/image';
 const BerkarirBersamaKami = ({ data }) => {
 
     const { isMobile } = useResponsive()
@@ -32,7 +33,9 @@ const BerkarirBersamaKami = ({ data }) => {
             <div className="flex flex-row overflow-x-auto mt-[2.5rem] gap-x-[2.5rem]">
                 {data.image.map((item, key) => {
                     return (
-                        <img key={key} className="w-[17.5rem] h-[16.75rem] rounded rounded-lg" src={item} />
+                        <div key={key} className="min-w-[17.5rem] min-h-[16.75rem] relative rounded rounded-lg">
+                            <Image fill src={item} className='rounded rounded-lg' />
+                        </div>
                     )
                 })}
             </div>
@@ -43,7 +46,9 @@ const BerkarirBersamaKami = ({ data }) => {
                 {data.hc_program.map((item, key) => {
                     return (
                         <div key={key} className="flex flex-row gap-x-[2.5rem] my-[2.5rem]">
-                            <img className="w-[36.25rem] h-[20.25rem] rounded rounded-lg" src={item.image} />
+                            <div className="min-w-[36.25rem] min-h-[20.25rem] relative rounded rounded-lg">
+                                <img fill className='rounded-lg' src={item.image} />
+                            </div>
                             <div className="flex flex-col">
                                 <div className="h-[3.125rem] w-text-body-2 font-semibold text-sooty">{language == ENGLISH ? item.title_en : item.title}</div>
                                 <div className={cn("leading-[2rem] w-text-body-2 text-jet", readMore ? "" : "line-clamp-6")}>{language == ENGLISH ? item.text_en : item.text}</div>

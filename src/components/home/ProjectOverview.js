@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { LANGUAGE, ENGLISH } from "@/utils/constants"
 import useResponsive from "@/utils/media-query"
 import cn from "classnames"
+import Image from "next/image"
 
 const ProjectOverview = ({ data }) => {
     const { isMobile } = useResponsive()
@@ -23,7 +24,9 @@ const ProjectOverview = ({ data }) => {
     const ProjectOverviewItem = ({ url, title, desc }) => {
         return (
             <div className={cn("flex", isMobile ? "flex-col" : "flex-row gap-x-[2.25rem]")}>
-                <img src={url} className="w-[3.75rem] h-[4.094rem]" />
+                <div className="min-w-[3.75rem] min-h-[4.094rem] max-w-[3.75rem] max-h-[4.094rem] relative">
+                    <Image src={url} fill />
+                </div>
                 <div className="flex flex-col">
                     <div className={cn("text-neutral font-semibold", isMobile ? "w-text-caption mt-[0.875rem]" : "w-text-subhead-1")}>{title}</div>
                     <div className={cn("w-text-display-2 text-neutral", isMobile ? "w-text-body-1 mt-[0.875rem]" : "w-text-display-2")}>{desc}</div>

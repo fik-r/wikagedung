@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { LANGUAGE, ENGLISH } from "@/utils/constants"
 import useResponsive from "@/utils/media-query"
 import { Container } from "../Layout"
+import Image from "next/image"
 
 const Sponsor = ({ data, dataHomepage }) => {
     const { isMobile } = useResponsive()
@@ -33,9 +34,11 @@ const Sponsor = ({ data, dataHomepage }) => {
                             {
                                 data.slice(0, numItemsToShow).map((sponsor, index) => {
                                     return (
-                                        <img key={index} src={sponsor.image_url} alt={sponsor.image_name} className={cn(isMobile ? "w-[5.375rem] h-[2.438rem]" : "w-[13.75rem] h-[6.125rem]", "fade-in hover:cursor-pointer")} onClick={() => {
-                                            window.open(sponsor.link, "_blank")
-                                        }} />
+                                        <div key={index} className={cn(isMobile ? "w-[5.375rem] h-[2.438rem]" : "w-[13.75rem] h-[6.125rem]", "relative fade-in hover:cursor-pointer")}>
+                                            <Image fill  src={sponsor.image_url} alt={sponsor.image_name} onClick={() => {
+                                                window.open(sponsor.link, "_blank")
+                                            }} />
+                                        </div>
                                     )
                                 })
                             }

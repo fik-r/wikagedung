@@ -1,4 +1,5 @@
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 const News = ({ location, date, thumbnail, description, alias }) => {
     const router = useRouter()
 
@@ -6,7 +7,9 @@ const News = ({ location, date, thumbnail, description, alias }) => {
         <div onClick={() => {
             router.push("/news/" + alias)
         }} className="rounded-xl shadow-md zoom flex flex-col items-center gap-x-[1.5rem] hover:cursor-pointer w-[17.5rem] h-[24.875rem]">
-            <img src={thumbnail} className="rounded-t-lg w-[17.5rem] h-[14.938rem] max-h-[14.938rem]" />
+            <div className="rounded-t-lg w-[17.5rem] h-[14.938rem] max-h-[14.938rem] relative">
+                <Image src={thumbnail} fill className="rounded-t-lg" sizes="(min-width: 280px)" />
+            </div>
             <div className="p-[1.5rem]">
                 <div className="flex flex-row gap-x-[0.875rem] items-center">
                     <div className="w-text-caption text-jet font-semibold">{location}</div>

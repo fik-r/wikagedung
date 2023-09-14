@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Navbar } from "../Layout";
 import Hero from "./Hero";
 import useResponsive from "@/utils/media-query"
-import cn from "classnames"
+import Image from "next/image";
 
 const Header = ({ dataMenuHeader, dataBanner, dataHomepage }) => {
     const { isMobile } = useResponsive()
@@ -18,10 +18,11 @@ const Header = ({ dataMenuHeader, dataBanner, dataHomepage }) => {
             setIndex(newIndex);
         }
     };
+    console.log(dataBanner[index][`banner${index + 1}_image_url`])
     return (
-        <div className="flex flex-col bg-cover bg-center bg-no-repeat" style={{
-            backgroundImage: `url(${dataBanner[index][`banner${index + 1}_image_url`]})`
+        <div className="flex flex-col relative" style={{
         }}>
+            <Image src={dataBanner[index][`banner${index + 1}_image_url`]} className="z-[-1]" fill />
             {/* navbar */}
             <Navbar theme="dark" data={dataMenuHeader} dataHomepage={dataHomepage} />
             {/* hero content */}

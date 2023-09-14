@@ -2,6 +2,7 @@
 import cn from "classnames"
 import { useState, useEffect } from "react"
 import { LANGUAGE, ENGLISH } from "@/utils/constants"
+import Image from "next/image"
 const TimelineInformasi = ({ data }) => {
     const [activeIndex, setActiveIndex] = useState(0)
     const [contentOpacity, setContentOpacity] = useState(0);
@@ -90,7 +91,9 @@ const TimelineInformasi = ({ data }) => {
                     {/* timeline */}
                     <Timeline />
                     <div className={cn("flex flex-row gap-x-[2.5rem] mt-[2.313rem] z-10", contentOpacity == 1 ? "fade-in" : "hidden")}>
-                        <img src={data[activeIndex].image} className="w-[13.125rem] h-[16.688rem] rounded-lg mt-[1.25rem]" />
+                        <div className="min-w-[13.125rem] min-h-[16.688rem] rounded-lg mt-[1.25rem] relative">
+                            <Image src={data[activeIndex].image} fill className="rounded-lg" />
+                        </div>
                         <div className="flex flex-col">
                             <div className="w-text-display-4 text-white mb-[0.25rem]">{data[activeIndex].year}</div>
                             <div className="w-text-title-1 text-white font-bold mb-[1.875rem]">{language == ENGLISH ? data[activeIndex].title_en : data[activeIndex].title}</div>

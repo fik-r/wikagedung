@@ -1,4 +1,5 @@
 'use client'
+import Image from "next/image"
 import { useState } from "react"
 const DocumentItem = ({ title, image }) => {
 
@@ -6,9 +7,11 @@ const DocumentItem = ({ title, image }) => {
     return (
         <div className="flex flex-col justify-center">
             <div className="relative flex justify-center items-center">
-                <img className="w-full h-[16.563rem] rounded-lg hover:cursor-pointer" src={image} onMouseEnter={() => {
-                    setHoveredItem(true)
-                }} />
+                <div className="w-full min-h-[16.563rem] rounded-lg hover:cursor-pointer relative">
+                    <Image className="rounded-lg" src={image} fill onMouseEnter={() => {
+                        setHoveredItem(true)
+                    }} />
+                </div>
                 {hoveredItem && <>
                     <div className="w-full h-[16.563rem] rounded-lg opacity-60 z-9 absolute top-0 bg-overlay" onMouseLeave={() => {
                         setHoveredItem(false)

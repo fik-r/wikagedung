@@ -3,6 +3,7 @@ import moment from "moment"
 import { useState, useEffect } from "react"
 import { LANGUAGE, ENGLISH } from "@/utils/constants"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 const NewsDetail = ({ data, news }) => {
     const [language, setLanguage] = useState("")
     const router = useRouter()
@@ -24,7 +25,9 @@ const NewsDetail = ({ data, news }) => {
                     router.push("/news/" + alias)
                 }}
             >
-                <img src={thumbnail} className="rounded-lg w-[8.375rem] h-[8.375rem]" />
+                <div className="rounded-lg min-w-[8.375rem] min-h-[8.375rem] max-w-[8.375rem] max-h-[8.375rem] relative">
+                    <Image src={thumbnail} className="rounded-lg" fill />
+                </div>
                 <div>
                     <div className="flex flex-row gap-x-[0.875rem] items-center">
                         <div className="w-text-caption text-jet font-semibold">{location}</div>
@@ -57,7 +60,9 @@ const NewsDetail = ({ data, news }) => {
                     </div>
                 </div>
                 <div className="flex flex-col mt-[2.5rem]">
-                    <img src={data.image_url} className="w-[79rem] h-[34.375rem] rounded-lg" />
+                    <div className="w-[79rem] h-[34.375rem] rounded-lg relative">
+                        <Image src={data.image_url} className="rounded-lg" fill />
+                    </div>
                     <div className="flex flex-row pt-[2.5rem] gap-x-[3.125rem]">
                         <div className="w-text-body-1 text-jet leading-[1.5rem]">
                             <div dangerouslySetInnerHTML={{ __html: language == ENGLISH ? data.news_content_en : data.news_content }}></div>
