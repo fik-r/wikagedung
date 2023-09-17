@@ -65,7 +65,7 @@ const DetailProyek = ({ index, detail }) => {
                 <div className="flex flex-row gap-x-[1.5rem] mt-[1.5rem]">
                     {detail[activeIndex].data.image.map((item, key) => {
                         return (
-                            <div className="hover:cursor-pointer  rounded-lg min-w-[15.5rem] max-w-[27rem] h-[16.25rem] relative">
+                            <div key={key} className="hover:cursor-pointer  rounded-lg min-w-[15.5rem] max-w-[27rem] h-[16.25rem] relative">
                                 <Image src={item} fill className="rounded-lg" />
                             </div>
                         )
