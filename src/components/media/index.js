@@ -2,4 +2,5 @@
 
 import News from "./News"
 import NewsDetail from "./NewsDetail"
-export { News, NewsDetail }
+import SiaranPers from "./SiaranPers"
+export { News, NewsDetail, SiaranPers }

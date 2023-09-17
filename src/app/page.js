@@ -1,4 +1,4 @@
-import { Container, Footer } from "@/components/Layout"
+import { Container, Footer, Navbar } from "@/components/Layout"
 import { Header, FocusBisnis, News, Sponsor, ProjectOverview, Awards, CompanyProfile } from "@/components/home"
 import { SidebarMenu } from "@/components/common"
 import { getBanner, getMenuHeader, getMemberOfWika, getSustainability, getContact, getHomepageData, getLatestNews } from "@/api/wege-service"
@@ -21,6 +21,7 @@ export default async function Index() {
         <>
             {/* hero */}
             <div className="relative flex flex-col">
+                <Navbar theme="dark" data={dataMenuHeader.data} dataHomepage={dataHomepage.data} />
                 <Header dataMenuHeader={dataMenuHeader.data} dataBanner={dataBanner.data} dataHomepage={dataHomepage.data[0]} />
                 <Container className="relative bg-primary">
                     <ProjectOverview data={dataHomepage.data[0].project_ovw} />

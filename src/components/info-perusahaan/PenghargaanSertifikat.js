@@ -50,7 +50,7 @@ const PenghargaanSertifikat = ({ sertifikat = [], penghargaan = [] }) => {
                     <img src="/icons/ic_search_black.svg" />
                     <input
                         type="text"
-                        placeholder="Cari"
+                        placeholder={language == ENGLISH ? "Search" : "Cari"}
                         className="w-text-body-2 placeholder-robo_master bg-transparent border-none focus:ring-0 outline-none flex-grow"
                         onChange={(e) => {
                             const value = e.target.value

@@ -2,6 +2,7 @@ import Layout from "@/components/Layout/info-perusahaan"
 import { getContact, getHomepageData, getMenuHeader, getMenuContentByAlias } from "@/api/wege-service"
 import { headers } from "next/headers";
 import { Template } from "@/components/common";
+import { SiaranPers } from "@/components/media";
 export const dynamic = 'force-dynamic'
 export default async function Index() {
     const headersList = headers();
@@ -20,9 +21,14 @@ export default async function Index() {
         await Promise.all([
             getMenuHeader(), getHomepageData(), getContact(), getMenuContentByAlias(pathname)])
 
+            console.log(getLastPathname())
     const content = () => {
         return (
-            <Template data={dataContent.data[0]} />
+            <>
+                {!getLastPathname().includes("Siaran Pers") && <Template data={dataContent.data[0]} />}
+                {getLastPathname().includes("Siaran Pers") && <SiaranPers data={dataContent.data[0]} />}
+
+            </>
         )
     }
     return (

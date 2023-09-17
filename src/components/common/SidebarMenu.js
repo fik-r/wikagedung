@@ -19,7 +19,11 @@ const SidebarMenu = () => {
                         setExpandMenu(true)
                     }}>
                         <img src="/icons/ic_newspaper.svg" className="w-8 h-8 my-2 " />
-                        {expandMenu && <div className="ml-[0.75rem] text-white w-text-title-1">Company Update</div>}
+                        {expandMenu && <div className="ml-[0.75rem] text-white w-text-title-1"
+                            onClick={() => {
+                                router.push("news")
+                            }}
+                        >Company Update</div>}
 
                     </div>
                     <hr className="my-2" />
@@ -27,7 +31,11 @@ const SidebarMenu = () => {
                         setExpandMenu(true)
                     }}>
                         <img src="/icons/ic_focus-target.svg" className="w-8 h-8 my-2 " />
-                        {expandMenu && <div className="ml-[0.75rem] text-white w-text-title-1">Highlight Project</div>}
+                        {expandMenu && <div className="ml-[0.75rem] text-white w-text-title-1"
+                            onClick={() => {
+                                router.push("lini-bisnis/konstruksi?q=proyek-berjalan")
+                            }}
+                        >Highlight Project</div>}
 
                     </div>
                     <hr className="my-2" />
@@ -35,7 +43,11 @@ const SidebarMenu = () => {
                         setExpandMenu(true)
                     }}>
                         <img src="/icons/ic_building.svg" className="w-8 h-8 my-2" />
-                        {expandMenu && <div className="ml-[0.75rem] text-white w-text-title-1">Company Profile</div>}
+                        {expandMenu && <div className="ml-[0.75rem] text-white w-text-title-1"
+                            onClick={() => {
+                                router.push("info-perusahaan/tentang-kami")
+                            }}
+                        >Company Profile</div>}
 
                     </div>
                     {expandMenu &&

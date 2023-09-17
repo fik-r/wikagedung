@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout/info-perusahaan"
-import { getMenuHeader, getHomepageData, getContact, getLatestNews } from "@/api/wege-service"
+import { getMenuHeader, getHomepageData, getContact, getLatestNews, getNewsContentByAlias } from "@/api/wege-service"
 import { headers } from "next/headers";
 import { ListNews } from "@/components/news";
 export const dynamic = 'force-dynamic'
@@ -17,9 +17,10 @@ export default async function Index() {
         await Promise.all([
             getMenuHeader(), getHomepageData(), getContact(), getLatestNews()])
 
+    const detailFirstNews = await getNewsContentByAlias(dataNews.data[0].news_alias)
     const content = () => {
         return (
-            <ListNews data={dataNews.data} />
+            <ListNews data={dataNews.data} firstNews={detailFirstNews.data[0]}/>
         )
     }
 

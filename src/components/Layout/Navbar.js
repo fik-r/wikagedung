@@ -19,7 +19,7 @@ export default function Navbar(props) {
     const [expandMenuMobile, setExpandMenuMobile] = useState(false)
     const [theme, setTheme] = useState(props.theme)
     const [dataChildMenu, setDataChildMenu] = useState([])
-    const [dataParent, setDataParent] = useState({title: "", description: ""})
+    const [dataParent, setDataParent] = useState({ title: "", description: "" })
     const [language, setLanguage] = useState("")
 
     useEffect(() => {
@@ -77,7 +77,7 @@ export default function Navbar(props) {
     return (
         <>
             {/* desktop */}
-            {!isMobile && <div id="navbar" className={cn(props.className, isSticky ? "fixed top-0 z-[999]" : "", theme == "light" ? "bg-white fade-in" : "", "flex flex-col w-full pt-[2.5rem]")}>
+            {!isMobile && <div id="navbar" className={cn(props.className, isSticky ? "sticky top-0 z-[999]" : theme == "dark" ? "absolute top-0 z-[999]" : "", theme == "light" ? "bg-white fade-in" : "", "flex flex-col w-full pt-[2.5rem]")}>
                 {/* image wika */}
                 <div className="flex h-[2.625rem] px-[5rem]">
                     <img src="/images/ic_wika_gedung.svg" className="items-center hover:cursor-pointer" onClick={() => {
@@ -101,7 +101,7 @@ export default function Navbar(props) {
                                     onMouseEnter={() => {
                                         expandChildrenMenu()
                                         setDataChildMenu(item.child)
-                                        setDataParent({title: language == ENGLISH ? item.menu_name_en : item.menu_name, description: language == ENGLISH ? item.description_en : item.description})
+                                        setDataParent({ title: language == ENGLISH ? item.menu_name_en : item.menu_name, description: language == ENGLISH ? item.description_en : item.description })
                                     }}
                                 >{language == ENGLISH ? item.menu_name_en : item.menu_name}</div>
                             })

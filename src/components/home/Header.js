@@ -1,6 +1,5 @@
 'use client'
 import { useState } from "react";
-import { Navbar } from "../Layout";
 import Hero from "./Hero";
 import useResponsive from "@/utils/media-query"
 import Image from "next/image";
@@ -24,7 +23,7 @@ const Header = ({ dataMenuHeader, dataBanner, dataHomepage }) => {
             <Image src={dataBanner[index][`banner${index + 1}_image_url`]} className="z-[-2]" fill />
             <Image src="/images/overlay.png" fill className="z-[-1]"/>
             {/* navbar */}
-            <Navbar theme="dark" data={dataMenuHeader} dataHomepage={dataHomepage} />
+            
             {/* hero content */}
             <Hero data={dataBanner} onIndexChange={handleIndexChange} index={index} />
         </div>
