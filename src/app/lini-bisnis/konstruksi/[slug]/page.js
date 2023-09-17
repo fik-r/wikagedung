@@ -1,5 +1,5 @@
 import { Layout } from "@/components/Layout"
-import { getContact, getHomepageData, getMenuContentByAlias, getMenuHeader } from "@/api/wege-service"
+import { getContact, getDetailProyek, getHomepageData, getMenuContentByAlias, getMenuHeader } from "@/api/wege-service"
 import { DetailProyek } from "@/components/lini-bisnis"
 import { headers } from "next/headers";
 export const dynamic = 'force-dynamic'
@@ -18,11 +18,21 @@ export default async function Index({ searchParams }) {
         await Promise.all([
             getMenuHeader(), getHomepageData(), getContact(), getMenuContentByAlias(`lini-bisnis/knst/${searchParams.q ? searchParams.q : "proyek-sebelumnya"}`)])
 
+    function getRequestDataProyek() {
+        const requestDataProyek = []
+        dataProyek.data.map((item, index) => {
+            requestDataProyek.push(getDetailProyek(item.id))
+        })
+        return requestDataProyek
+    }
+
+    const dataDetailProyeks = await Promise.all(getRequestDataProyek())
+
     return (
         <Layout showBreadcrumb={true} isOnDetailPage={true} dataHomepage={dataHomepage.data[0]}
             dataMenuHeader={dataMenuHeader.data}
             dataContact={dataContact.data[0]}>
-            <DetailProyek data={dataProyek.data} index={getLastPathname()} />
+            <DetailProyek index={getLastPathname()} detail={dataDetailProyeks} />
         </Layout>
     )
 }

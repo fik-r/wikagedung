@@ -102,7 +102,19 @@ const getKarirData = () => {
 const getKategoriProyek = () => {
     return API("/api/getKategoriProyek")
 }
+
+const getDetailProyek = (id) => {
+    return API("/api/getDetailProyek", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            // Add any other headers if needed
+        },
+        body: id ? `id=${id}` : ""
+    })
+}
 export {
+    getDetailProyek,
     getKategoriProyek,
     getKarirData,
     getListAlamatDanKontak,

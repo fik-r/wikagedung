@@ -18,11 +18,11 @@ const Header = ({ dataMenuHeader, dataBanner, dataHomepage }) => {
             setIndex(newIndex);
         }
     };
-    console.log(dataBanner[index][`banner${index + 1}_image_url`])
     return (
         <div className="flex flex-col relative" style={{
         }}>
-            <Image src={dataBanner[index][`banner${index + 1}_image_url`]} className="z-[-1]" fill />
+            <Image src={dataBanner[index][`banner${index + 1}_image_url`]} className="z-[-2]" fill />
+            <Image src="/images/overlay.png" fill className="z-[-1]"/>
             {/* navbar */}
             <Navbar theme="dark" data={dataMenuHeader} dataHomepage={dataHomepage} />
             {/* hero content */}

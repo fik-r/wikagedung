@@ -4,7 +4,7 @@ import cn from "classnames"
 
 const DetailOrganisasi = ({ data, index, type }) => {
     const [language, setLanguage] = useState("")
-    const [activeIndex, setActiveIndex] = useState(index)
+    const [activeIndex, setActiveIndex] = useState(index - 1)
     useEffect(() => {
 
         function setLanguageOnStorageChange() {

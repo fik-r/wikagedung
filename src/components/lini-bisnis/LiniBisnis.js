@@ -71,8 +71,8 @@ const LiniBisnis = ({ dataProyekBerjalan, dataProyekSelesai, dataKategori, route
                             key={key}
                             type={language == ENGLISH ? getCategoryById(item.ctgr_id).name_en : getCategoryById(item.ctgr_id).name}
                             name={item.prjc_name}
-                            thumbnail={item.image_1_url}
-                            proyekType={isProyekDone ? "proyek-sebelumnya" : "proyek-selanjutnya"}
+                            thumbnail={item.image_1_url ? item.image_1_url : ""}
+                            proyekType={isProyekDone ? "proyek-sebelumnya" : "proyek-berjalan"}
                             index={key + 1}
                             route={route} />
                     )
