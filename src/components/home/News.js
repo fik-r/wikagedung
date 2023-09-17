@@ -155,7 +155,7 @@ const News = ({ data, news }) => {
                 {news.map((news, index) => {
                     return (
                         <MobileNewsItem
-                            key={Index}
+                            key={index}
                             date={moment(news.news_date).format("D MMMM YYYY")}
                             title={language == ENGLISH ? news.news_title_en : news.news_title}
                             location={news.news_place}

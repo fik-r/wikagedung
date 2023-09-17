@@ -63,7 +63,7 @@ const SiaranPers = ({ data = [] }) => {
                                 activeYear == item ? "border-b-[2px] border-primary text-primary" : "text-more_than_a_week"
                             )} onClick={() => {
                                 setActiveYear(item)
-                                const filteredData = data.detail.filter((val) => (val.cntn_detail_year == activeYear))
+                                const filteredData = data.detail.filter((val) => (val.cntn_detail_year == item))
                                 setFilteredData(filteredData)
                                 setPage(1)
                             }}>
