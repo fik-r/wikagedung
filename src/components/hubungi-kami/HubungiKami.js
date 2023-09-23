@@ -16,6 +16,7 @@ const HubungiKami = () => {
     const [errorMsg, setErrorMsg] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [successMsg, setSuccessMsg] = useState("")
+    const [isValid, setIsValid] = useState(false)
     useEffect(() => {
 
         function setLanguageOnStorageChange() {
@@ -29,10 +30,13 @@ const HubungiKami = () => {
         }
     }, [])
     async function handleCaptchaSubmission(token) {
-        // Server function to verify captcha
         await verifyCaptcha(token)
-            .then(() => setIsverified(true))
-            .catch(() => setIsverified(false))
+            .then(() => {
+                setIsverified(true)
+            })
+            .catch(() => {
+                setIsverified(false)
+            })
     }
     const InformationItem = ({ title, description }) => {
         return (
@@ -46,6 +50,10 @@ const HubungiKami = () => {
             </div>
         )
     }
+
+    useEffect(() => {
+        setIsValid(nama != "" && email != "" && subjek != "" && pesanAnda != "" && isVerified)
+    }, [nama, email, subjek, pesanAnda, isVerified])
 
     return (
         <div className="w-full pb-[5rem]">
@@ -82,10 +90,10 @@ const HubungiKami = () => {
                         ref={recaptchaRef}
                         onChange={handleCaptchaSubmission}
                     />
-                    <div className={cn("btn btn-warning px-0 capitalize text-white w-text-button", isLoading ? "loading" : "")}
+                    <div className={cn("btn btn-warning px-0 capitalize text-white w-text-button", isLoading ? "loading" : "", isValid ? "" : "btn-disabled")}
                         onClick={async () => {
                             try {
-                                if (nama != "" && email != "" && subjek != "" && pesanAnda != "") {
+                                if (nama != "" && email != "" && subjek != "" && pesanAnda != "" && isVerified) {
                                     setIsLoading(true)
                                     const response = await postHubungiKami(nama, email, subjek, pesanAnda)
                                     setIsLoading(false)

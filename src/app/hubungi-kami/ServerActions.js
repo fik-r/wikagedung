@@ -6,7 +6,8 @@ export async function verifyCaptcha(token) {
         method: "POST"
     }
     )
-    if (res.data.success) {
+    if (res.status == 200) {
+        console.log(res)
         return "success!"
     } else {
         throw new Error("Failed Captcha")
