@@ -113,7 +113,25 @@ const getDetailProyek = (id) => {
         body: id ? `id=${id}` : ""
     })
 }
+
+const postHubungiKami = (nama, email, subjek, pesan) => {
+    return API("/api/postHubungiKami", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            // Add any other headers if needed
+        },
+        body: JSON.stringify({
+            nama,
+            email,
+            subjek, pesan
+        })
+    })
+}
+
+
 export {
+    postHubungiKami,
     getDetailProyek,
     getKategoriProyek,
     getKarirData,

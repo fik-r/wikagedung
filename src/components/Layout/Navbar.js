@@ -1,12 +1,12 @@
 'use client';
 
-import { useState, useEffect } from "react";
-import cn from "classnames";
-import { ChildMenu } from "./Menu";
-import { useRouter, usePathname } from 'next/navigation'
 import { ENGLISH, INDONESIA, LANGUAGE } from "@/utils/constants";
-import timezone, { lang } from "moment-timezone"
 import useResponsive from "@/utils/media-query";
+import cn from "classnames";
+import timezone from "moment-timezone";
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from "react";
+import { ChildMenu } from "./Menu";
 
 export default function Navbar(props) {
     const { isMobile } = useResponsive()
@@ -99,9 +99,19 @@ export default function Navbar(props) {
                                     key={index}
                                     className={cn(pathname.replace(/[\/-]/g, ' ').includes(item.menu_name.toLowerCase()) ? "text-democrat" : theme == "light" ? "text-sooty" : "text-white", "w-text-subhead-1 cursor-pointer hover:text-democrat")}
                                     onMouseEnter={() => {
-                                        expandChildrenMenu()
-                                        setDataChildMenu(item.child)
-                                        setDataParent({ title: language == ENGLISH ? item.menu_name_en : item.menu_name, description: language == ENGLISH ? item.description_en : item.description })
+                                        if (item.child) {
+                                            expandChildrenMenu()
+                                            setDataChildMenu(item.child)
+                                            setDataParent({ title: language == ENGLISH ? item.menu_name_en : item.menu_name, description: language == ENGLISH ? item.description_en : item.description })
+                                        } else {
+                                            setDataChildMenu([])
+                                            setDataParent({})
+                                            collapseMenu()      
+                                        }
+                                    }}
+                                    onClick={() => {
+                                        if (!item.child)
+                                            router.push(item.alias)
                                     }}
                                 >{language == ENGLISH ? item.menu_name_en : item.menu_name}</div>
                             })
@@ -144,6 +154,7 @@ export default function Navbar(props) {
                     </>
                 }
                 {isSticky && expandMenu &&
+                    dataChildMenu &&
                     <ChildMenu
                         onMouseEnter={() => {
                             expandChildrenMenu()
