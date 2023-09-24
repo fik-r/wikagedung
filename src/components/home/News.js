@@ -111,8 +111,8 @@ const News = ({ data, news }) => {
         <Container className={cn(isMobile ? "pt-[2rem]" : "pt-[7.5rem]")}>
             <div className={cn(isMobile ? "flex flex-col mx-[0.875rem]" : "mx-[2.5rem] grid grid-cols-3")}>
                 <div className={cn("flex flex-col", isMobile ? "" : "col-span-1")}>
-                    <div className="text-orange w-text-body-1 font-bold">{language == ENGLISH ? "News" : "Berita"}</div>
-                    <div className={cn("text-sooty pr-[1rem]", isMobile ? "w-text-body-2" : "leading-[3.125rem] w-text-headline-1")}>{language == ENGLISH ? data.news_title_en : data.news_title}</div>
+                    {!isMobile && <div className="text-orange w-text-body-1 font-bold">{language == ENGLISH ? "News" : "Berita"}</div>}
+                    <div className={cn("text-sooty pr-[1rem]", isMobile ? "w-text-body-2 font-bold" : "leading-[3.125rem] w-text-headline-1")}>{language == ENGLISH ? data.news_title_en : data.news_title}</div>
                     {isMobile && <div className={cn("text-jet font-normal mt-[0.875rem] w-text-body-1")}>{language == ENGLISH ? data.news_text_en : data.news_text}</div>}
                 </div>
                 {!isMobile && <div className="col-span-2 flex flex-col">

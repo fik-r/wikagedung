@@ -3,6 +3,7 @@ import { useState } from "react";
 import Hero from "./Hero";
 import useResponsive from "@/utils/media-query"
 import Image from "next/image";
+import cn from "classnames"
 
 const Header = ({ dataMenuHeader, dataBanner, dataHomepage }) => {
     const { isMobile } = useResponsive()
@@ -18,7 +19,7 @@ const Header = ({ dataMenuHeader, dataBanner, dataHomepage }) => {
         }
     };
     return (
-        <div className="flex flex-col relative" style={{
+        <div className={cn("flex flex-col relative", isMobile ? "h-[37.5rem]" : "")} style={{
         }}>
             <Image placeholder="blur"
                 quality={50}

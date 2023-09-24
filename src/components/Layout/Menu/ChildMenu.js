@@ -45,11 +45,14 @@ const ChildMenu = (props) => {
                 <div
                     tabIndex={index}
                     className={cn("collapse group", item.child && item.child.length > 0 ? "collapse-arrow" : "")}>
-                    {isMobile && <input type="checkbox" className="h-[2.5rem] min-h-[2.5rem]" />}
+                    {isMobile && !item.child && <input type="checkbox" className="h-[2.5rem] min-h-[2.5rem]" />}
                     <span onClick={() => {
+                        if (isMobile) {
+                            router.push(item.alias)
+                        }
                         if (item.alias && !isMobile)
                             onClick(item)
-                    }} className="cursor-pointer collapse-title min-h-fit p-0 w-text-body-2 text-sooty font-medium h-[2.5rem] flex items-center group-focus:text-orange hover:text-orange">
+                    }} className="z-[3] cursor-pointer collapse-title min-h-fit p-0 w-text-body-2 text-sooty font-medium h-[2.5rem] flex items-center group-focus:text-orange hover:text-orange">
                         {language == ENGLISH ? item.menu_name_en : item.menu_name}
                     </span>
                     {item.child && item.child.length > 0 &&

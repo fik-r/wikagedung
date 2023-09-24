@@ -166,7 +166,7 @@ export default function Navbar(props) {
                 }
             </div>}
             {/* mobile */}
-            {isMobile && <div id="navbar" className="w-full fixed top-0 z-[995] bg-white">
+            {isMobile && <div id="navbar" className="shadow-md w-full sticky top-0 z-[995] bg-white">
                 <div className="flex flex-row bg-[#424242] py-[0.625rem] px-[0.875rem]">
                     <div className={cn("text-white w-text-caption font-medium self-center")}>WEGE - IDR {dataHomepage.nilai_saham}</div>
                     <div className="flex items-center ml-[0.625rem]"><img className="w-[1.125rem] h-[1.125rem]" src="/icons/ic_trending_up.svg" />

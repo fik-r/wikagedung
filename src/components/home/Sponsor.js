@@ -30,9 +30,9 @@ const Sponsor = ({ data, dataHomepage }) => {
                 {
                     <div className={cn("flex flex-col", isMobile ? "" : "mx-[4.75rem]")}>
                         <div className={cn("self-center font-bold text-sooty", isMobile ? "w-text-body-2" : "w-text-headline-1")}>{language == ENGLISH ? dataHomepage.member_title_en : dataHomepage.member_title}</div>
-                        <div className="flex flex-row flex-wrap self-center mt-[0.875rem] gap-x-[0.875rem] justify-center">
+                        <div className="flex flex-row flex-wrap self-center mt-[1.5rem] gap-x-[0.875rem] gap-y-[1rem] justify-center">
                             {
-                                data.slice(0, numItemsToShow).map((sponsor, index) => {
+                                data.map((sponsor, index) => {
                                     return (
                                         <div key={index} className={cn(isMobile ? "w-[5.375rem] h-[2.438rem]" : "w-[13.75rem] h-[6.125rem]", "relative fade-in hover:cursor-pointer")}>
                                             <Image fill
@@ -48,10 +48,10 @@ const Sponsor = ({ data, dataHomepage }) => {
                         </div>
                     </div>
                 }
-                {data.length > 6 &&
+                {/* {data.length > 6 &&
                     <div className={cn("btn btn-outline btn-warning w-[10.75rem] px-0 capitalize self-center", isMobile ? "btn-sm mt-[2.5rem]" : "mt-[1.5rem]")} onClick={() => {
                         setIsExpand(!isExpand)
-                    }}>{isExpand ? language == ENGLISH ? "See Less" : "Lihat Lebih Sedikit" : language == ENGLISH ? "See More" : "Lihat Selengkapnya"}</div>}
+                    }}>{isExpand ? language == ENGLISH ? "See Less" : "Lihat Lebih Sedikit" : language == ENGLISH ? "See More" : "Lihat Selengkapnya"}</div>} */}
             </div>
         </Container>
     )

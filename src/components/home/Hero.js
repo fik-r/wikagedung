@@ -21,11 +21,11 @@ const Hero = ({ data, onIndexChange, index }) => {
     }, [])
 
     return (
-        <div className={cn("flex flex-col w-full", isMobile ? "mt-[21.125rem] px-[0.875rem]" : "mt-[28.75rem] px-[7.5rem]")}>
+        <div className={cn("flex flex-col w-full", isMobile ? "px-[0.875rem] absolute bottom-0" : "mt-[28.75rem] px-[7.5rem]")}>
             <div className="flex flex-col">
                 <div className={cn("text-white", isMobile ? "w-text-display-mobile" : "w-text-display-4")}>{language == ENGLISH ? data[index][`banner${index + 1}_title_en`] : data[index][`banner${index + 1}_title`]}</div>
                 <div className={cn("flex flex-row justify-between mt-[0.688rem]", isMobile ? "mt-[0.875rem]" : "mt-[0.688rem]")}>
-                    <div className={cn("min-h-[3.75rem] line-clamp-2 max-w-[62.5rem] text-white font-normal self-center", isMobile ? "w-text-body-2" : "w-text-title-1")}>{language == ENGLISH ? data[index][`banner${index + 1}_desc_en`] : data[index][`banner${index + 1}_desc`]}</div>
+                    <div className={cn("min-h-[3.75rem] inline-block line-clamp-2 max-w-[62.5rem] text-white font-normal self-center", isMobile ? "mb-[3.125rem] w-text-body-2" : "w-text-title-1")}>{language == ENGLISH ? data[index][`banner${index + 1}_desc_en`] : data[index][`banner${index + 1}_desc`]}</div>
                     {!isMobile && <div className="flex flex-row">
                         <img src="/icons/ic_arrow_left.svg" className="cursor-pointer" onClick={() => {
                             onIndexChange(index - 1)
@@ -55,7 +55,7 @@ const Hero = ({ data, onIndexChange, index }) => {
             }
             {isMobile &&
                 <>
-                    <div className="border-b-4 border-radiant_yellow w-[6.938rem] mt-[3.125rem]"></div>
+                    <div className="border-b-4 border-radiant_yellow w-[6.938rem]"></div>
                     <div className="flex flex-row w-full border-t border-radiant_yellow justify-between">
                         <div className="w-text-body-1 font-semibold text-radiant_yellow mt-[1.375rem]">{language == ENGLISH ? data[index][`banner${index + 1}_tab_text_en`] : data[index][`banner${index + 1}_tab_text`]}</div>
                         <div className="flex flex-row mt-[1.063rem] mb-[1.813rem]">
