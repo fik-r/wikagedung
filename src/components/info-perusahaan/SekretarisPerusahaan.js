@@ -19,7 +19,10 @@ const SekretarisPerusahaan = ({ data }) => {
         <div className="flex flex-col w-full px-[6.25rem]">
             <div className="flex flex-row gap-x-[2.5rem]">
                 <div className="bg-white_smoke rounded rounded-lg w-[26.25rem] h-[34.375rem] min-w-[26.25rem] min-h-[34.375rem] relative">
-                    <Image src={data.foto} fill className="rounded-lg" />
+                    <Image
+                        quality={50} placeholder="blur"
+                        blurDataURL={data.foto}
+                        src={data.foto} fill className="rounded-lg" />
                 </div>
                 <div className="flex flex-col">
                     <div className="w-text-display-3 text-primary font-semibold">{data.name}</div>

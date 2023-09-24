@@ -35,9 +35,12 @@ const Sponsor = ({ data, dataHomepage }) => {
                                 data.slice(0, numItemsToShow).map((sponsor, index) => {
                                     return (
                                         <div key={index} className={cn(isMobile ? "w-[5.375rem] h-[2.438rem]" : "w-[13.75rem] h-[6.125rem]", "relative fade-in hover:cursor-pointer")}>
-                                            <Image fill  src={sponsor.image_url} alt={sponsor.image_name} onClick={() => {
-                                                window.open(sponsor.link, "_blank")
-                                            }} />
+                                            <Image fill
+                                                quality={50} placeholder="blur"
+                                                blurDataURL={sponsor.image_url}
+                                                src={sponsor.image_url} alt={sponsor.image_name} onClick={() => {
+                                                    window.open(sponsor.link, "_blank")
+                                                }} />
                                         </div>
                                     )
                                 })

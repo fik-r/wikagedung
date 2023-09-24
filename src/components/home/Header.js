@@ -20,10 +20,17 @@ const Header = ({ dataMenuHeader, dataBanner, dataHomepage }) => {
     return (
         <div className="flex flex-col relative" style={{
         }}>
-            <Image src={dataBanner[index][`banner${index + 1}_image_url`]} className="z-[-2]" fill />
-            <Image src="/images/overlay.png" fill className="z-[-1]"/>
+            <Image placeholder="blur"
+                quality={50}
+                blurDataURL={dataBanner[index][`banner${index + 1}_image_url`]}
+                src={dataBanner[index][`banner${index + 1}_image_url`]}
+                className="z-[-2]" fill
+                style={{
+                    objectFit: 'cover',
+                }} />
+            <Image src="/images/overlay.png" fill className="z-[-1]" />
             {/* navbar */}
-            
+
             {/* hero content */}
             <Hero data={dataBanner} onIndexChange={handleIndexChange} index={index} />
         </div>

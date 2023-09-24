@@ -26,7 +26,10 @@ const NewsDetail = ({ data, news }) => {
                 }}
             >
                 <div className="rounded-lg min-w-[8.375rem] min-h-[8.375rem] max-w-[8.375rem] max-h-[8.375rem] relative">
-                    <Image src={thumbnail} className="rounded-lg" fill />
+                    <Image
+                        quality={50} placeholder="blur"
+                        blurDataURL={thumbnail}
+                        src={thumbnail} className="rounded-lg" fill />
                 </div>
                 <div>
                     <div className="flex flex-row gap-x-[0.875rem] items-center">
@@ -61,7 +64,10 @@ const NewsDetail = ({ data, news }) => {
                 </div>
                 <div className="flex flex-col mt-[2.5rem]">
                     <div className="w-[79rem] h-[34.375rem] rounded-lg relative">
-                        <Image src={data.image_url} className="rounded-lg" fill />
+                        <Image
+                            quality={50} placeholder="blur"
+                            blurDataURL={data.image_url}
+                            src={data.image_url} className="rounded-lg" fill />
                     </div>
                     <div className="flex flex-row pt-[2.5rem] gap-x-[3.125rem]">
                         <div className="w-text-body-1 text-jet leading-[1.5rem]">

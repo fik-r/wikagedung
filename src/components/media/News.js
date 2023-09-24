@@ -8,7 +8,10 @@ const News = ({ location, date, thumbnail, description, alias }) => {
             router.push("/news/" + alias)
         }} className="rounded-xl shadow-md zoom flex flex-col items-center gap-x-[1.5rem] hover:cursor-pointer w-[17.5rem] h-[24.875rem]">
             <div className="rounded-t-lg w-[17.5rem] h-[14.938rem] max-h-[14.938rem] relative">
-                <Image src={thumbnail} fill className="rounded-t-lg" sizes="(min-width: 280px)" />
+                <Image
+                    quality={50} placeholder="blur"
+                    blurDataURL={thumbnail}
+                    src={thumbnail} fill className="rounded-t-lg" sizes="(min-width: 280px)" />
             </div>
             <div className="p-[1.5rem]">
                 <div className="flex flex-row gap-x-[0.875rem] items-center">

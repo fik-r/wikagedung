@@ -32,7 +32,10 @@ const FocusBisnis = ({ data }) => {
             }} className={cn(
                 isMobile ? "max-h-[20rem] min-h-[20rem] min-w-[14.563rem]" : "col-span-1 h-[30.75rem]",
                 "hover:cursor-pointer relative items-start rounded-lg")}>
-                <Image src={item.lini_bisnis_background} fill className='rounded-lg' />
+                <Image src={item.lini_bisnis_background}
+                    quality={50} placeholder="blur"
+                    blurDataURL={item.lini_bisnis_background}
+                    fill className='rounded-lg' />
                 <div className="absolute w-full h-full rounded-lg" style={{
                     "background": "linear-gradient(0deg, rgba(0, 0, 0, 0.6) 26.12%, rgba(249, 160, 27, 0) 84.35%)"
                 }} />

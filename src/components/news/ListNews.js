@@ -38,7 +38,10 @@ const ListNews = ({ data, firstNews }) => {
         <div className="w-full">
             <div className="flex flex-row gap-x-[2.5rem] mt-[3.125rem] items-center mx-[6.25rem]">
                 <div className="rounded-xl min-w-[42.5rem] min-h-[30rem] max-w-[42.5rem] max-h-[30rem] relative">
-                    <Image src={data[0].news_file_path} fill className="rounded-lg" />
+                    <Image
+                        quality={50} placeholder="blur"
+                        blurDataURL={data[0].news_file_path}
+                        src={data[0].news_file_path} fill className="rounded-lg" />
                 </div>
                 <div className="flex flex-col">
                     <div className="flex flex-row gap-x-[0.875rem] items-center">

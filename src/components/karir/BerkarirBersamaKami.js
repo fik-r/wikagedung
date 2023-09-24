@@ -34,7 +34,10 @@ const BerkarirBersamaKami = ({ data }) => {
                 {data.image.map((item, key) => {
                     return (
                         <div key={key} className="min-w-[17.5rem] min-h-[16.75rem] relative rounded rounded-lg">
-                            <Image fill src={item} className='rounded rounded-lg' />
+                            <Image
+                                quality={50} placeholder="blur"
+                                blurDataURL={item}
+                                fill src={item} className='rounded rounded-lg' />
                         </div>
                     )
                 })}

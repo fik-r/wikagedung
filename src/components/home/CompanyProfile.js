@@ -35,7 +35,12 @@ const CompanyProfile = ({ data }) => {
         <> {!isMobile &&
             <div className="relative">
                 <div className="rounded-lg absolute left-0 top-6 bottom-0 z-[3] h-[25.438rem] ml-[8.75rem] w-[17.813rem]">
-                    <Image src={data[index].image_url} alt={data[index].image_name} fill className="rounded-lg" />
+                    <Image src={data[index].image_url}
+                        alt={data[index].image_name}
+                        quality={50} placeholder="blur"
+                        blurDataURL={data[index].image_url}
+                        fill
+                        className="rounded-lg" />
                 </div>
                 <div className="relative bg-primary w-100 mt-[3.75rem] py-[2.125rem] h-[20.938rem]">
                     <div className="relative flex flex-col z-[2] ml-[30.375rem]">

@@ -92,7 +92,10 @@ const TimelineInformasi = ({ data }) => {
                     <Timeline />
                     <div className={cn("flex flex-row gap-x-[2.5rem] mt-[2.313rem] z-10", contentOpacity == 1 ? "fade-in" : "hidden")}>
                         <div className="min-w-[13.125rem] min-h-[16.688rem] rounded-lg mt-[1.25rem] relative">
-                            <Image src={data[activeIndex].image} fill className="rounded-lg" />
+                            <Image
+                                quality={50} placeholder="blur"
+                                blurDataURL={data[activeIndex].image}
+                                src={data[activeIndex].image} fill className="rounded-lg" />
                         </div>
                         <div className="flex flex-col">
                             <div className="w-text-display-4 text-white mb-[0.25rem]">{data[activeIndex].year}</div>

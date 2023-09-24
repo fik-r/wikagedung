@@ -25,7 +25,10 @@ const ProjectOverview = ({ data }) => {
         return (
             <div className={cn("flex", isMobile ? "flex-col" : "flex-row gap-x-[2.25rem]")}>
                 <div className="min-w-[3.75rem] min-h-[4.094rem] max-w-[3.75rem] max-h-[4.094rem] relative">
-                    <Image src={url} fill />
+                    <Image src={url} fill
+                        quality={50} placeholder="blur"
+                        blurDataURL={url}
+                    />
                 </div>
                 <div className="flex flex-col">
                     <div className={cn("text-neutral font-semibold", isMobile ? "w-text-caption mt-[0.875rem]" : "w-text-subhead-1")}>{title}</div>

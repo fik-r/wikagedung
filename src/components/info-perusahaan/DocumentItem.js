@@ -8,9 +8,12 @@ const DocumentItem = ({ title, image }) => {
         <div className="flex flex-col justify-center">
             <div className="relative flex justify-center items-center">
                 <div className="w-full min-h-[16.563rem] rounded-lg hover:cursor-pointer relative">
-                    <Image className="rounded-lg" src={image} fill onMouseEnter={() => {
-                        setHoveredItem(true)
-                    }} />
+                    <Image
+                        quality={50} placeholder="blur"
+                        blurDataURL={image}
+                        className="rounded-lg" src={image} fill onMouseEnter={() => {
+                            setHoveredItem(true)
+                        }} />
                 </div>
                 {hoveredItem && <>
                     <div className="w-full h-[16.563rem] rounded-lg opacity-60 z-9 absolute top-0 bg-overlay" onMouseLeave={() => {

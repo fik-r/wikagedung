@@ -42,7 +42,10 @@ const AlamatInformasiKontak = ({ dataAlamatAnakPerusahaan = [], dataAlamatKantor
                         <div key={index} className="flex flex-row p-[1.875rem] gap-x-[2.5rem] border border-aria rounded-lg">
                             <div className="w-[12.5rem] h-[12.5rem] min-w-[12.5rem] min-h-[12.5rem]  
                                 max-w-[12.5rem] max-h-[12.5rem] rounded-lg relative">
-                                <Image fill src={item.image} className="rounded-lg" />
+                                <Image
+                                    quality={50} placeholder="blur"
+                                    blurDataURL={item.image}
+                                    fill src={item.image} className="rounded-lg" />
                             </div>
                             <div className="flex flex-col gap-y-[1rem]">
                                 <div className="w-text-headline-1 text-sooty mb-[1.5rem]">{item.name}</div>

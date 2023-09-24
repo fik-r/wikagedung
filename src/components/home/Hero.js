@@ -25,7 +25,7 @@ const Hero = ({ data, onIndexChange, index }) => {
             <div className="flex flex-col">
                 <div className={cn("text-white", isMobile ? "w-text-display-mobile" : "w-text-display-4")}>{language == ENGLISH ? data[index][`banner${index + 1}_title_en`] : data[index][`banner${index + 1}_title`]}</div>
                 <div className={cn("flex flex-row justify-between mt-[0.688rem]", isMobile ? "mt-[0.875rem]" : "mt-[0.688rem]")}>
-                    <div className={cn("text-white font-normal self-center", isMobile ? "w-text-body-2" : "w-text-title-1")}>{language == ENGLISH ? data[index][`banner${index + 1}_desc_en`] : data[index][`banner${index + 1}_desc`]}</div>
+                    <div className={cn("min-h-[3.75rem] line-clamp-2 max-w-[62.5rem] text-white font-normal self-center", isMobile ? "w-text-body-2" : "w-text-title-1")}>{language == ENGLISH ? data[index][`banner${index + 1}_desc_en`] : data[index][`banner${index + 1}_desc`]}</div>
                     {!isMobile && <div className="flex flex-row">
                         <img src="/icons/ic_arrow_left.svg" className="cursor-pointer" onClick={() => {
                             onIndexChange(index - 1)

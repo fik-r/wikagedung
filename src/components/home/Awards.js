@@ -30,7 +30,7 @@ const Awards = ({ data }) => {
                 router.push("/info-perusahaan/penghargaan-sertifikasi")
             }}>
                 <div  className="w-[8.75rem] h-[8.75rem] relative">
-                    <Image src={logo} fill />
+                    <Image src={logo} fill quality={50} placeholder="blur" blurDataURL={logo} />
                 </div>
                 <div className="w-text-subhead-1 text-sooty font-semibold mt-[1.625rem] text-center">{desc}</div>
             </div>
