@@ -30,7 +30,7 @@ const FocusBisnis = ({ data }) => {
             }} onMouseLeave={() => {
                 setIsHover(false)
             }} className={cn(
-                isMobile ? "max-h-[20rem] min-h-[20rem] min-w-[14.563rem]" : "col-span-1 h-[30.75rem]",
+                isMobile ? "min-h-[20rem] min-w-[14.563rem]" : "col-span-1 h-[30.75rem]",
                 "hover:cursor-pointer relative items-start rounded-lg")}>
                 <Image src={item.lini_bisnis_background}
                     quality={50} placeholder="blur"
