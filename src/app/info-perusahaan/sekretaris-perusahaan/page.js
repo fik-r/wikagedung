@@ -17,7 +17,8 @@ export default async function Index() {
         await Promise.all([
             getMenuHeader(), getHomepageData(), getContact(), getListOrganisasi("Sekretaris Perusahaan")])
 
-
+    
+    console.log(dataSekretaris.data)
         
     const content = () => {
         return (

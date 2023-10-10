@@ -74,13 +74,11 @@ const getListSertikasiDanPenghargaan = (tipe) => {
 const getListOrganisasi = (tipe) => {
     return API("/api/getListOrganisasi", {
         method: "POST",
-        body: {
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-                // Add any other headers if needed
-            },
-            body: tipe ? `tipe=${tipe}` : ""
-        }
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            // Add any other headers if needed
+        },
+        body: tipe ? `tipe=${tipe}` : ""
     })
 }
 
