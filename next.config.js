@@ -11,6 +11,12 @@ const nextConfig = {
         port: '',
         pathname: '/images/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'admin-web-dev.wikagedung.id',
+        port: '',
+        pathname: '/uploaded_file/**',
+      },
     ],
   },
   experimental: {
