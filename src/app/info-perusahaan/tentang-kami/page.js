@@ -23,7 +23,7 @@ export default async function Index() {
 
     const content = () => {
         return (
-            <Container className="py-[5rem] px-[2.5rem]">
+            <Container>
                 <TimelineInformasi data={dataTimeline.data} />
             </Container>
         )

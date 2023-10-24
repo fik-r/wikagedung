@@ -21,6 +21,7 @@ export default function Navbar(props) {
     const [dataChildMenu, setDataChildMenu] = useState([])
     const [dataParent, setDataParent] = useState({ title: "", description: "" })
     const [language, setLanguage] = useState("")
+    const [expandChildMenuMobile, setExpandChildMenuMobile] = useState(false)
 
     useEffect(() => {
         window.addEventListener('scroll', stickyListener)
@@ -32,6 +33,38 @@ export default function Navbar(props) {
     useEffect(() => {
         setLanguage(localStorage.getItem(LANGUAGE))
     }, [])
+
+    function getLastPathname() {
+        const pathParts = pathname.split('/');
+        const lastPart = pathParts[pathParts.length - 1];
+        const words = lastPart.split('-');
+        const result = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        return result
+    }
+
+    function findMenuAndParentByName(menuArray, name, parentMenu = null) {
+
+        for (const menu of menuArray) {
+            if ((menu.menu_name && menu.menu_name.replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, ' ').trim().toLowerCase() == name.toLowerCase()) ||
+                menu.menu_name_en && menu.menu_name_en.replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, ' ').trim().toLowerCase() == name.toLowerCase()
+            ) {
+                return { child: menu, parent: parentMenu };
+            }
+
+            if (menu.child) {
+                const result = findMenuAndParentByName(menu.child, name, menu);
+                if (result) {
+                    return result;
+                }
+            }
+        }
+
+        return null;
+    }
+
+
+    const getMenu = findMenuAndParentByName(data, getLastPathname(), null)
+    const getActiveMenuByName = getMenu && getMenu.parent ? getMenu.parent.child.filter((item) => item.menu_name.replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, ' ').trim().toLowerCase() == getLastPathname().toLowerCase())[0] : null
 
     function getBreadcumbsText() {
         var segments = pathname.split('/').filter(segment => segment !== '');
@@ -106,7 +139,7 @@ export default function Navbar(props) {
                                         } else {
                                             setDataChildMenu([])
                                             setDataParent({})
-                                            collapseMenu()      
+                                            collapseMenu()
                                         }
                                     }}
                                     onClick={() => {
@@ -195,7 +228,48 @@ export default function Navbar(props) {
                         <img src={"/icons/ic_search_black.svg"} className="cursor-pointer mx-[0.875rem]" />
                     </div>
                 </div>
+                {
+                    getActiveMenuByName &&
+                    <>
+                        <div className="flex flex-row justify-between p-[1rem]">
+                            <div className="flex flex-row w-full gap-x-[1rem]">
+                                <img src="/icons/ic_vertical_line.svg" />
+                                <div className="w-text-body-1 font-medium text-sooty">{language == ENGLISH ? getActiveMenuByName.menu_name_en : getActiveMenuByName.menu_name}</div>
+                            </div>
+                            <div className="w-[1.5rem] h-[1.5rem] flex justify-center items-center cursor-pointer" onClick={() => {
+                                setExpandChildMenuMobile(!expandChildMenuMobile)
+                            }}>
+                                <img src="/icons/ic_dropdown_black.svg" className={cn("w-[0.625rem] h-[0.313rem]", expandChildMenuMobile ? "rotate-180" : "")} />
+                            </div>
+                        </div>
+                        {
+                            expandChildMenuMobile &&
+                            <>
+                                <hr />
+                                <div className="flex flex-col gap-y-[1rem] mx-[1rem] py-[1rem]">
+                                    {getMenu.parent.child.map((item, index) => {
+                                        return (
+                                            <div key={index} className={cn("w-text-body-1 font-medium cursor-pointer", getActiveMenuByName.menu_name == item.menu_name ? "text-primary" : "text-sooty")}
+                                                onClick={() => {
+                                                    if (item.alias)
+                                                        router.push(item.alias)
+                                                    else {
+                                                        var path = item.child[0].alias;
+                                                        var segments = path.split('/');
+                                                        var queryParam = segments.pop();
 
+                                                        var newPath = segments.join('/') + '?q=' + queryParam;
+                                                        router.push(newPath)
+                                                    }
+                                                }}
+                                            >{language == ENGLISH ? item.menu_name_en : item.menu_name}</div>
+                                        )
+                                    })}
+                                </div>
+                            </>
+                        }
+                    </>
+                }
 
             </div>}
 

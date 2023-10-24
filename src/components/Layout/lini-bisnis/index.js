@@ -23,7 +23,7 @@ export default function Index({ showSidebar = true, name, sidebarContent, conten
 
 
     function findMenuAndParentByName(menuArray, name, parentMenu = null) {
-     
+
         for (const menu of menuArray) {
             if ((menu.menu_name && menu.menu_name.replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, ' ').trim().toLowerCase() == name.toLowerCase()) ||
                 menu.menu_name_en && menu.menu_name_en.replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, ' ').trim().toLowerCase() == name.toLowerCase()
@@ -71,7 +71,7 @@ export default function Index({ showSidebar = true, name, sidebarContent, conten
                                 <span className="w-text-title-1 mr-[2.063rem] text-primary font-semibold" onClick={() => {
                                     setReadMore(!readMore)
                                 }}>{!readMore ? (language == ENGLISH ? "Read more" : "Lanjutkan membaca") : (language == ENGLISH ? "Read less" : "Tutup")} </span>
-                                <img src="/icons/ic_dropdown.svg" className="w-[0.563rem] h-[0.938rem]" /></div>
+                                <img src="/icons/ic_dropdown.svg" className={cn("w-[0.563rem] h-[0.938rem]", readMore ? "rotate-180" : "")} /></div>
                         </div>}
                         {sidebarContent}
                     </div>

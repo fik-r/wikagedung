@@ -117,6 +117,10 @@
     @apply text-[0.875rem] font-medium;
   }
 
+  .w-text-caption-mobile {
+    @apply text-[0.625rem];
+  }
+
   /* utility */
   .trapezium-corner-tr-bl {
     clip-path:
