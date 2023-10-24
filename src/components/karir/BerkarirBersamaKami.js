@@ -59,7 +59,7 @@ const BerkarirBersamaKami = ({ data }) => {
                                     <span className="w-text-body-1 mr-[2.063rem] text-primary font-semibold" onClick={() => {
                                         setReadMore(!readMore)
                                     }}>{!readMore ? (language == ENGLISH ? "Read more" : "Lanjutkan membaca") : (language == ENGLISH ? "Read less" : "Tutup")} </span>
-                                    <img src="/icons/ic_dropdown.svg" className={cn("w-[0.563rem] h-[0.938rem]", readMore ? "rotate-180" : "")} /></div>
+                                    <img src="/icons/ic_dropdown.svg" className={cn("w-[0.563rem] h-[0.938rem] transform transition-transform duration-300", readMore ? "rotate-180" : "")} /></div>
                             </div>
                         </div>
                     )

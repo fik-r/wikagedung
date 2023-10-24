@@ -239,7 +239,7 @@ export default function Navbar(props) {
                             <div className="w-[1.5rem] h-[1.5rem] flex justify-center items-center cursor-pointer" onClick={() => {
                                 setExpandChildMenuMobile(!expandChildMenuMobile)
                             }}>
-                                <img src="/icons/ic_dropdown_black.svg" className={cn("w-[0.625rem] h-[0.313rem]", expandChildMenuMobile ? "rotate-180" : "")} />
+                                <img src="/icons/ic_dropdown_black.svg" className={cn("w-[0.625rem] h-[0.313rem] transform transition-transform duration-300", expandChildMenuMobile ? "rotate-180" : "")} />
                             </div>
                         </div>
                         {
