@@ -4,6 +4,7 @@ import cn from "classnames"
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from "react"
 import useResponsive from "@/utils/media-query"
+import Link from "next/link"
 
 const ChildMenu = (props) => {
     const { isMobile } = useResponsive()
@@ -12,9 +13,12 @@ const ChildMenu = (props) => {
     const title = props.title
     const description = props.description
     const [language, setLanguage] = useState("")
+    const [isExpand, setIsExpand] = useState(
+        getMenu().length == 2 ? [Array(getMenu()[0].length).fill(false), Array(getMenu()[1].length).fill(false)] : [Array(getMenu()[0].length).fill(false)]
+    )
 
     useEffect(() => {
-
+        console.log(isExpand)
         function setLanguageOnStorageChange() {
             setLanguage(localStorage.getItem(LANGUAGE))
         }
@@ -39,69 +43,81 @@ const ChildMenu = (props) => {
         }
     }
 
-    const Menu = ({ index, item, onClick }) => {
+    function getHrefForChildMenu(child) {
+        var href = ""
+        var alias = child.alias
+        if (alias.includes("pctk")) {
+            alias = child.alias.replace("pctk", "konstruksi-off-site-pracetak-gedung")
+        }
+        if (alias.includes("mdlr")) {
+            alias = child.alias.replace("mdlr", "konstruksi-off-site-modular")
+        }
+        if (alias.includes("knsi")) {
+            alias = child.alias.replace("knsi", "investasi-konsesi")
+        }
+        if (alias.includes("knst")) {
+            alias = child.alias.replace("knst", "konstruksi")
+        }
+        if (alias && !isMobile) {
+            var path = alias;
+            var segments = path.split('/');
+            if (segments.length > 2 && (!alias.includes("media") && !alias.includes("press-kit"))) {
+                var queryParam = segments.pop();
+
+                var newPath = segments.join('/') + '?q=' + queryParam;
+                href = newPath
+            } else {
+                href = path
+            }
+        }
+
+        if (isMobile) {
+            if (alias || (alias.includes("media") && alias.includes("press-kit"))) {
+                href = alias
+            } else {
+                var path = child.child[0].alias;
+                var segments = path.split('/');
+                var queryParam = segments.pop();
+
+                var newPath = segments.join('/') + '?q=' + queryParam;
+                href = newPath
+            }
+        }
+        return href
+    }
+
+    const Menu = ({ index, item, expand, onExpand }) => {
+        console.log(expand)
+        console.log(index)
+        const isExpand = expand[index]
         return (
             <div className={cn("w-100 row-span-1 flex flex-col justify-center")}>
-                <div
-                    tabIndex={index}
-                    className={cn("collapse group", item.child && item.child.length > 0 ? "collapse-arrow" : "")}>
-                    {isMobile && !item.child && <input type="checkbox" className="h-[2.5rem] min-h-[2.5rem]" />}
-                    <span onClick={() => {
-                        if (isMobile) {
-                            router.push(item.alias)
+                <div className="flex flex-col">
+                    <div className="flex flex-row justify-between items-center">
+                        {!item.child &&
+                            <Link href={item.alias} className="z-[3] cursor-pointer min-h-fit p-0 w-text-body-2 text-sooty font-medium h-[2.5rem] flex items-center group-focus:text-orange hover:text-orange">
+                                {language == ENGLISH ? item.menu_name_en : item.menu_name}
+                            </Link>
                         }
-                        if (item.alias && !isMobile)
-                            onClick(item)
-                    }} className="z-[3] cursor-pointer collapse-title min-h-fit p-0 w-text-body-2 text-sooty font-medium h-[2.5rem] flex items-center group-focus:text-orange hover:text-orange">
-                        {language == ENGLISH ? item.menu_name_en : item.menu_name}
-                    </span>
-                    {item.child && item.child.length > 0 &&
+                        {item.child && item.child.length > 0 &&
+                            <>
+                                <span onClick={() => {
+                                    onExpand()
+                                }} className={cn("z-[3] cursor-pointer min-h-fit p-0 w-text-body-2 font-medium h-[2.5rem] flex items-center hover:text-orange", isExpand ? "text-orange" : "text-sooty")}>
+                                    {language == ENGLISH ? item.menu_name_en : item.menu_name}
+                                </span>
+                                <img src="/icons/ic_dropdown_black.svg" className={cn("transform transition-transform duration-300 w-[0.9rem] h-[0.463rem]", isExpand ? "rotate-180" : "")} />
+                            </>
+                        }
+                    </div>
+                    {isExpand && item.child && item.child.length > 0 &&
                         <>
-                            <div className="collapse-content flex flex-col min-h-fit p-0 group-focus:p-0">
+                            <div className="flex flex-col min-h-fit p-0">
                                 {
                                     item.child.map((child, index) => {
                                         return (
                                             <>
-                                                <div key={index} onClick={() => {
-                                                    var alias = child.alias
-                                                    if (alias.includes("pctk")) {
-                                                        alias = child.alias.replace("pctk", "konstruksi-off-site-pracetak-gedung")
-                                                    }
-                                                    if (alias.includes("mdlr")) {
-                                                        alias = child.alias.replace("mdlr", "konstruksi-off-site-modular")
-                                                    }
-                                                    if (alias.includes("knsi")) {
-                                                        alias = child.alias.replace("knsi", "investasi-konsesi")
-                                                    }
-                                                    if (alias.includes("knst")) {
-                                                        alias = child.alias.replace("knst", "konstruksi")
-                                                    }
-                                                    if (alias && !isMobile) {
-                                                        var path = alias;
-                                                        var segments = path.split('/');
-                                                        if (segments.length > 2 && (!alias.includes("media") && !alias.includes("press-kit"))) {
-                                                            var queryParam = segments.pop();
-
-                                                            var newPath = segments.join('/') + '?q=' + queryParam;
-                                                            router.push(newPath)
-                                                        } else {
-                                                            router.push(path)
-                                                        }
-                                                    }
-
-                                                    if (isMobile) {
-                                                        if (alias || (alias.includes("media") && alias.includes("press-kit"))) {
-                                                            router.push(alias)
-                                                        } else {
-                                                            var path = child.child[0].alias;
-                                                            var segments = path.split('/');
-                                                            var queryParam = segments.pop();
-
-                                                            var newPath = segments.join('/') + '?q=' + queryParam;
-                                                            router.push(newPath)
-                                                        }
-                                                    }
-                                                }} className={cn("cursor-pointer text-sooty font-normal h-[2.5rem] flex items-center hover:text-orange", isMobile ? "w-text-body-1" : "w-text-body-2")}>{language == ENGLISH ? child.menu_name_en : child.menu_name}</div>
+                                                <Link href={getHrefForChildMenu(child)} className={cn("cursor-pointer text-sooty font-normal h-[2.5rem] flex items-center hover:text-orange", isMobile ? "w-text-body-1" : "w-text-body-2")}>{language == ENGLISH ? child.menu_name_en : child.menu_name}</Link>
                                                 {isMobile && <hr />}
                                             </>
                                         )
@@ -120,8 +136,6 @@ const ChildMenu = (props) => {
         <>
             {!isMobile &&
                 <div onMouseEnter={props.onMouseEnter} onMouseLeave={props.onMouseLeave} className="relative grid grid-cols-3 p-[2.5rem] gap-x-[6.25rem]">
-                    {/* <img src="/images/bg_menu_1.svg" className="absolute bottom-0 left-0" />
-                <img src="/images/bg_menu_2.svg" className="absolute bottom-0 left-0" /> */}
                     <div className="col-span-1 flex flex-col">
                         <div className="text-primary w-text-display-3">
                             {title}
@@ -132,15 +146,21 @@ const ChildMenu = (props) => {
                     </div>
                     <div className={cn("col-span-2 gap-x-[2.5rem]", data.length > 4 ? "grid grid-cols-2" : "flex flex-col")}>
                         {
-                            getMenu().map((menu, index) => {
+                            getMenu().map((menu, indexParent) => {
                                 return (
-                                    <div key={index} className="flex flex-col w-full col-span-1">
+                                    <div key={indexParent} className="flex flex-col w-full col-span-1">
                                         {
                                             menu.map((data, index) => {
                                                 return (
-                                                    <Menu key={index} item={data} index={index} onClick={(data) => {
-                                                        if (!data.child)
-                                                            router.push(data.alias)
+                                                    <Menu key={index} item={data} index={index} expand={isExpand[indexParent]} onExpand={() => {
+                                                        const updatedExpandMenus = isExpand.map((parentArray, parentIndex) =>
+                                                            parentArray.map((item, itemIndex) =>
+                                                                parentIndex === indexParent && itemIndex === index
+                                                                    ? !item
+                                                                    : false
+                                                            )
+                                                        );
+                                                        setIsExpand(updatedExpandMenus)
                                                     }} />
                                                 )
                                             })
