@@ -1,28 +1,27 @@
 'use client'
 import { ENGLISH, LANGUAGE } from "@/utils/constants"
 import cn from "classnames"
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from "react"
 import useResponsive from "@/utils/media-query"
 import Link from "next/link"
 
 const ChildMenu = (props) => {
     const { isMobile } = useResponsive()
-    const router = useRouter()
     const data = props.data
     const title = props.title
     const description = props.description
     const [language, setLanguage] = useState("")
     const [isExpand, setIsExpand] = useState(
-        getMenu().length == 2 ? [Array(getMenu()[0].length).fill(false), Array(getMenu()[1].length).fill(false)] : [Array(getMenu()[0].length).fill(false)]
+        getMenu().length == 2 ? [Array(getMenu()[0].length).fill(false), Array(getMenu()[1].length).fill(false)]
+            : [Array(getMenu()[0].length).fill(false)]
     )
 
     useEffect(() => {
-        console.log(isExpand)
         function setLanguageOnStorageChange() {
             setLanguage(localStorage.getItem(LANGUAGE))
         }
         setLanguageOnStorageChange()
+
 
         window.addEventListener('storage', setLanguageOnStorageChange)
         return () => {
@@ -87,8 +86,6 @@ const ChildMenu = (props) => {
     }
 
     const Menu = ({ index, item, expand, onExpand }) => {
-        console.log(expand)
-        console.log(index)
         const isExpand = expand[index]
         return (
             <div className={cn("w-100 row-span-1 flex flex-col justify-center")}>

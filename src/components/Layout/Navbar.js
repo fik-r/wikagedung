@@ -187,7 +187,7 @@ export default function Navbar(props) {
                     </>
                 }
                 {isSticky && expandMenu &&
-                    dataChildMenu &&
+                    dataChildMenu.length > 0 &&
                     <ChildMenu
                         onMouseEnter={() => {
                             expandChildrenMenu()
@@ -195,7 +195,9 @@ export default function Navbar(props) {
                         data={dataChildMenu}
                         title={dataParent.title}
                         description={dataParent.description}
-                        onMouseLeave={collapseMenu} />
+                        onMouseLeave={collapseMenu}
+                        key={dataChildMenu}
+                        />
                 }
             </div>}
             {/* mobile */}

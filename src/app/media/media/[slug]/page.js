@@ -21,7 +21,6 @@ export default async function Index() {
         await Promise.all([
             getMenuHeader(), getHomepageData(), getContact(), getMenuContentByAlias(pathname)])
 
-            console.log(getLastPathname())
     const content = () => {
         return (
             <>

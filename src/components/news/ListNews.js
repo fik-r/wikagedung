@@ -81,7 +81,6 @@ const ListNews = ({ data, firstNews }) => {
                                                 .includes(value.toLowerCase())
                                         )
                                     setNews(filteredData)
-                                    console.log(filteredData)
                                     setPage(1)
                                 }}
                             />
