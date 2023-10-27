@@ -15,6 +15,7 @@ const ChildMenu = (props) => {
         getMenu().length == 2 ? [Array(getMenu()[0].length).fill(false), Array(getMenu()[1].length).fill(false)]
             : [Array(getMenu()[0].length).fill(false)]
     )
+    const [isExpandMobile, setIsExpandMobile] = useState([Array(data.length).fill(false)])
 
     useEffect(() => {
         function setLanguageOnStorageChange() {
@@ -172,7 +173,16 @@ const ChildMenu = (props) => {
             {isMobile &&
                 <div className="w-full flex flex-col gap-y-[1.5rem]">
                     {data.map((item, index) => {
-                        return <Menu key={index} item={item} index={index} />
+                        return <Menu key={index} item={item} index={index} expand={isExpandMobile[0]} onExpand={() => {
+                            const updatedExpandMenus = isExpandMobile.map((parentArray, parentIndex) =>
+                                parentArray.map((item, itemIndex) =>
+                                    parentIndex === 0 && itemIndex === index
+                                        ? !item
+                                        : false
+                                )
+                            );
+                            setIsExpandMobile(updatedExpandMenus)
+                        }} />
                     })}
                 </div>
             }

@@ -219,7 +219,7 @@ export default function Navbar(props) {
                     </div>
                     <div className="flex flex-row my-[1.25rem]">
                         <div className="flex flex-row items-center gap-x-[0.625rem]">
-                            <div className={cn("w-text-body-1 cursor-pointer", language == INDONESIA ? "text-secondary font-semibold" : "text-aria font-normal")} onClick={() => {
+                            <div className={cn("w-text-body-1 cursor-pointer", language != ENGLISH ? "text-secondary font-semibold" : "text-aria font-normal")} onClick={() => {
                                 setDesiredLanguage(INDONESIA)
                             }}>ID</div>
                             <div className="text-aria">|</div>
