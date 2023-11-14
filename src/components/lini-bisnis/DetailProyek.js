@@ -67,8 +67,7 @@ const DetailProyek = ({ index, detail }) => {
                         return (
                             <div key={key} className="hover:cursor-pointer  rounded-lg min-w-[15.5rem] max-w-[27rem] h-[16.25rem] relative">
                                 <Image
-                                    quality={50} placeholder="blur"
-                                    blurDataURL={item}
+                                    quality={50}
                                     src={item} fill className="rounded-lg" />
                             </div>
                         )

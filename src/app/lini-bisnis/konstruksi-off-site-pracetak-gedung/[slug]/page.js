@@ -16,7 +16,7 @@ export default async function Index({ searchParams }) {
 
     const [dataMenuHeader, dataHomepage, dataContact, dataProyek] =
         await Promise.all([
-            getMenuHeader(), getHomepageData(), getContact(), getMenuContentByAlias(`lini-bisnis/knst/${searchParams.q ? searchParams.q : "proyek-sebelumnya"}`)])
+            getMenuHeader(), getHomepageData(), getContact(), getMenuContentByAlias(`lini-bisnis/pctk/${searchParams.q ? searchParams.q : "proyek-sebelumnya"}`)])
 
     function getRequestDataProyek() {
         const requestDataProyek = []

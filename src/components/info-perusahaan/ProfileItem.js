@@ -6,8 +6,8 @@ const ProfileItem = ({ job, name, image, index, isDireksi }) => {
         <div className="flex flex-col rounded-lg shadow-lg w-[22.5rem] cursor-pointer" onClick={() => {
             router.push(`/info-perusahaan/organisasi/${(index + 1)}?q=${isDireksi ? "Direksi" : "Komisaris"}`)
         }}>
-            <div className="rounded-t-lg bg-white_smoke w-full min-h-[20.25rem] relative">
-                <img src={image} fill className="rounded-t-lg" />
+            <div className="rounded-t-lg bg-white_smoke w-full max-h-[20.25rem] min-h-[20.25rem] relative">
+                <img src={image} fill className="rounded-t-lg max-h-[20.25rem] min-h-[20.25rem]" />
             </div>
             <div className="w-text-body-2 text-sooty mx-[1rem] mt-[1.25rem]">{job}</div>
             <div className="w-text-headline-1 text-primary mx-[1rem] mb-[1.25rem]">{name}</div>

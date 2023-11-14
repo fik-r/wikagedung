@@ -50,9 +50,9 @@ const News = ({ data, news }) => {
                 <Image src="/images/overlay.png" fill className="rounded-lg z-[-1]" />
                 <div className="absolute pt-[1.375rem] px-[1.5rem] pb-[2rem] bottom-0">
                     <div className="flex flex-row gap-x-[0.875rem] items-center">
-                        <div className="w-text-body text-white font-semibold">{location}</div>
-                        <div className="w-text-body text-white">|</div>
-                        <div className="w-text-body font-normal text-white">{date}</div>
+                        <div className="w-text-body-1 text-white font-semibold">{location}</div>
+                        <div className="w-text-body-1 text-white">|</div>
+                        <div className="w-text-body-1 font-normal text-white">{date}</div>
                     </div>
                     <div className="mt-[1rem] w-text-title-1 font-semibold text-white">
                         {title}

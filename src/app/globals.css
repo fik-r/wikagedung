@@ -172,8 +172,6 @@
 
   .zoom:hover {
     transform: scale(1.1);
-
-    z-index: 99;
     transition: transform 0.5s;
   }
 

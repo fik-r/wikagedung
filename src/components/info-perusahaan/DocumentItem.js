@@ -5,9 +5,9 @@ const DocumentItem = ({ title, image }) => {
 
     const [hoveredItem, setHoveredItem] = useState(false)
     return (
-        <div className="flex flex-col justify-center">
+        <div className="flex flex-col">
             <div className="relative flex justify-center items-center">
-                <div className="w-full min-h-[16.563rem] rounded-lg hover:cursor-pointer relative">
+                <div className="w-full min-h-[16.563rem] max-h-[16.563rem] rounded-lg hover:cursor-pointer relative">
                     <Image
                         quality={50} placeholder="blur"
                         blurDataURL={image}
