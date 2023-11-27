@@ -45,6 +45,7 @@ const AlamatInformasiKontak = ({ dataAlamatAnakPerusahaan = [], dataAlamatKantor
                                 <Image
                                     quality={50} placeholder="blur"
                                     blurDataURL={item.image}
+                                    style={{ objectFit: "cover"}}
                                     fill src={item.image} className="rounded-lg" />
                             </div>
                             <div className="flex flex-col gap-y-[1rem]">

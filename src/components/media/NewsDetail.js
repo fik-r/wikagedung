@@ -29,6 +29,7 @@ const NewsDetail = ({ data, news }) => {
                     <Image
                         quality={50} placeholder="blur"
                         blurDataURL={thumbnail}
+                        style={{ objectFit: "cover"}}
                         src={thumbnail} className="rounded-lg" fill />
                 </div>
                 <div>
@@ -67,6 +68,7 @@ const NewsDetail = ({ data, news }) => {
                         <Image
                             quality={50} placeholder="blur"
                             blurDataURL={data.image_url}
+                            style={{ objectFit: "cover"}}
                             src={data.image_url} className="rounded-lg" fill />
                     </div>
                     <div className="flex flex-row pt-[2.5rem] gap-x-[3.125rem]">

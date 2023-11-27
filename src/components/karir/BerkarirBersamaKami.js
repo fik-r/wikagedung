@@ -37,6 +37,7 @@ const BerkarirBersamaKami = ({ data }) => {
                             <Image
                                 quality={50} placeholder="blur"
                                 blurDataURL={item}
+                                style={{ objectFit: "cover"}}
                                 fill src={item} className='rounded rounded-lg' />
                         </div>
                     )

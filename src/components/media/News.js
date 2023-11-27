@@ -6,11 +6,12 @@ const News = ({ location, date, thumbnail, description, alias }) => {
     return (
         <div onClick={() => {
             router.push("/news/" + alias)
-        }} className="rounded-xl shadow-md zoom flex flex-col items-center gap-x-[1.5rem] hover:cursor-pointer w-[17.5rem] h-[24.875rem]">
-            <div className="rounded-t-lg w-[17.5rem] h-[14.938rem] max-h-[14.938rem] relative">
+        }} className="rounded-xl shadow-md zoom flex flex-col items-center hover:cursor-pointer w-full h-[24.875rem]">
+            <div className="rounded-t-lg w-full min-h-[14.938rem] max-h-[14.938rem] relative">
                 <Image
                     quality={50} placeholder="blur"
                     blurDataURL={thumbnail}
+                    style={{ objectFit: "cover"}}
                     src={thumbnail} fill className="rounded-t-lg" sizes="(min-width: 280px)" />
             </div>
             <div className="p-[1.5rem]">

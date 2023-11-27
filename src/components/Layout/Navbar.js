@@ -7,6 +7,7 @@ import timezone from "moment-timezone";
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
 import { ChildMenu } from "./Menu";
+import Link from "next/link";
 
 export default function Navbar(props) {
     const { isMobile } = useResponsive()
@@ -112,16 +113,19 @@ export default function Navbar(props) {
             {/* desktop */}
             {!isMobile && <div id="navbar" className={cn(props.className, isSticky ? "sticky top-0 z-[999]" : theme == "dark" ? "absolute top-0 z-[999]" : "", theme == "light" ? "bg-white fade-in" : "", "flex flex-col w-full pt-[2.5rem]")}>
                 {/* image wika */}
-                <div className="flex h-[2.625rem] px-[5rem]">
-                    <img src="/images/ic_wika_gedung.svg" className="items-center hover:cursor-pointer" onClick={() => {
-                        router.push("/")
-                    }} />
-                    <div className={cn(theme == "light" ? "text-sooty " : "text-white ", "w-text-subhead-1 font-bold self-center ml-[3.5rem]")}>WEGE - IDR {dataHomepage.nilai_saham}</div>
-                    <div className="flex items-center ml-[0.719rem]"><img className="w-[1.125rem] h-[1.125rem]" src="/icons/ic_trending_up.svg" />
-                        <span className="w-text-body-1 text-garnish ml-[0.25rem]">+{dataHomepage.grafik_saham} %</span>
+                <div className="flex h-[2.625rem] px-[5rem] justify-between">
+                    <div className="flex flex-row">
+                        <img src="/images/ic_wika_gedung.svg" className="items-center hover:cursor-pointer" onClick={() => {
+                            router.push("/")
+                        }} />
+                        <div className={cn(theme == "light" ? "text-sooty " : "text-white ", "w-text-subhead-1 font-bold self-center ml-[3.5rem]")}>WEGE - IDR {dataHomepage.nilai_saham}</div>
+                        <div className="flex items-center ml-[0.719rem]"><img className="w-[1.125rem] h-[1.125rem]" src="/icons/ic_trending_up.svg" />
+                            <span className="w-text-body-1 text-garnish ml-[0.25rem]">+{dataHomepage.grafik_saham} %</span>
+                        </div>
+                        <div className="text-white mx-[0.625rem] self-center">|</div>
+                        <div className={cn(theme == "light" ? "text-jet " : "text-white ", "self-center w-text-body-1 font-normal")}>{timezone(dataHomepage.updated_at).tz('Asia/Bangkok').format('D MMMM YYYY HH:mm [GMT+7]')} </div>
                     </div>
-                    <div className="text-white mx-[0.625rem] self-center">|</div>
-                    <div className={cn(theme == "light" ? "text-jet " : "text-white ", "self-center w-text-body-1 font-normal")}>{timezone(dataHomepage.updated_at).tz('Asia/Bangkok').format('D MMMM YYYY HH:mm [GMT+7]')} </div>
+                    <Link href="/sitemap" className={cn(theme == "light" ? "text-sooty" : "text-white", "self-center w-text-subhead-1")}>Sitemap</Link>
                 </div>
                 {/* item navbar */}
                 <div className="flex justify-between mt-[1.406rem] w-full px-[5rem]">
@@ -130,7 +134,7 @@ export default function Navbar(props) {
                             data.map((item, index) => {
                                 return <div
                                     key={index}
-                                    className={cn(pathname.replace(/[\/-]/g, ' ').includes(item.menu_name.toLowerCase()) ? "text-democrat" : theme == "light" ? "text-sooty" : "text-white", "w-text-subhead-1 cursor-pointer hover:text-democrat")}
+                                    className={cn(pathname.replace(/[\/-]/g, ' ').includes(item.menu_name.toLowerCase()) ? "text-democrat" : theme == "light" ? "text-sooty" : "text-white", "capitalize w-text-subhead-1 cursor-pointer hover:text-democrat")}
                                     onMouseEnter={() => {
                                         if (item.child) {
                                             expandChildrenMenu()
@@ -146,7 +150,7 @@ export default function Navbar(props) {
                                         if (!item.child)
                                             router.push(item.alias)
                                     }}
-                                >{language == ENGLISH ? item.menu_name_en : item.menu_name}</div>
+                                >{language == ENGLISH ? item.menu_name_en.toLowerCase() : item.menu_name.toLowerCase()}</div>
                             })
                         }
                     </div>
@@ -167,7 +171,8 @@ export default function Navbar(props) {
                         <div className={cn("flex flex-row justify-between mx-[6.25rem] my-[1.75rem]", props.isOnDetailPage ? "" : "border-l-4 border-primary")}>
                             {!props.isOnDetailPage &&
                                 <ul className="breadcrumb ml-[1.25rem]">
-                                    <li><a href="/">Home</a></li>
+                                    {getBreadcumbsText()[0] != "Sitemap" &&
+                                        <li><a href="/">Home</a></li>}
                                     <li><a href="#" className="capitalize">{getBreadcumbsText()[0]}</a></li>
                                     {getBreadcumbsText()[1] && <li><a href="#" className="capitalize">{getBreadcumbsText()[1]}</a></li>}
                                 </ul>
@@ -179,8 +184,13 @@ export default function Navbar(props) {
                                     window.scrollTo({ top: 0, behavior: 'smooth' });
                                 }
                             }}>
-                                <img src={props.isOnDetailPage ? "/icons/ic_circle_arrow_back.svg" : "/icons/ic_circle_arrow_up.svg"} />
-                                <div className="font-medium text-primary w-text-body-1">{language == ENGLISH ? `Back to ${props.isOnDetailPage ? "Previous" : "Top"}` : `Kembali ke ${props.isOnDetailPage ? "Awal" : "Atas"}`}</div>
+                                {
+                                    getBreadcumbsText()[0] != "Sitemap" &&
+                                    <>
+                                        <img src={props.isOnDetailPage ? "/icons/ic_circle_arrow_back.svg" : "/icons/ic_circle_arrow_up.svg"} />
+                                        <div className="font-medium text-primary w-text-body-1">{language == ENGLISH ? `Back to ${props.isOnDetailPage ? "Previous" : "Top"}` : `Kembali ke ${props.isOnDetailPage ? "Awal" : "Atas"}`}</div>
+                                    </>
+                                }
                             </div>
                         </div>
                         <hr />
@@ -197,7 +207,7 @@ export default function Navbar(props) {
                         description={dataParent.description}
                         onMouseLeave={collapseMenu}
                         key={dataChildMenu}
-                        />
+                    />
                 }
             </div>}
             {/* mobile */}

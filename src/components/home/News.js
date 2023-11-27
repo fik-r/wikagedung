@@ -46,7 +46,7 @@ const News = ({ data, news }) => {
                     router.push("/news/" + alias)
                 }}
             >
-                <Image src={thumbnail} quality={50} placeholder="blur" blurDataURL={thumbnail} fill className="rounded-lg z-[-2]" />
+                <Image src={thumbnail} quality={50} placeholder="blur" blurDataURL={thumbnail} fill className="rounded-lg z-[-2]" style={{ objectFit: "cover"}}/>
                 <Image src="/images/overlay.png" fill className="rounded-lg z-[-1]" />
                 <div className="absolute pt-[1.375rem] px-[1.5rem] pb-[2rem] bottom-0">
                     <div className="flex flex-row gap-x-[0.875rem] items-center">
@@ -72,6 +72,7 @@ const News = ({ data, news }) => {
                     <Image src={thumbnail} className="rounded-lg"
                         quality={50} placeholder="blur"
                         blurDataURL={thumbnail}
+                        style={{ objectFit: "cover"}}
                         fill />
                 </div>
                 <div>

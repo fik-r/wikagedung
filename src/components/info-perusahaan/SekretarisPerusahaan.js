@@ -22,6 +22,7 @@ const SekretarisPerusahaan = ({ data }) => {
                     <Image
                         quality={50} placeholder="blur"
                         blurDataURL={data.foto}
+                        style={{ objectFit: "cover"}}
                         src={data.foto} fill className="rounded-lg" />
                 </div>
                 <div className="flex flex-col">

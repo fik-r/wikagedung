@@ -64,6 +64,7 @@ const TimelineInformasi = ({ data }) => {
                             <Image
                                 quality={50} placeholder="blur"
                                 blurDataURL={data[activeIndex].image}
+                                style={{ objectFit: "cover"}}
                                 src={data[activeIndex].image} fill className="rounded-lg" />
                         </div>
                         <div className="flex flex-col">

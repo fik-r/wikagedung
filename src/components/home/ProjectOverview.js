@@ -28,6 +28,7 @@ const ProjectOverview = ({ data }) => {
                     <Image src={url} fill
                         quality={50} placeholder="blur"
                         blurDataURL={url}
+                        style={{ objectFit: "cover"}}
                     />
                 </div>
                 <div className="flex flex-col">

@@ -11,6 +11,7 @@ const DocumentItem = ({ title, image }) => {
                     <Image
                         quality={50} placeholder="blur"
                         blurDataURL={image}
+                        style={{ objectFit: "cover"}}
                         className="rounded-lg" src={image} fill onMouseEnter={() => {
                             setHoveredItem(true)
                         }} />

@@ -4,14 +4,13 @@ import cn from "classnames"
 
 const DetailOrganisasi = ({ data, index, type }) => {
     const [language, setLanguage] = useState("")
-    const [activeIndex, setActiveIndex] = useState(index - 1)
+    const [activeIndex, setActiveIndex] = useState(index)
     useEffect(() => {
 
         function setLanguageOnStorageChange() {
             setLanguage(localStorage.getItem(LANGUAGE))
         }
         setLanguageOnStorageChange()
-
         window.addEventListener('storage', setLanguageOnStorageChange)
         return () => {
             window.removeEventListener('storage', setLanguageOnStorageChange)
@@ -23,7 +22,7 @@ const DetailOrganisasi = ({ data, index, type }) => {
                 <div className="w-text-display-2 text-sooty] mt-[2.5rem]">{type == "Komisaris" ? language == ENGLISH ? "Profile Board of Commissioners" : "Profil Dewan Komisaris" : language == ENGLISH ? "Profile Directors" : "Profil Direksi"}</div>
             </div>
             <div className="flex flex-row mt-[3.75rem] gap-x-[2.5rem]">
-                <img className="w-[26.25rem] h-[34.375rem] bg-white_smoke rounded rounded-lg" src={data[activeIndex].foto} />
+                <img className="w-[26.25rem] h-[34.375rem] bg-white_smoke rounded rounded-lg" style={{objectFit: "cover"}} src={data[activeIndex].foto} />
                 <div className="flex flex-col">
                     <div className="flex flex-row justify-between">
                         <div className="w-text-display-3 text-primary">{data[activeIndex].name}</div>

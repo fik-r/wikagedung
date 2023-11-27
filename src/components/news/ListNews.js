@@ -41,6 +41,7 @@ const ListNews = ({ data, firstNews }) => {
                     <Image
                         quality={50} placeholder="blur"
                         blurDataURL={data[0].news_file_path}
+                        style={{ objectFit: "cover"}}
                         src={data[0].news_file_path} fill className="rounded-lg" />
                 </div>
                 <div className="flex flex-col">

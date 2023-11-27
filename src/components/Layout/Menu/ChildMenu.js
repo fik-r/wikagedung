@@ -135,8 +135,8 @@ const ChildMenu = (props) => {
             {!isMobile &&
                 <div onMouseEnter={props.onMouseEnter} onMouseLeave={props.onMouseLeave} className="relative grid grid-cols-3 p-[2.5rem] gap-x-[6.25rem]">
                     <div className="col-span-1 flex flex-col">
-                        <div className="text-primary w-text-display-3">
-                            {title}
+                        <div className="text-primary w-text-display-3 capitalize">
+                            {title.toLowerCase()}
                         </div>
                         <div className="leading-[1.875rem] w-text-body-2 text-sooty mt-[1.5rem]">
                             {description}

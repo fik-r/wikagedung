@@ -34,14 +34,14 @@ const CompanyProfile = ({ data }) => {
     return (
         <> {!isMobile &&
             <div className="relative">
-                <img src="/images/bg_company_profile.svg" className="absolute top-0 left-0 z-[-1]" />
-
+                <img src="/images/bg_company_profile.svg" className="absolute top-0 left-0 z-[-1] mt-[6.25rem]" />
                 <div className="rounded-lg absolute left-0 top-6 bottom-0 z-[3] h-[25.438rem] ml-[8.75rem] w-[17.813rem]">
                     <Image src={data[index].image_url}
                         alt={data[index].image_name}
                         quality={50} placeholder="blur"
                         blurDataURL={data[index].image_url}
                         fill
+                        style={{ objectFit: "cover" }}
                         className="rounded-lg" />
                 </div>
                 <div className="relative bg-primary w-100 mt-[3.75rem] py-[2.125rem] h-[20.938rem]">
@@ -79,6 +79,7 @@ const CompanyProfile = ({ data }) => {
                                 quality={50} placeholder="blur"
                                 blurDataURL={data[index].image_url}
                                 fill
+                                style={{ objectFit: "cover" }}
                                 className="rounded-lg" />
 
                         </div>

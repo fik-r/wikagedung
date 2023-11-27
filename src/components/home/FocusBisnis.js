@@ -35,7 +35,8 @@ const FocusBisnis = ({ data }) => {
                 <Image src={item.lini_bisnis_background}
                     quality={50} placeholder="blur"
                     blurDataURL={item.lini_bisnis_background}
-                    fill className='rounded-lg' />
+                    fill className='rounded-lg'
+                    style={{ objectFit: "cover"}} />
                 <div className="absolute w-full h-full rounded-lg" style={{
                     "background": "linear-gradient(0deg, rgba(0, 0, 0, 0.6) 26.12%, rgba(249, 160, 27, 0) 84.35%)"
                 }} />
