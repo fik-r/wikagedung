@@ -103,7 +103,7 @@ const Sitemap = ({ menu }) => {
                                                                     {
                                                                         child.child && child.child.map((child, key) => {
                                                                             return (
-                                                                                <Link href={getHrefForChildMenu(child)} className="cursor-pointer hover:text-primary py-[0.625rem] w-text-body-2 text-sooty ml-[1rem]">{child.menu_name}</Link>
+                                                                                <Link key={key} href={getHrefForChildMenu(child)} className="cursor-pointer hover:text-primary py-[0.625rem] w-text-body-2 text-sooty ml-[1rem]">{child.menu_name}</Link>
                                                                             )
                                                                         })
                                                                     }
