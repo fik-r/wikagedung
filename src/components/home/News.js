@@ -94,14 +94,14 @@ const News = ({ data, news }) => {
             <div onClick={() => {
                 router.push("/news/" + alias)
             }} className="rounded-xl shadow-md zoom flex flex-col items-center hover:cursor-pointer min-w-[14.5rem] h-[20rem] mb-[5px]">
-                <img src="/images/dummy_news_2.webp" className="rounded-t-lg min-w-[14.5rem] h-[10.125rem]" />
+                <img src={thumbnail} className="rounded-t-lg w-full min-h-[10.125rem] max-h-[10.125rem]" />
                 <div className="p-[1.5rem]">
                     <div className="flex flex-row gap-x-[0.875rem] items-center">
                         <div className="w-text-caption text-jet font-semibold">{location}</div>
                         <div className="w-text-subhead-1 text-aria">|</div>
                         <div className="w-text-caption font-normal text-hard_coal">{date}</div>
                     </div>
-                    <div className="mt-[0.875rem] w-text-body-1 font-semibold text-sooty">
+                    <div className="mt-[0.875rem] w-text-body-1 font-semibold text-sooty line-clamp-3">
                         {title}
                     </div>
                 </div>
