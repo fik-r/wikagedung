@@ -291,7 +291,8 @@ export default function Navbar(props) {
                         setExpandMenuMobile(false)
                     }} />
                     <ChildMenu
-                        data={data} />
+                        data={data}
+                        title={dataParent.title} />
                 </div>
             </div>}
         </>
