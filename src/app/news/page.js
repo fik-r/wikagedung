@@ -34,7 +34,6 @@ export default async function Index() {
             dataMenuHeader={dataMenuHeader.data}
             dataContact={dataContact.data[0]}
             content={content()}>
-
         </Layout>
     )
 }

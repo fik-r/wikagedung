@@ -81,20 +81,25 @@ export default function Index({ showSidebar = true, name, sidebarContent, conten
                     }
                 </div>}
             {isMobile &&
-                <div className="flex flex-col mb-[2rem]">
+                <div className="flex flex-col">
                     <div className="w-text-body-2 text-sooty font-semibold mt-[2.5rem] mx-[1rem] mb-[1rem]">{getMenu && language == ENGLISH ? getMenu.child.menu_name_en : getMenu.child.menu_name}</div>
-                    {dataContent && dataContent.content_prakata && <div className={cn("text-jet w-text-body-1 mx-[1rem]", readMore ? "" : "line-clamp-3")}                        >
-                        {language == ENGLISH ? dataContent.content_prakata_en : dataContent.content_prakata}
-                    </div>}
-                    {dataContent && !dataContent.content_prakata && <div className={cn("text-jet w-text-body-1 mx-[1rem]", readMore ? "" : "line-clamp-3")}
-                        dangerouslySetInnerHTML={{ __html: language == ENGLISH ? dataContent.content_data_en : dataContent.content_data }}
-                    ></div>}
-                    <div className="mt-[0.5rem] cursor-pointer  flex flex-row items-center mx-[1rem]">
-                        <span className="w-text-caption mr-[2.063rem] text-primary font-semibold" onClick={() => {
-                            setReadMore(!readMore)
-                        }}>{!readMore ? (language == ENGLISH ? "Read more" : "Lanjutkan membaca") : (language == ENGLISH ? "Read less" : "Tutup")} </span>
-                        <img src="/icons/ic_dropdown.svg" className={cn("w-[0.563rem] h-[0.938rem] transform transition-transform duration-300", readMore ? "rotate-180" : "")} />
-                    </div>
+                    {showSidebar && !sidebarContent &&
+                        <>
+                            {dataContent && dataContent.content_prakata && <div className={cn("text-jet w-text-body-1 mx-[1rem]", readMore ? "" : "line-clamp-3")}                        >
+                                {language == ENGLISH ? dataContent.content_prakata_en : dataContent.content_prakata}
+                            </div>}
+                            {dataContent && !dataContent.content_prakata && <div className={cn("text-jet w-text-body-1 mx-[1rem]", readMore ? "" : "line-clamp-3")}
+                                dangerouslySetInnerHTML={{ __html: language == ENGLISH ? dataContent.content_data_en : dataContent.content_data }}
+                            ></div>}
+                            <div className="mt-[0.5rem] cursor-pointer  flex flex-row items-center mx-[1rem]">
+                                <span className="w-text-caption mr-[2.063rem] text-primary font-semibold" onClick={() => {
+                                    setReadMore(!readMore)
+                                }}>{!readMore ? (language == ENGLISH ? "Read more" : "Lanjutkan membaca") : (language == ENGLISH ? "Read less" : "Tutup")} </span>
+                                <img src="/icons/ic_dropdown.svg" className={cn("w-[0.563rem] h-[0.938rem] transform transition-transform duration-300", readMore ? "rotate-180" : "")} />
+                            </div>
+                        </>
+                    }
+                    {sidebarContent}
                 </div>
             }
             {/* Content in bottom sidebar */}

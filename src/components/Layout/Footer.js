@@ -3,7 +3,7 @@ import cn from 'classnames'
 const Footer = ({ data }) => {
     const { isMobile } = useResponsive()
     return (
-        <div className="mt-[5rem]">
+        <div className={cn(isMobile ? "mt-[2rem]" : "mt-[5rem]")}>
             <div className={cn("w-full bg-primary", isMobile ? "px-[0.875rem] py-[1.375rem]" : "px-[6.25rem] py-[4.969rem]")}>
                 <div className={cn("flex items-center px-0", isMobile ? "justify-center" : "justify-between")}>
                     <img src="/images/ic_wika_gedung_white.svg" className={cn(isMobile ? "w-[9.125rem] h-[2.375rem]" : "w-[15rem] h-[3.875rem]")} />

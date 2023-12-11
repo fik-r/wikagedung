@@ -53,7 +53,7 @@ const TimelineInformasi = ({ data }) => {
     }
 
     return (
-        <div className={cn(isMobile ? " px-[1rem]" : "py-[5rem] px-[2.5rem]")}>
+        <div className={cn(isMobile ? "mt-[2rem] px-[1rem]" : "py-[5rem] px-[2.5rem]")}>
             <div className={cn(isMobile ? "flex flex-row justify-start w-text-body-2 font-semibold" : "flex flex-row justify-center w-text-title-1 font-semibold")}>Timeline Transformasi</div>
             <div className={cn("relative bg-primary rounded-lg", isMobile ? "mt-[1rem] py-[2rem] px-[1.5rem]" : "mx-[6.25rem] my-[3.75rem] px-[6.938rem] py-[3.125rem] min-h-[27.688rem]")}>
                 <div className="flex flex-col z-10">

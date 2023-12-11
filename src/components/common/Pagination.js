@@ -68,6 +68,7 @@ const Pagination = (props) => {
         <div className="btn-group items-center" >
             <div className="w-[2rem] h-[2rem] items-center justify-center flex cursor-pointer" onClick={() => props.prevPage()}>
                 <img
+                    alt="ic_arrow_left_page"
                     className="w-[0.438rem] h-[0.688rem] rotate-180"
                     src="/icons/ic_arrow_page_active.svg"
                 />
@@ -76,6 +77,7 @@ const Pagination = (props) => {
             {renderPage()}
             <div className="w-[2rem] h-[2rem] items-center justify-center flex cursor-pointer" onClick={() => props.nextPage()}>
                 <img
+                    alt="ic_arrow_right_page"
                     className="w-[0.438rem] h-[0.688rem]"
                     src="/icons/ic_arrow_page_active.svg"
                 />

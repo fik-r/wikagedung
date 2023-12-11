@@ -1,17 +1,20 @@
 'use client'
 import Image from "next/image"
 import { useState } from "react"
+import useResponsive from "@/utils/media-query"
+import cn from "classnames"
 const DocumentItem = ({ title, image }) => {
-
+    const { isMobile } = useResponsive();
     const [hoveredItem, setHoveredItem] = useState(false)
     return (
         <div className="flex flex-col">
             <div className="relative flex justify-center items-center">
-                <div className="w-full min-h-[16.563rem] max-h-[16.563rem] rounded-lg hover:cursor-pointer relative">
+                <div className={cn("w-full rounded-lg hover:cursor-pointer relative", isMobile ? "min-h-[9.75rem] max-h-[9.75rem]" : "min-h-[16.563rem] max-h-[16.563rem]")}>
                     <Image
                         quality={50} placeholder="blur"
                         blurDataURL={image}
-                        style={{ objectFit: "cover"}}
+                        style={{ objectFit: "cover" }}
+                        alt="document_img"
                         className="rounded-lg" src={image} fill onMouseEnter={() => {
                             setHoveredItem(true)
                         }} />

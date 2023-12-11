@@ -26,14 +26,14 @@ const BerkarirBersamaKami = ({ data }) => {
     }, [])
 
     return (
-        <div className="flex flex-col w-full px-[6.25rem] py-[1.25rem]">
+        <div className={cn("flex flex-col w-full", isMobile ? "px-[1rem]" : "px-[6.25rem] py-[1.25rem]")}>
             <div className="w-text-body-2 text-jet">
                 {language == ENGLISH ? data.intro_en : data.intro}
             </div>
-            <div className="flex flex-row overflow-x-auto mt-[2.5rem] gap-x-[2.5rem]">
+            <div className={cn("flex flex-row overflow-x-auto", isMobile ? "gap-x-[0.938rem] mt-[1.5rem]" : "mt-[2.5rem] gap-x-[2.5rem]")}>
                 {data.image.map((item, key) => {
                     return (
-                        <div key={key} className="min-w-[17.5rem] min-h-[16.75rem] relative rounded rounded-lg">
+                        <div key={key} className={cn("relative rounded rounded-lg", isMobile ? "min-w-[15rem] min-h-[15rem] max-w-[15rem] max-h-[15rem]" : "min-w-[17.5rem] min-h-[16.75rem] max-w-[17.5rem] max-h-[16.75rem]")}>
                             <Image
                                 quality={50} placeholder="blur"
                                 blurDataURL={item}
@@ -43,18 +43,18 @@ const BerkarirBersamaKami = ({ data }) => {
                     )
                 })}
             </div>
-            <div className="w-text-headline-1 text-sooty mt-[7.5rem]">
+            <div className={cn("text-sooty", isMobile ? "w-text-title-1 font-bold mt-[3.5rem]" : "mt-[7.5rem] w-text-headline-1")}>
                 {data.sub_title}
             </div>
             <div className="flex flex-col">
                 {data.hc_program.map((item, key) => {
                     return (
-                        <div key={key} className="flex flex-row gap-x-[2.5rem] my-[2.5rem]">
-                            <div className="min-w-[36.25rem] min-h-[20.25rem] relative rounded rounded-lg">
-                                <img fill className='rounded-lg' src={item.image} />
+                        <div key={key} className={cn("flex", isMobile ? "my-[2rem] flex-col" : "flex-row gap-x-[2.5rem] my-[2.5rem]")}>
+                            <div className={cn("relative rounded rounded-lg", isMobile ? "w-full min-h-[12.5rem] max-h-[12.5rem]" : "min-w-[36.25rem] min-h-[20.25rem] max-w-[36.25rem] max-h-[20.25rem]")}>
+                                <Image fill className='rounded-lg' src={item.image} />
                             </div>
                             <div className="flex flex-col">
-                                <div className="h-[3.125rem] w-text-body-2 font-semibold text-sooty">{language == ENGLISH ? item.title_en : item.title}</div>
+                                <div className={cn("w-text-body-2 font-semibold text-sooty", isMobile ? "mt-[1.5rem]" : "h-[3.125rem]")}>{language == ENGLISH ? item.title_en : item.title}</div>
                                 <div className={cn("leading-[2rem] w-text-body-2 text-jet", readMore ? "" : "line-clamp-6")}>{language == ENGLISH ? item.text_en : item.text}</div>
                                 <div className="mt-[1rem] cursor-pointer  flex flex-row items-center">
                                     <span className="w-text-body-1 mr-[2.063rem] text-primary font-semibold" onClick={() => {

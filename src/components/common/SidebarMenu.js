@@ -18,7 +18,7 @@ const SidebarMenu = () => {
                     <div className="flex flex-row items-center hover:cursor-pointer zoom" onClick={() => {
                         setExpandMenu(true)
                     }}>
-                        <img src="/icons/ic_newspaper.svg" className="w-8 h-8 my-2 " />
+                        <img alt="ic_newspaper" src="/icons/ic_newspaper.svg" className="w-8 h-8 my-2 " />
                         {expandMenu && <div className="ml-[0.75rem] text-white w-text-title-1"
                             onClick={() => {
                                 router.push("news")
@@ -30,7 +30,7 @@ const SidebarMenu = () => {
                     <div className="flex flex-row items-center hover:cursor-pointer zoom" onClick={() => {
                         setExpandMenu(true)
                     }}>
-                        <img src="/icons/ic_focus-target.svg" className="w-8 h-8 my-2 " />
+                        <img alt="ic_focus_target" src="/icons/ic_focus-target.svg" className="w-8 h-8 my-2 " />
                         {expandMenu && <div className="ml-[0.75rem] text-white w-text-title-1"
                             onClick={() => {
                                 router.push("lini-bisnis/konstruksi?q=proyek-berjalan")
@@ -42,7 +42,7 @@ const SidebarMenu = () => {
                     <div className="flex flex-row items-center hover:cursor-pointer zoom" onClick={() => {
                         setExpandMenu(true)
                     }}>
-                        <img src="/icons/ic_building.svg" className="w-8 h-8 my-2" />
+                        <img alt="ic_building" src="/icons/ic_building.svg" className="w-8 h-8 my-2" />
                         {expandMenu && <div className="ml-[0.75rem] text-white w-text-title-1"
                             onClick={() => {
                                 router.push("info-perusahaan/tentang-kami")
@@ -56,7 +56,7 @@ const SidebarMenu = () => {
                             <div className="flex flex-row items-center justify-end hover:cursor-pointer zoom" onClick={() => {
                                 setExpandMenu(false)
                             }}>
-                                <img src="/icons/ic_close_circle.svg" className="w-[1rem] h-[1rem] my-[2]" />
+                                <img alt="ic_close_circle" src="/icons/ic_close_circle.svg" className="w-[1rem] h-[1rem] my-[2]" />
                                 <div className="ml-[0.75rem] w-text-body-2 text-white">Close</div>
                             </div>
                         </>

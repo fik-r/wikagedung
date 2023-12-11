@@ -44,7 +44,6 @@ export default function Navbar(props) {
     }
 
     function findMenuAndParentByName(menuArray, name, parentMenu = null) {
-
         for (const menu of menuArray) {
             if ((menu.menu_name && menu.menu_name.replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, ' ').trim().toLowerCase() == name.toLowerCase()) ||
                 menu.menu_name_en && menu.menu_name_en.replace(/[^a-zA-Z ]/g, '').replace(/\s+/g, ' ').trim().toLowerCase() == name.toLowerCase()
@@ -59,7 +58,6 @@ export default function Navbar(props) {
                 }
             }
         }
-
         return null;
     }
 
@@ -108,6 +106,21 @@ export default function Navbar(props) {
         setLanguage(localStorage.getItem(LANGUAGE))
         window.dispatchEvent(new Event("storage"));
     }
+
+    const getHref = (item) => {
+        var alias = ""
+        if (item.alias)
+            alias = item.alias
+        else {
+            var path = item.child[0].alias;
+            var segments = path.split('/');
+            var queryParam = segments.pop();
+
+            var newPath = segments.join('/') + '?q=' + queryParam;
+            alias = newPath
+        }
+        return alias;
+    }
     return (
         <>
             {/* desktop */}
@@ -120,7 +133,7 @@ export default function Navbar(props) {
                         }} />
                         <div className={cn(theme == "light" ? "text-sooty " : "text-white ", "w-text-subhead-1 font-bold self-center ml-[3.5rem]")}>WEGE - IDR {dataHomepage.nilai_saham}</div>
                         <div className="flex items-center ml-[0.719rem]"><img className="w-[1.125rem] h-[1.125rem]" src="/icons/ic_trending_up.svg" />
-                            <span className="w-text-body-1 text-garnish ml-[0.25rem]">+{dataHomepage.grafik_saham} %</span>
+                            <span className={cn("w-text-body-1 ml-[0.25rem]", dataHomepage.grafik_saham < 0 ? "text-red-700" : "text-garnish")}>{dataHomepage.grafik_saham} %</span>
                         </div>
                         <div className="text-white mx-[0.625rem] self-center">|</div>
                         <div className={cn(theme == "light" ? "text-jet " : "text-white ", "self-center w-text-body-1 font-normal")}>{timezone(dataHomepage.updated_at).tz('Asia/Bangkok').format('D MMMM YYYY HH:mm [GMT+7]')} </div>
@@ -150,7 +163,7 @@ export default function Navbar(props) {
                                         if (!item.child)
                                             router.push(item.alias)
                                     }}
-                                >{language == ENGLISH ? item.menu_name_en.toLowerCase() : item.menu_name.toLowerCase()}</div>
+                                >{language == ENGLISH ? (item.menu_name_en.length === 3 ? item.menu_name_en.toUpperCase() : item.menu_name_en.toLowerCase()) : (item.menu_name.length === 3 ? item.menu_name.toUpperCase() : item.menu_name.toLowerCase())}</div>
                             })
                         }
                     </div>
@@ -215,7 +228,7 @@ export default function Navbar(props) {
                 <div className="flex flex-row bg-[#424242] py-[0.625rem] px-[0.875rem]">
                     <div className={cn("text-white w-text-caption font-medium self-center")}>WEGE - IDR {dataHomepage.nilai_saham}</div>
                     <div className="flex items-center ml-[0.625rem]"><img className="w-[1.125rem] h-[1.125rem]" src="/icons/ic_trending_up.svg" />
-                        <span className="w-text-caption text-garnish ml-[0.25rem]">+{dataHomepage.grafik_saham} %</span>
+                        <span className={cn("w-text-caption ml-[0.25rem]", dataHomepage.grafik_saham < 0 ? "text-red-700" : "text-garnish")}>{dataHomepage.grafik_saham} %</span>
                     </div>
                 </div>
                 <div className="flex flex-row justify-between h-[4rem]">
@@ -259,22 +272,10 @@ export default function Navbar(props) {
                             <>
                                 <hr />
                                 <div className="flex flex-col gap-y-[1rem] mx-[1rem] py-[1rem]">
-                                    {getMenu.parent.child.map((item, index) => {
+                                    {(pathname.includes("lini-bisnis") ? data[1].child : getMenu.parent.child).map((item, index) => {
                                         return (
-                                            <div key={index} className={cn("w-text-body-1 font-medium cursor-pointer", getActiveMenuByName.menu_name == item.menu_name ? "text-primary" : "text-sooty")}
-                                                onClick={() => {
-                                                    if (item.alias)
-                                                        router.push(item.alias)
-                                                    else {
-                                                        var path = item.child[0].alias;
-                                                        var segments = path.split('/');
-                                                        var queryParam = segments.pop();
-
-                                                        var newPath = segments.join('/') + '?q=' + queryParam;
-                                                        router.push(newPath)
-                                                    }
-                                                }}
-                                            >{language == ENGLISH ? item.menu_name_en : item.menu_name}</div>
+                                            <Link href={getHref(item)} key={index} className={cn("w-text-body-1 font-medium cursor-pointer", getActiveMenuByName.menu_name == item.menu_name ? "text-primary" : "text-sooty")}
+                                            >{language == ENGLISH ? item.menu_name_en : item.menu_name}</Link>
                                         )
                                     })}
                                 </div>
@@ -286,7 +287,7 @@ export default function Navbar(props) {
             </div>}
 
             {isMobile && expandMenuMobile && <div className="w-full top-0 fixed h-full bg-black bg-opacity-50 z-[999]">
-                <div className="w-[80%] h-full bg-white p-[1.5rem] flex flex-col">
+                <div className="w-[80%] h-full bg-white p-[1.5rem] flex flex-col overflow-y-auto">
                     <img className="w-[9.625rem] h-[1.625rem] mb-[1.5rem] cursor-pointer" src="/images/ic_wika_gedung.svg" onClick={() => {
                         setExpandMenuMobile(false)
                     }} />

@@ -58,7 +58,7 @@ const ChildMenu = (props) => {
         if (alias.includes("knst")) {
             alias = child.alias.replace("knst", "konstruksi")
         }
-        if (alias && !isMobile) {
+        if (alias) {
             var path = alias;
             var segments = path.split('/');
             if (segments.length > 2 && (!alias.includes("media") && !alias.includes("press-kit"))) {
@@ -68,19 +68,6 @@ const ChildMenu = (props) => {
                 href = newPath
             } else {
                 href = path
-            }
-        }
-
-        if (isMobile) {
-            if (alias || (alias.includes("media") && alias.includes("press-kit"))) {
-                href = alias
-            } else {
-                var path = child.child[0].alias;
-                var segments = path.split('/');
-                var queryParam = segments.pop();
-
-                var newPath = segments.join('/') + '?q=' + queryParam;
-                href = newPath
             }
         }
         return href
@@ -93,16 +80,16 @@ const ChildMenu = (props) => {
                 <div className="flex flex-col">
                     <div className="flex flex-row justify-between items-center">
                         {!item.child &&
-                            <Link href={item.alias} className="z-[3] cursor-pointer min-h-fit p-0 w-text-body-2 text-sooty font-medium h-[2.5rem] flex items-center group-focus:text-orange hover:text-orange">
-                                {language == ENGLISH ? item.menu_name_en : item.menu_name}
+                            <Link href={item.alias} className="z-[3] capitalize cursor-pointer min-h-fit p-0 w-text-body-2 text-sooty font-medium h-[2.5rem] flex items-center group-focus:text-orange hover:text-orange">
+                                {language == ENGLISH ? item.menu_name_en.toLowerCase() : item.menu_name.toLowerCase()}
                             </Link>
                         }
                         {item.child && item.child.length > 0 &&
                             <>
                                 <span onClick={() => {
                                     onExpand()
-                                }} className={cn("z-[3] cursor-pointer min-h-fit p-0 w-text-body-2 font-medium h-[2.5rem] flex items-center hover:text-orange", isExpand ? "text-orange" : "text-sooty")}>
-                                    {language == ENGLISH ? item.menu_name_en : item.menu_name}
+                                }} className={cn("z-[3] capitalize cursor-pointer min-h-fit p-0 w-text-body-2 font-medium h-[2.5rem] flex items-center hover:text-orange", isExpand ? "text-orange" : "text-sooty")}>
+                                    {language == ENGLISH ? (item.menu_name_en.length === 3 ? item.menu_name_en.toUpperCase() : item.menu_name_en.toLowerCase()) : (item.menu_name.length === 3 ? item.menu_name.toUpperCase() : item.menu_name.toLowerCase())}
                                 </span>
                                 <img src="/icons/ic_dropdown_black.svg" className={cn("transform transition-transform duration-300 w-[0.9rem] h-[0.463rem]", isExpand ? "rotate-180" : "")} />
                             </>
@@ -115,8 +102,14 @@ const ChildMenu = (props) => {
                                     item.child.map((child, index) => {
                                         return (
                                             <>
-                                                <Link href={getHrefForChildMenu(child)} className={cn("cursor-pointer text-sooty font-normal h-[2.5rem] flex items-center hover:text-orange", isMobile ? "w-text-body-1" : "w-text-body-2")}>{language == ENGLISH ? child.menu_name_en : child.menu_name}</Link>
-                                                {isMobile && <hr />}
+                                                <div key={index}>
+                                                    {!child.child && <Link href={getHrefForChildMenu(child)} className={cn("cursor-pointer text-sooty font-normal h-[2.5rem] flex items-center hover:text-orange", isMobile ? "w-text-body-1" : "w-text-body-2")}>{language == ENGLISH ? child.menu_name_en : child.menu_name}</Link>}
+                                                    {child.child && <div className={cn("text-sooty font-bold h-[2.5rem] flex items-center", isMobile ? "w-text-body-1" : "w-text-body-2")}>{language == ENGLISH ? child.menu_name_en : child.menu_name}</div>}
+                                                    {child.child && child.child.map((child, index) => {
+                                                        return <Link href={getHrefForChildMenu(child)} key={index} className={cn("ml-[0.5rem] cursor-pointer text-sooty font-normal h-[2.5rem] flex items-center hover:text-orange", isMobile ? "w-text-body-1" : "w-text-body-2")}>{language == ENGLISH ? child.menu_name_en : child.menu_name}</Link>
+                                                    })}
+                                                    {isMobile && <hr />}
+                                                </div>
                                             </>
                                         )
                                     })

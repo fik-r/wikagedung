@@ -21,7 +21,7 @@ export default async function Index() {
         <>
             {/* hero */}
             <div className="relative flex flex-col">
-                <Navbar theme="dark" data={dataMenuHeader.data} dataHomepage={dataHomepage.data} />
+                <Navbar theme="dark" data={dataMenuHeader.data} dataHomepage={dataHomepage.data[0]} />
                 <Header dataMenuHeader={dataMenuHeader.data} dataBanner={dataBanner.data} dataHomepage={dataHomepage.data[0]} />
                 <Container className="relative bg-primary">
                     <ProjectOverview data={dataHomepage.data[0].project_ovw} />

@@ -3,11 +3,14 @@ import DocumentItem from "./DocumentItem"
 import { useEffect, useState } from "react"
 import { LANGUAGE, ENGLISH } from "@/utils/constants"
 import { CircleTab, Pagination } from "../common"
+import useResponsive from "@/utils/media-query"
+import cn from "classnames"
 const PenghargaanSertifikat = ({ sertifikat = [], penghargaan = [] }) => {
     const [data, setData] = useState(penghargaan)
     const [isAward, setIsAward] = useState(true)
     const [language, setLanguage] = useState("")
     const [page, setPage] = useState(1)
+    const { isMobile } = useResponsive()
 
     useEffect(() => {
         function setLanguageOnStorageChange() {
@@ -33,8 +36,8 @@ const PenghargaanSertifikat = ({ sertifikat = [], penghargaan = [] }) => {
 
     return (
         <div className="flex flex-col w-full">
-            <div className="flex flex-row w-full justify-between">
-                <div className="flex flex-row gap-x-[1.25rem]">
+            <div className={cn("w-full", isMobile ? "flex flex-col-reverse px-[1rem]" : "flex flex-row justify-between")}>
+                <div className={cn("flex flex-row", isMobile ? "gap-x-[0.5rem] mt-[1rem]" : "gap-x-[1.25rem]")}>
                     <CircleTab active={isAward} text={language == ENGLISH ? "Award" : "Penghargaan"} onClick={() => {
                         setIsAward(true)
                         setData(penghargaan)
@@ -61,8 +64,8 @@ const PenghargaanSertifikat = ({ sertifikat = [], penghargaan = [] }) => {
                     />
                 </div>
             </div>
-            <div className="w-full border border-aria rounded-lg mt-[1.25rem] py-[1.25rem] px-[1.875rem] flex flex-col">
-                <div className="grid grid-cols-4 gap-x-[1.5rem] gap-y-[3.125rem] mb-[3.125rem]">
+            <div className={cn("w-full rounded-lg flex flex-col", isMobile ? "px-[1rem] mt-[1.5rem]" : " border border-aria mt-[1.25rem] py-[1.25rem] px-[1.875rem]")}>
+                <div className={cn(isMobile ? "grid grid-cols-2 gap-x-[1rem] gap-y-[1.5rem]" : "grid grid-cols-4 gap-x-[1.5rem] gap-y-[3.125rem] mb-[3.125rem]")}>
                     {pagination.length > 0 && pagination[page - 1].map((item, index) => {
                         return (
                             <DocumentItem key={index} title={item.name} image={item.foto} />
@@ -70,23 +73,25 @@ const PenghargaanSertifikat = ({ sertifikat = [], penghargaan = [] }) => {
                     })}
 
                 </div>
-                <Pagination totalPages={pagination.length} currentPage={page} isMobile={false}
-                    nextPage={() => {
-                        let lastpage = pagination.length;
+                <div className={isMobile ? "w-full flex justify-center mt-[1.5rem]" : ""}>
+                    <Pagination totalPages={pagination.length} currentPage={page} isMobile={false}
+                        nextPage={() => {
+                            let lastpage = pagination.length;
 
-                        if (page !== lastpage) {
-                            setPage(page + 1);
-                        }
-                    }}
-                    prevPage={() => {
-                        if (page !== 1) {
-                            setPage(page - 1);
-                        }
-                    }}
-                    goToSpecificPage={(val) => {
-                        setPage(val)
-                    }}
-                />
+                            if (page !== lastpage) {
+                                setPage(page + 1);
+                            }
+                        }}
+                        prevPage={() => {
+                            if (page !== 1) {
+                                setPage(page - 1);
+                            }
+                        }}
+                        goToSpecificPage={(val) => {
+                            setPage(val)
+                        }}
+                    />
+                </div>
             </div>
         </div>
     )

@@ -34,7 +34,7 @@ const CompanyProfile = ({ data }) => {
     return (
         <> {!isMobile &&
             <div className="relative">
-                <img src="/images/bg_company_profile.svg" className="absolute top-0 left-0 z-[-1] mt-[6.25rem]" />
+                <img alt="bg_company_profile" src="/images/bg_company_profile.svg" className="absolute top-0 left-0 z-[-1] mt-[6.25rem]" />
                 <div className="rounded-lg absolute left-0 top-6 bottom-0 z-[3] h-[25.438rem] ml-[8.75rem] w-[17.813rem]">
                     <Image src={data[index].image_url}
                         alt={data[index].image_name}
@@ -67,10 +67,10 @@ const CompanyProfile = ({ data }) => {
             {
                 isMobile &&
                 <div className="w-full bg-primary flex flex-col items-center mt-[2.5rem] relative">
-                    <img src="/images/bg_company_profile.svg" className="absolute top-0 w-full z-[1]" />
+                    <img alt="bg_company_profile" src="/images/bg_company_profile.svg" className="absolute top-0 w-full z-[1]" />
                     <div className="w-text-title-1 text-white mt-[2rem] z-[2]">{language == ENGLISH ? data[index].title_en : data[index].title}</div>
                     <div className="w-full flex flex-row justify-around items-center mt-[1.188rem] z-[2]">
-                        <img className="hover:cursor-pointer w-[1.5rem] h-[1.5rem]" src="/icons/ic_circle_left.svg" onClick={() => {
+                        <img alt="ic_circle_left" className="hover:cursor-pointer w-[1.5rem] h-[1.5rem]" src="/icons/ic_circle_left.svg" onClick={() => {
                             handleIndexChange(index - 1)
                         }} />
                         <div className="rounded-lg h-[19.625rem] w-[13.375rem] relative">

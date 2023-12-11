@@ -6,6 +6,7 @@ import cn from "classnames"
 import useResponsive from "@/utils/media-query"
 import Image from "next/image"
 import { Pagination } from "../common"
+
 const KegiatanPers = ({ data }) => {
     const { isMobile } = useResponsive()
     const [language, setLanguage] = useState("")
@@ -37,18 +38,19 @@ const KegiatanPers = ({ data }) => {
 
     return (
         <>
-            <div className="px-[6.25rem] flex flex-col">
-                <div className="grid grid-cols-4 gap-y-[2.5rem] gap-x-[2.5rem]">
+            <div className={cn("flex flex-col", isMobile ? "px-[1rem]" : "px-[6.25rem]")}>
+                <div className={cn(isMobile ? "grid grid-cols-2 gap-x-[0.75rem] gap-y-[1.5rem]" : "grid grid-cols-4 gap-y-[2.5rem] gap-x-[2.5rem]")}>
                     {
                         pagination.length > 0 && pagination[page - 1].map((item, key) => {
                             return (
                                 <div key={key}
                                     onClick={() => {
-                                        setIsModalOpen(!isModalOpen)
-                                        setActiveIndex(key)
+                                        window.open(data[activeIndex].image_url, "_blankf")
+                                        // setIsModalOpen(!isModalOpen)
+                                        // setActiveIndex(key)
                                     }}
-                                    className="rounded-xl shadow-md zoom flex flex-col hover:cursor-pointer w-full h-[20.5rem]">
-                                    <div className="rounded-t-lg w-full min-h-[15rem] max-h-[15rem] relative">
+                                    className={cn("rounded-xl shadow-md flex flex-col hover:cursor-pointer w-full", isMobile ? "" : "zoom h-[20.5rem]")}>
+                                    <div className={cn("rounded-t-lg w-full  relative", isMobile ? "min-h-[7.5rem] max-h-[7.5rem]" : "min-h-[15rem] max-h-[15rem]")}>
                                         <Image
                                             quality={100} placeholder="blur"
                                             blurDataURL={item.image_url}
@@ -56,7 +58,7 @@ const KegiatanPers = ({ data }) => {
                                             alt={language == ENGLISH ? item.name_en : item.name}
                                             src={item.image_url} fill className="rounded-t-lg" />
                                     </div>
-                                    <div className="p-[1.5rem] w-text-body-1 font-semibold text-sooty">
+                                    <div className="p-[1.5rem] w-text-body-1 font-semibold text-sooty line-clamp-3">
                                         {language == ENGLISH ? item.name_en : item.name}
                                     </div>
                                 </div>
@@ -65,7 +67,7 @@ const KegiatanPers = ({ data }) => {
                     }
                 </div>
                 <div className="w-full flex justify-center mt-[2rem]">
-                    <Pagination totalPages={pagination.length} currentPage={page} isMobile={false}
+                    <Pagination totalPages={pagination.length} currentPage={page} isMobile={isMobile}
                         nextPage={() => {
                             let lastpage = pagination.length;
 
