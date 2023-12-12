@@ -37,7 +37,7 @@ const BerkarirBersamaKami = ({ data }) => {
                             <Image
                                 quality={50} placeholder="blur"
                                 blurDataURL={item}
-                                style={{ objectFit: "cover"}}
+                                style={{ objectFit: "cover" }}
                                 fill src={item} className='rounded rounded-lg' />
                         </div>
                     )
@@ -72,26 +72,45 @@ const BerkarirBersamaKami = ({ data }) => {
 
                 <div className="w-full border border-aria shadow-md rounded rounded-lg mt-[2rem]">
                     <table className="w-full table table-zebra">
-                        <thead>
-                            <tr>
-                                <th className='capitalize w-text-body-1 font-semibold'>Nama Lowongan</th>
-                                <th className='capitalize w-text-body-1 font-semibold'>Department</th>
-                                <th className='capitalize w-text-body-1 font-semibold'>Lokasi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {data.available_jobs.slice(0, numItemsToShow).map((item, key) => {
-                                return (
-                                    <tr className="cursor-pointer" key={key} onClick={() => {
-                                        window.open(item.link_to_apply, "_blankƒ")
-                                    }}>
-                                        <td className='capitalize w-text-body-1 font-regular'>{item.job_name}</td>
-                                        <td className='capitalize w-text-body-1 font-regular'>{item.Department}</td>
-                                        <td className='capitalize w-text-body-1 font-regular'>{item.Location}</td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
+                        {!isMobile && <>
+                            <thead>
+                                <tr>
+                                    <th className='capitalize w-text-body-1 font-semibold'>Nama Lowongan</th>
+                                    <th className='capitalize w-text-body-1 font-semibold'>Department</th>
+                                    <th className='capitalize w-text-body-1 font-semibold'>Lokasi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data.available_jobs.slice(0, numItemsToShow).map((item, key) => {
+                                    return (
+                                        <tr className="cursor-pointer" key={key} onClick={() => {
+                                            window.open(item.link_to_apply, "_blankƒ")
+                                        }}>
+                                            <td className='capitalize w-text-body-1 font-regular'>{item.job_name}</td>
+                                            <td className='capitalize w-text-body-1 font-regular'>{item.Department}</td>
+                                            <td className='capitalize w-text-body-1 font-regular'>{item.Location}</td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </>}
+                        {isMobile &&
+                            <tbody>
+                                {data.available_jobs.slice(0, numItemsToShow).map((item, key) => {
+                                    return (
+                                        <tr className="flex flex-row" key={key} onClick={() => {
+                                            window.open(item.link_to_apply, "_blankƒ")
+                                        }}>
+                                            <td className="flex-1 w-32 flex flex-col w-full py-[0.75rem]">
+                                                <div className='capitalize font-bold w-text-body-1 font-regular h-[1.375rem] truncate'>{item.job_name}</div>
+                                                <div className='capitalize w-text-body-1 font-regular h-[1.375rem]'>{item.Department}</div>
+                                            </td>
+                                            <td className='flex-none h-[4.25rem] capitalize w-text-body-1 font-medium text-primary py-[0.75rem] flex items-center justify-end'>{item.Location}</td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        }
                     </table>
                 </div>
 

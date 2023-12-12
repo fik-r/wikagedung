@@ -132,7 +132,7 @@ export default function Navbar(props) {
                             router.push("/")
                         }} />
                         <div className={cn(theme == "light" ? "text-sooty " : "text-white ", "w-text-subhead-1 font-bold self-center ml-[3.5rem]")}>WEGE - IDR {dataHomepage.nilai_saham}</div>
-                        <div className="flex items-center ml-[0.719rem]"><img className="w-[1.125rem] h-[1.125rem]" src="/icons/ic_trending_up.svg" />
+                        <div className="flex items-center ml-[0.719rem]"><img className="w-[1.125rem] h-[1.125rem]" src={dataHomepage.grafik_saham < 0 ? "/icons/ic_trending_down.svg" : "/icons/ic_trending_up.svg"} />
                             <span className={cn("w-text-body-1 ml-[0.25rem]", dataHomepage.grafik_saham < 0 ? "text-red-700" : "text-garnish")}>{dataHomepage.grafik_saham} %</span>
                         </div>
                         <div className="text-white mx-[0.625rem] self-center">|</div>
@@ -227,7 +227,7 @@ export default function Navbar(props) {
             {isMobile && <div id="navbar" className="shadow-md w-full sticky top-0 z-[995] bg-white">
                 <div className="flex flex-row bg-[#424242] py-[0.625rem] px-[0.875rem]">
                     <div className={cn("text-white w-text-caption font-medium self-center")}>WEGE - IDR {dataHomepage.nilai_saham}</div>
-                    <div className="flex items-center ml-[0.625rem]"><img className="w-[1.125rem] h-[1.125rem]" src="/icons/ic_trending_up.svg" />
+                    <div className="flex items-center ml-[0.625rem]"><img className="w-[1.125rem] h-[1.125rem]" src={dataHomepage.grafik_saham < 0 ? "/icons/ic_trending_down.svg" : "/icons/ic_trending_up.svg"} />
                         <span className={cn("w-text-caption ml-[0.25rem]", dataHomepage.grafik_saham < 0 ? "text-red-700" : "text-garnish")}>{dataHomepage.grafik_saham} %</span>
                     </div>
                 </div>
