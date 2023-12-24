@@ -7,7 +7,7 @@ const Footer = ({ data }) => {
             <div className={cn("w-full bg-primary", isMobile ? "px-[0.875rem] py-[1.375rem]" : "px-[6.25rem] py-[4.969rem]")}>
                 <div className={cn("flex items-center px-0", isMobile ? "justify-center" : "justify-between")}>
                     <img src="/images/ic_wika_gedung_white.svg" className={cn(isMobile ? "w-[9.125rem] h-[2.375rem]" : "w-[15rem] h-[3.875rem]")} />
-                    {!isMobile && <div className='text-white mt-[1.125rem]'>© 2023 Wika Gedung. All Rights Reserved.</div>}
+                    {!isMobile && <div className='text-white mt-[1.125rem]'>© 2023 WIKA Gedung. All Rights Reserved.</div>}
                 </div>
                 <div className="w-full h-[0.5px] bg-white my-[1.5rem]"></div>
 
@@ -81,7 +81,7 @@ const Footer = ({ data }) => {
                             }} />
                         </div>
                         <hr className="mt-[1.25rem]" />
-                        <div className='w-text-caption font-medium text-center text-white mt-[0.5rem]'>© 2023 Wika Gedung. All Rights Reserved.</div>
+                        <div className='w-text-caption font-medium text-center text-white mt-[0.5rem]'>© 2023 WIKA Gedung. All Rights Reserved.</div>
                     </>
                 }
 

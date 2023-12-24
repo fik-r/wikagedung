@@ -11,6 +11,7 @@ const NewsDetail = ({ data, news }) => {
     const [language, setLanguage] = useState("")
     const router = useRouter()
     useEffect(() => {
+        console.log(data)
         function setLanguageOnStorageChange() {
             setLanguage(localStorage.getItem(LANGUAGE))
         }
@@ -73,14 +74,13 @@ const NewsDetail = ({ data, news }) => {
                             <Image
                                 quality={50} placeholder="blur"
                                 blurDataURL={data.image_url}
-                                style={{ objectFit: "cover" }}
                                 alt="detail_news_thumbnail"
                                 src={data.image_url} className="rounded-lg" fill />
                         </div>
                     </div>
                     <div className={cn(isMobile ? "mt-[1rem] flex flex-col" : "flex flex-row pt-[2.5rem] gap-x-[3.125rem]")}>
                         <div className={cn("w-text-body-1 text-jet leading-[1.5rem]", isMobile ? "px-[1rem] pb-[2rem]" : "")}>
-                            <div dangerouslySetInnerHTML={{ __html: language == ENGLISH ? data.news_content_en : data.news_content }}></div>
+                            <div className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: language == ENGLISH ? data.news_content_en : data.news_content }}></div>
                         </div>
                         {isMobile && <div className="border-t border-t-secondary mb-[2rem]"></div>}
                         <div className={cn("flex flex-col", isMobile ? "px-[1rem] gap-y-[1.5rem]" : "")}>

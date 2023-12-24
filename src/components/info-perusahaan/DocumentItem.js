@@ -3,7 +3,7 @@ import Image from "next/image"
 import { useState } from "react"
 import useResponsive from "@/utils/media-query"
 import cn from "classnames"
-const DocumentItem = ({ title, image }) => {
+const DocumentItem = ({ title, image, onLihatGambar }) => {
     const { isMobile } = useResponsive();
     const [hoveredItem, setHoveredItem] = useState(false)
     return (
@@ -26,7 +26,7 @@ const DocumentItem = ({ title, image }) => {
                     <div className="min-h-[2.125rem] max-h-[2.125rem] h-[2.125rem] w-text-caption py-[0.625rem] px-[0.875rem] absolute btn bg-white border-0 text-secondary z-10 capitalize" onMouseEnter={() => {
                         setHoveredItem(true)
                     }} onClick={() => {
-                        window.open(image, "_blank")
+                        onLihatGambar()
                     }}>Lihat Gambar</div>
                 </>}
             </div>

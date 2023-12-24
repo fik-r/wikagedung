@@ -15,6 +15,7 @@ const KonstruksiItem = ({ type, name, thumbnail, route, proyekType, index }) => 
                     quality={50} placeholder="blur"
                     blurDataURL={thumbnail}
                     style={{ objectFit: "cover" }}
+                    alt="konstruksi_img"
                     src={thumbnail} fill className="rounded-t-lg" />
             </div>
             <div className="w-text-subhead-1 font-normal text-sooty mx-[1rem] mt-[1.25rem]">{type}</div>

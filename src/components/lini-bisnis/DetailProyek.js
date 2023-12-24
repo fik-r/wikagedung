@@ -17,7 +17,6 @@ const DetailProyek = ({ index, detail }) => {
     }
 
     useEffect(() => {
-        console.log(detail)
         function setLanguageOnStorageChange() {
             setLanguage(localStorage.getItem(LANGUAGE))
         }

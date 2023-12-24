@@ -45,9 +45,8 @@ const KegiatanPers = ({ data }) => {
                             return (
                                 <div key={key}
                                     onClick={() => {
-                                        window.open(data[activeIndex].image_url, "_blankf")
-                                        // setIsModalOpen(!isModalOpen)
-                                        // setActiveIndex(key)
+                                        setIsModalOpen(!isModalOpen)
+                                        setActiveIndex(key)
                                     }}
                                     className={cn("rounded-xl shadow-md flex flex-col hover:cursor-pointer w-full", isMobile ? "" : "zoom h-[20.5rem]")}>
                                     <div className={cn("rounded-t-lg w-full  relative", isMobile ? "min-h-[7.5rem] max-h-[7.5rem]" : "min-h-[15rem] max-h-[15rem]")}>
@@ -89,13 +88,13 @@ const KegiatanPers = ({ data }) => {
             </div>
             <dialog id="pers_modal" className={cn(isModalOpen ? "modal-open" : "", "w-full h-full modal")}>
                 <div className="modal-box max-w-[50.063rem]">
-                    <div className="flex flex-row w-full justify-between mb-[3rem]">
-                        <h3 className="w-text-title-2 text-sooty font-bold">{language == ENGLISH ? data[activeIndex].name_en : data[activeIndex].name}</h3>
+                    <div className={cn("flex flex-row w-full justify-between", isMobile ? "mb-[1.5rem]" : "mb-[3rem]")}>
+                        <h3 className={isMobile ? "w-text-body-2 font-bold" : "w-text-title-2 text-sooty font-bold"}>{language == ENGLISH ? data[activeIndex].name_en : data[activeIndex].name}</h3>
                         <img src="/icons/ic_close.svg" className="cursor-pointer" onClick={() => {
                             setIsModalOpen(false)
                         }} />
                     </div>
-                    <div className="flex w-full relative min-h-[29.438rem] max-h-[29.438rem] rounded-lg">
+                    <div className={cn("flex w-full relative rounded-lg", isMobile ? "min-h-[12.438rem] max-h-[12.438rem] " : "min-h-[29.438rem] max-h-[29.438rem]")}>
                         <Image quality={100}
                             style={{ objectFit: "cover" }}
                             alt={language == ENGLISH ? data[activeIndex].name_en : data[activeIndex].name}

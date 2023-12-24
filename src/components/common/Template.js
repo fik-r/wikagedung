@@ -37,6 +37,7 @@ const Template = ({ data }) => {
 
     function dataAsPagination() {
         const result = [];
+        filteredData.sort((a, b) => parseInt(b.cntn_detail_year) - parseInt(a.cntn_detail_year))
         if (isMobile) {
             for (let i = 0; i < filteredData.length; i += 6) {
                 result.push(filteredData.slice(i, i + 6));
@@ -55,7 +56,7 @@ const Template = ({ data }) => {
 
     return (
         <div className="w-full flex flex-col overflow-x-auto">
-            <div className={cn(isMobile ? "mb-[1rem] px-[1rem]" : "mb-[1.5rem]")} dangerouslySetInnerHTML={{ __html: language == ENGLISH ? data.content_data_en : data.content_data }}></div>
+            <div className={cn(isMobile ? "mb-[1rem] px-[1rem]" : "mb-[1.5rem]", "whitespace-pre-line")} dangerouslySetInnerHTML={{ __html: language == ENGLISH ? data.content_data_en : data.content_data }}></div>
             {data.detail && data.detail.length > 0 && <>
                 <div className={cn("flex", isMobile ? "flex-col" : "flex-row justify-between")}>
                     {!isMobile &&
@@ -174,9 +175,9 @@ const Template = ({ data }) => {
                                                 <td className='capitalize w-text-body-1 font-regular max-w-[18.239rem] truncate'>{language == ENGLISH ? item.cntn_detail_title_en : item.cntn_detail_title}</td>
                                                 <td className='capitalize w-text-body-1 font-regular'>{item.cntn_detail_year}</td>
                                                 <td className='capitalize w-text-body-1 font-regular'>{item.cntn_detail_link}</td>
-                                                <td className='capitalize w-text-body-1 font-medium text-primary cursor-pointer' onClick={() => {
+                                                {item.cntn_detail_file_path && <td className='capitalize w-text-body-1 font-medium text-primary cursor-pointer' onClick={() => {
                                                     window.open(item.cntn_detail_file_path, "_blank")
-                                                }}>Download File</td>
+                                                }}>Download File</td>}
 
                                             </tr>
                                         )
@@ -194,9 +195,9 @@ const Template = ({ data }) => {
                                                     <div className='capitalize font-bold w-text-body-1 font-regular h-[1.375rem] truncate'>{language == ENGLISH ? item.cntn_detail_title_en : item.cntn_detail_title}</div>
                                                     <div className='capitalize w-text-body-1 font-regular h-[1.375rem]'>{item.cntn_detail_year}</div>
                                                 </td>
-                                                <td className='flex-none h-[4.25rem] capitalize w-text-body-1 font-medium text-primary cursor-pointer py-[0.75rem] flex items-center justify-end' onClick={() => {
+                                                {item.cntn_detail_file_path && <td className='flex-none h-[4.25rem] capitalize w-text-body-1 font-medium text-primary cursor-pointer py-[0.75rem] flex items-center justify-end' onClick={() => {
                                                     window.open(item.cntn_detail_file_path, "_blank")
-                                                }}>Download File</td>
+                                                }}>Download File</td>}
 
                                             </tr>
                                         )

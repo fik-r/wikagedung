@@ -18,8 +18,8 @@ const LiniBisnis = ({ dataProyekBerjalan, dataProyekSelesai, dataKategori, route
         function setLanguageOnStorageChange() {
             setLanguage(localStorage.getItem(LANGUAGE))
         }
-        setLanguageOnStorageChange()
 
+        setLanguageOnStorageChange()
         window.addEventListener('storage', setLanguageOnStorageChange)
         return () => {
             window.removeEventListener('storage', setLanguageOnStorageChange)
@@ -34,6 +34,24 @@ const LiniBisnis = ({ dataProyekBerjalan, dataProyekSelesai, dataKategori, route
         setIsProyekDone(query == "proyek-sebelumnya" ? true : false)
         setData(query == "proyek-sebelumnya" ? dataProyekSelesai : dataProyekBerjalan)
     }, [query])
+
+    function getActualIndex(id) {
+        if (isProyekDone) {
+            for (let i = 0; i < dataProyekSelesai.length; i++) {
+                if (dataProyekSelesai[i].id === id) {
+                    return i + 1;
+                }
+            }
+        }
+        else {
+            for (let i = 0; i < dataProyekBerjalan.length; i++) {
+                if (dataProyekBerjalan[i].id === id) {
+                    return i + 1;
+                }
+            }
+        }
+        return -1
+    }
     return (
         <div className={cn("border-t border-secondary flex flex-col", isMobile ? "mt-[2rem] pt-[2rem] px-[1rem]" : "items-center pt-[4.375rem] pb-[15.625rem] px-[6.25rem]")}>
             <div className={cn(isMobile ? "w-text-title-1 font-bold mb-[1.5rem]" : "w-text-display-2 mb-[2rem]")}>Proyek Konstruksi</div>
@@ -100,7 +118,7 @@ const LiniBisnis = ({ dataProyekBerjalan, dataProyekSelesai, dataKategori, route
                             name={item.prjc_name}
                             thumbnail={item.image_1_url ? item.image_1_url : ""}
                             proyekType={isProyekDone ? "proyek-sebelumnya" : "proyek-berjalan"}
-                            index={key + 1}
+                            index={getActualIndex(item.id)}
                             route={route} />
                     )
                 })}
