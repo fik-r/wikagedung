@@ -154,7 +154,7 @@ const Template = ({ data }) => {
                 </div>
                 <div className={cn(isMobile ? "px-[1rem] mb-[2rem]" : "")}>
                     <div className={cn("w-full border border-aria shadow-md rounded rounded-lg pb-[1.25rem]", isMobile ? "flex flex-col items-center mt-[0.75rem]" : "mt-[2rem]")}>
-                        <table className="w-full table table-zebra mb-[1.5rem]">
+                        <table className="w-full table table-zebra mb-[1.5rem] table-fixed">
                             {!isMobile && <>
                                 <thead>
                                     <tr>
@@ -191,7 +191,7 @@ const Template = ({ data }) => {
                                             <tr className="flex flex-row" key={key} onClick={() => {
                                                 // window.open(item.link_to_apply, "_blankƒ")
                                             }}>
-                                                <td className="flex-1 w-32 flex flex-col w-full py-[0.75rem]">
+                                                <td className="flex-1 w-12 flex flex-col w-full py-[0.75rem]">
                                                     <div className='capitalize font-bold w-text-body-1 font-regular h-[1.375rem] truncate'>{language == ENGLISH ? item.cntn_detail_title_en : item.cntn_detail_title}</div>
                                                     <div className='capitalize w-text-body-1 font-regular h-[1.375rem]'>{item.cntn_detail_year}</div>
                                                 </td>

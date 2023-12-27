@@ -11,7 +11,6 @@ const NewsDetail = ({ data, news }) => {
     const [language, setLanguage] = useState("")
     const router = useRouter()
     useEffect(() => {
-        console.log(data)
         function setLanguageOnStorageChange() {
             setLanguage(localStorage.getItem(LANGUAGE))
         }

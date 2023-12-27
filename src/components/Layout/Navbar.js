@@ -29,6 +29,7 @@ export default function Navbar(props) {
         return () => {
             window.removeEventListener('scroll', stickyListener)
         }
+
     })
 
     useEffect(() => {
@@ -152,7 +153,7 @@ export default function Navbar(props) {
                                         if (item.child) {
                                             expandChildrenMenu()
                                             setDataChildMenu(item.child)
-                                            setDataParent({ title: language == ENGLISH ? item.menu_name_en : item.menu_name, description: language == ENGLISH ? item.description_en : item.description })
+                                            setDataParent({ title: language == ENGLISH ? item.menu_name_en : item.menu_name, description: language == ENGLISH ? item.menu_description_en : item.menu_description })
                                         } else {
                                             setDataChildMenu([])
                                             setDataParent({})
