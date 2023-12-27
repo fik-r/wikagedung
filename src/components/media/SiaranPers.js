@@ -183,17 +183,17 @@ const SiaranPers = ({ data = [] }) => {
                             </tbody>
                         </>}
                         {isMobile &&
-                            <tbody>
+                            <tbody className="w-full">
                                 {pagination.length > 0 && pagination[page - 1].map((item, key) => {
                                     return (
                                         <tr className="flex flex-row" key={key} onClick={() => {
                                             // window.open(item.link_to_apply, "_blankƒ")
                                         }}>
-                                            <td className="flex-1 w-12 flex flex-col w-full py-[0.75rem]">
+                                            <td className="flex-1 w-12 flex flex-col py-[0.75rem]">
                                                 <div className='capitalize font-bold w-text-body-1 font-regular h-[1.375rem] truncate'>{language == ENGLISH ? item.cntn_detail_title_en : item.cntn_detail_title}</div>
                                                 <div className='capitalize w-text-body-1 font-regular h-[1.375rem]'>{item.cntn_detail_year}</div>
                                             </td>
-                                            {item.cntn_detail_file_path && <td className='flex-none h-[4.25rem] capitalize w-text-body-1 font-medium text-primary cursor-pointer py-[0.75rem] flex items-center justify-end' onClick={() => {
+                                            {item.cntn_detail_file_path && <td className='h-[4.25rem] capitalize w-text-body-1 font-medium text-primary cursor-pointer py-[0.75rem] flex items-center justify-end' onClick={() => {
                                                 window.open(item.cntn_detail_file_path, "_blank")
                                             }}>Download File</td>}
 
