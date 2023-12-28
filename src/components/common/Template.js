@@ -56,7 +56,7 @@ const Template = ({ data }) => {
 
     return (
         <div className="w-full flex flex-col overflow-x-auto">
-            <div className={cn(isMobile ? "mb-[1rem] px-[1rem]" : "mb-[1.5rem]", "whitespace-pre-line")} dangerouslySetInnerHTML={{ __html: language == ENGLISH ? data.content_data_en : data.content_data }}></div>
+            <div className={cn(isMobile ? "mb-[1rem] px-[1rem]" : "mb-[1.5rem]", "content-html")} dangerouslySetInnerHTML={{ __html: language == ENGLISH ? data.content_data_en : data.content_data }}></div>
             {data.detail && data.detail.length > 0 && <>
                 <div className={cn("flex", isMobile ? "flex-col" : "flex-row justify-between")}>
                     {!isMobile &&

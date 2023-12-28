@@ -79,7 +79,7 @@ const NewsDetail = ({ data, news }) => {
                     </div>
                     <div className={cn(isMobile ? "mt-[1rem] flex flex-col" : "flex flex-row pt-[2.5rem] gap-x-[3.125rem]")}>
                         <div className={cn("w-text-body-1 text-jet leading-[1.5rem]", isMobile ? "px-[1rem] pb-[2rem]" : "")}>
-                            <div className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: language == ENGLISH ? data.news_content_en : data.news_content }}></div>
+                            <div className="content-html" dangerouslySetInnerHTML={{ __html: language == ENGLISH ? data.news_content_en : data.news_content }}></div>
                         </div>
                         {isMobile && <div className="border-t border-t-secondary mb-[2rem]"></div>}
                         <div className={cn("flex flex-col", isMobile ? "px-[1rem] gap-y-[1.5rem]" : "")}>

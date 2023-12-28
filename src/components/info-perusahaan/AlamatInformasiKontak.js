@@ -17,7 +17,7 @@ const AlamatInformasiKontak = ({ dataAlamatAnakPerusahaan = [], dataAlamatKantor
             setData(dataAlamatAnakPerusahaan)
         }
         if (type == "kantor-pusat") {
-            setData(dataAlamatAnakPerusahaan)
+            setData(dataAlamatKantorPusat)
         }
         if (type == "investasi-konsesi") {
             setData(dataAlamatInvestasi)

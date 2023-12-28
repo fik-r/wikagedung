@@ -14,6 +14,8 @@ const BerkarirBersamaKami = ({ data }) => {
     const numItemsToShow = isExpand ? data.available_jobs.length : 4;
 
     useEffect(() => {
+
+        console.log(data)
         function setLanguageOnStorageChange() {
             setLanguage(localStorage.getItem(LANGUAGE))
         }
@@ -44,7 +46,7 @@ const BerkarirBersamaKami = ({ data }) => {
                 })}
             </div>
             <div className={cn("text-sooty", isMobile ? "w-text-title-1 font-bold mt-[3.5rem]" : "mt-[7.5rem] w-text-headline-1")}>
-                {data.sub_title}
+                {language == ENGLISH ? data.sub_title_en : data.sub_title}
             </div>
             <div className="flex flex-col">
                 {data.hc_program.map((item, key) => {
@@ -55,7 +57,7 @@ const BerkarirBersamaKami = ({ data }) => {
                             </div>
                             <div className="flex flex-col">
                                 <div className={cn("w-text-body-2 font-semibold text-sooty", isMobile ? "mt-[1.5rem]" : "h-[3.125rem]")}>{language == ENGLISH ? item.title_en : item.title}</div>
-                                <div className={cn("leading-[2rem] w-text-body-2 text-jet", readMore ? "" : "line-clamp-6")}>{language == ENGLISH ? item.text_en : item.text}</div>
+                                <div className={cn("leading-[2rem] w-text-body-2 text-jet whitespace-pre-line", readMore ? "" : "line-clamp-6")} dangerouslySetInnerHTML={{ __html: language == ENGLISH ? item.text_en : item.text }}></div>
                                 <div className="mt-[1rem] cursor-pointer  flex flex-row items-center">
                                     <span className="w-text-body-1 mr-[2.063rem] text-primary font-semibold" onClick={() => {
                                         setReadMore(!readMore)
@@ -75,9 +77,9 @@ const BerkarirBersamaKami = ({ data }) => {
                         {!isMobile && <>
                             <thead>
                                 <tr>
-                                    <th className='capitalize w-text-body-1 font-semibold'>Nama Lowongan</th>
-                                    <th className='capitalize w-text-body-1 font-semibold'>Department</th>
-                                    <th className='capitalize w-text-body-1 font-semibold'>Lokasi</th>
+                                    <th className='capitalize w-text-body-1 font-semibold'>{language == ENGLISH ? "Job Name" : "Nama Lowongan"}</th>
+                                    <th className='capitalize w-text-body-1 font-semibold'>{language == ENGLISH ? "Department" : "Department"}</th>
+                                    <th className='capitalize w-text-body-1 font-semibold'>{language == ENGLISH ? "Location" : "Lokasi"}</th>
                                 </tr>
                             </thead>
                             <tbody>

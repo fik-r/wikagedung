@@ -201,6 +201,10 @@
     transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
+  .content-html p {
+    margin-bottom: 1.5rem;
+  }
+
   @keyframes fadeIn {
     0% {
       opacity: 0;

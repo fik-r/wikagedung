@@ -11,10 +11,10 @@ const Footer = ({ data }) => {
                 </div>
                 <div className="w-full h-[0.5px] bg-white my-[1.5rem]"></div>
 
-                <div className={cn("grid", isMobile ? "grid-cols-2" : "grid-cols-4")}>
-                    <div className="col-span-1 flex flex-col">
+                <div className={cn("grid", isMobile ? "grid-cols-2" : "grid-cols-5")}>
+                    <div className="col-span-2 flex flex-col">
                         <div className={cn("text-white", isMobile ? "w-text-caption font-bold" : "w-text-subhead-2")}>Kantor Pusat</div>
-                        <div className={cn("text-white font-normal mt-[0.625rem]", isMobile ? "w-text-caption" : "w-text-body-2  w-[17.188rem]")}>{data.name}</div>
+                        <div className={cn("text-white font-normal mt-[0.625rem]", isMobile ? "w-text-caption" : "w-text-body-2")}>{data.name}</div>
                     </div>
                     <div className="col-span-1 flex flex-col">
                         <div className={cn(isMobile ? "flex flex-col" : "grid grid-cols-3")}>
