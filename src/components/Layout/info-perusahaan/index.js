@@ -52,10 +52,10 @@ export default function Index({ showSidebar = true, name, sidebarContent, conten
             {!isMobile &&
                 <div className="w-full">
                     {/* header, should change with dynamic data */}
-                    <div className="px-[6.25rem] relative flex flex-col">
+                    {getMenu && <><div className="px-[6.25rem] relative flex flex-col">
                         <div className="w-text-subhead-2 text-secondary font-semibold mt-[2.5rem]">{getMenu && language == ENGLISH ? getMenu.parent.menu_name_en : getMenu.parent.menu_name}</div>
                         <div className="w-text-display-4 text-sooty font-semibold mt-[0.625rem] pb-[2.5rem]">{getMenu && language == ENGLISH ? getMenu.child.menu_name_en : getMenu.child.menu_name}</div>
-                    </div>
+                    </div></>}
                     {/* sidebar */}
                     {showSidebar &&
                         <div className="px-[6.25rem] relative flex flex-row mt-[3.125rem] gap-x-[3.75rem] pb-[3.125rem]">
@@ -82,7 +82,7 @@ export default function Index({ showSidebar = true, name, sidebarContent, conten
                 </div>}
             {isMobile &&
                 <div className="flex flex-col">
-                    <div className="w-text-body-2 text-sooty font-semibold mt-[2.5rem] mx-[1rem] mb-[1rem]">{getMenu && language == ENGLISH ? getMenu.child.menu_name_en : getMenu.child.menu_name}</div>
+                    {getMenu && <div className="w-text-body-2 text-sooty font-semibold mt-[2.5rem] mx-[1rem] mb-[1rem]">{getMenu && language == ENGLISH ? getMenu.child.menu_name_en : getMenu.child.menu_name}</div>}
                     {showSidebar && !sidebarContent &&
                         <>
                             {dataContent && dataContent.content_prakata && <div className={cn("text-jet w-text-body-1 mx-[1rem]", readMore ? "" : "line-clamp-3")}                        >

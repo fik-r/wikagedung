@@ -127,8 +127,20 @@ const postHubungiKami = (nama, email, subjek, pesan) => {
     })
 }
 
+const getSearch = (q, lang) => {
+    return API("/api/getSearch", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+            // Add any other headers if needed
+        },
+        body: q ? `q=${q}&lang=${lang}` : ""
+    })
+}
+
 
 export {
+    getSearch,
     postHubungiKami,
     getDetailProyek,
     getKategoriProyek,

@@ -14,8 +14,6 @@ const BerkarirBersamaKami = ({ data }) => {
     const numItemsToShow = isExpand ? data.available_jobs.length : 4;
 
     useEffect(() => {
-
-        console.log(data)
         function setLanguageOnStorageChange() {
             setLanguage(localStorage.getItem(LANGUAGE))
         }

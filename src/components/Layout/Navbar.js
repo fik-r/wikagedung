@@ -176,7 +176,9 @@ export default function Navbar(props) {
                         <div className={cn(language == ENGLISH ? "text-radiant_yellow" : theme == "light" ? "text-jet" : "text-white", "w-text-body-1 font-semibold cursor-pointer mr-[1.688rem] hover:text-orange")} onClick={() => {
                             setDesiredLanguage(ENGLISH)
                         }}>English</div>
-                        <img src={theme == "light" ? "/icons/ic_search_black.svg" : "/icons/ic_search.svg"} className="cursor-pointer" />
+                        <Link href={"/search"}>
+                            <img src={theme == "light" ? "/icons/ic_search_black.svg" : "/icons/ic_search.svg"} className="cursor-pointer" />
+                        </Link>
                     </div>
                 </div>
                 {theme == "light" && <hr className="mt-[1.656rem]" />}
@@ -251,7 +253,7 @@ export default function Navbar(props) {
                                 setDesiredLanguage(ENGLISH)
                             }}>EN</div>
                         </div>
-                        <img src={"/icons/ic_search_black.svg"} className="cursor-pointer mx-[0.875rem]" />
+                        <Link href="/search" className="flex items-center"><img src={"/icons/ic_search_black.svg"} className="cursor-pointer mx-[0.875rem]" /></Link>
                     </div>
                 </div>
                 {
