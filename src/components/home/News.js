@@ -46,7 +46,7 @@ const News = ({ data, news }) => {
                     router.push("/news/" + alias)
                 }}
             >
-                <Image src={thumbnail} quality={50} placeholder="blur" blurDataURL={thumbnail} fill className="rounded-lg z-[-2]" style={{ objectFit: "cover"}}/>
+                <Image src={thumbnail} quality={50} placeholder="blur" blurDataURL={thumbnail} fill className="rounded-lg z-[-2]" style={{ objectFit: "cover" }} />
                 <Image src="/images/overlay.png" fill className="rounded-lg z-[-1]" />
                 <div className="absolute pt-[1.375rem] px-[1.5rem] pb-[2rem] bottom-0">
                     <div className="flex flex-row gap-x-[0.875rem] items-center">
@@ -72,7 +72,7 @@ const News = ({ data, news }) => {
                     <Image src={thumbnail} className="rounded-lg"
                         quality={50} placeholder="blur"
                         blurDataURL={thumbnail}
-                        style={{ objectFit: "cover"}}
+                        style={{ objectFit: "cover" }}
                         fill />
                 </div>
                 <div>
@@ -118,7 +118,9 @@ const News = ({ data, news }) => {
                 </div>
                 {!isMobile && <div className="col-span-2 flex flex-col">
                     <div className="text-jet w-text-body-2 font-normal leading-[2rem]">{language == ENGLISH ? data.news_text_en : data.news_text}</div>
-                    <div className="btn btn-outline btn-warning mt-[1.5rem] w-[10.75rem] px-0 capitalize">{language == ENGLISH ? "See More" : "Lihat Selengkapnya"}</div>
+                    <div className="btn btn-outline btn-warning mt-[1.5rem] w-[10.75rem] px-0 capitalize" onClick={() => {
+                        router.push("/news")
+                    }}>{language == ENGLISH ? "See More" : "Lihat Selengkapnya"}</div>
                 </div>}
             </div>
             {/* card news */}
@@ -171,7 +173,9 @@ const News = ({ data, news }) => {
                 })}
             </div>}
 
-            {isMobile && <div className="btn btn-outline btn-warning mt-[2.5rem] w-[10.75rem] btn-sm px-0 capitalize mx-auto">{language == ENGLISH ? "See More" : "Lihat Selengkapnya"}</div>}
+            {isMobile && <div className="btn btn-outline btn-warning mt-[2.5rem] w-[10.75rem] btn-sm px-0 capitalize mx-auto" onClick={() => {
+                router.push("/news")
+            }}>{language == ENGLISH ? "See More" : "Lihat Selengkapnya"}</div>}
         </Container>
     )
 }
