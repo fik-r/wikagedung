@@ -172,7 +172,10 @@ const SiaranPers = ({ data = [] }) => {
                                             <td className='capitalize w-text-body-1 font-regular'>{key + 1}</td>
                                             <td className='capitalize w-text-body-1 font-regular max-w-[18.239rem] truncate'>{language == ENGLISH ? item.cntn_detail_title_en : item.cntn_detail_title}</td>
                                             <td className='capitalize w-text-body-1 font-regular'>{item.cntn_detail_year}</td>
-                                            <td className='capitalize w-text-body-1 font-regular'>{item.cntn_detail_link}</td>
+                                            <td className={cn('capitalize w-text-body-1 font-regular text-primary underline line-clamp-1', item.cntn_detail_link != null ? "cursor-pointer" : "")} onClick={() => {
+                                                if (item.cntn_detail_link)
+                                                    window.open(item.cntn_detail_link, "_blank")
+                                            }}>{item.cntn_detail_link}</td>
                                             {item.cntn_detail_file_path && <td className='capitalize w-text-body-1 font-medium text-primary cursor-pointer' onClick={() => {
                                                 window.open(item.cntn_detail_file_path, "_blank")
                                             }}>Download File</td>}
@@ -193,8 +196,8 @@ const SiaranPers = ({ data = [] }) => {
                                                 <div className='capitalize font-bold w-text-body-1 font-regular h-[1.375rem] truncate'>{language == ENGLISH ? item.cntn_detail_title_en : item.cntn_detail_title}</div>
                                                 <div className='capitalize w-text-body-1 font-regular h-[1.375rem]'>{item.cntn_detail_year}</div>
                                             </td>
-                                            {item.cntn_detail_file_path && <td className='h-[4.25rem] capitalize w-text-body-1 font-medium text-primary cursor-pointer py-[0.75rem] flex items-center justify-end' onClick={() => {
-                                                window.open(item.cntn_detail_file_path, "_blank")
+                                            {item.cntn_detail_file_path && item.cntn_detail_link && <td className='h-[4.25rem] capitalize w-text-body-1 font-medium text-primary cursor-pointer py-[0.75rem] flex items-center justify-end' onClick={() => {
+                                                window.open(item.cntn_detail_file_path ? item.cntn_detail_file_path : item.cntn_detail_link, "_blank")
                                             }}>Download File</td>}
 
                                         </tr>
