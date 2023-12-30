@@ -67,8 +67,8 @@ const BerkarirBersamaKami = ({ data }) => {
                 })}
             </div>
             <div className="flex flex-col mt-[5rem] items-center">
-                <div className="w-text-headline-1 font-semibold text-sooty h-[3.125rem]">{language == ENGLISH ? "Job vacancies currently available" : "Lowongan kerja yang tersedia saat ini"}</div>
-                <div className="w-text-body-2 text-jet">{language == ENGLISH ? "The following are the positions you can apply for to become part of Wika Gedung" : "Berikut ini posisi yang bisa anda lamar untuk bisa menjadi bagian dari Wika Gedung"}</div>
+                <div className="w-text-headline-1 font-semibold text-sooty">{language == ENGLISH ? "Job vacancies currently available" : "Lowongan kerja yang tersedia saat ini"}</div>
+                <div className="w-text-body-2 text-jet mt-[1rem]">{language == ENGLISH ? "The following are the positions you can apply for to become part of Wika Gedung" : "Berikut ini posisi yang bisa anda lamar untuk bisa menjadi bagian dari Wika Gedung"}</div>
 
                 <div className="w-full border border-aria shadow-md rounded rounded-lg mt-[2rem]">
                     <table className="w-full table table-zebra">
