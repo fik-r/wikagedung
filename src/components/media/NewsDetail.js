@@ -68,14 +68,13 @@ const NewsDetail = ({ data, news }) => {
                     </div>
                 </div>
                 <div className={cn("flex flex-col", isMobile ? "mt-[1.5rem]" : "mt-[2.5rem]")}>
-                    <div className={cn(isMobile ? "px-[1rem]" : "")}>
-                        <div className={cn("rounded-lg relative", isMobile ? "w-full min-h-[20.438rem] max-h-[20.438rem]" : "w-full min-h-[34.375rem] max-h-[34.375rem]")}>
-                            <Image
+                    <div className={cn(isMobile ? "px-[1rem]" : "min-h-[34.375rem] relative")}>
+                        <img src={data.image_url} className={cn("rounded-lg relative", isMobile ? "w-full min-h-[20.438rem]" : "w-full min-h-[34.375rem]")} />
+                        {/* <Image
                                 quality={50} placeholder="blur"
                                 blurDataURL={data.image_url}
                                 alt="detail_news_thumbnail"
-                                src={data.image_url} className="rounded-lg" fill />
-                        </div>
+                                src={data.image_url} className="rounded-lg min-h-[34.375rem]" fill /> */}
                     </div>
                     <div className={cn(isMobile ? "mt-[1rem] flex flex-col" : "flex flex-row pt-[2.5rem] gap-x-[3.125rem]")}>
                         <div className={cn("w-text-body-1 text-jet leading-[1.5rem]", isMobile ? "px-[1rem] pb-[2rem]" : "")}>
