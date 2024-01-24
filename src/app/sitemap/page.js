@@ -10,9 +10,9 @@ export default async function Index() {
 
     return (
         <>
-            <Navbar theme="light" showBreadcrumb={true} isOnDetailPage={false} data={dataMenuHeader.data} dataHomepage={dataHomepage} />
+            <Navbar theme="light" showBreadcrumb={true} isOnDetailPage={false} data={dataMenuHeader.data} dataHomepage={dataHomepage.data[0]} />
             <Sitemap menu={dataMenuHeader.data} />
-            <Footer data={dataContact} />
+            <Footer data={dataContact.data[0]} />
         </>
     )
 }

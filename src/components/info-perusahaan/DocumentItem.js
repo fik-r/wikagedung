@@ -9,17 +9,21 @@ const DocumentItem = ({ title, image, onLihatGambar }) => {
     return (
         <div className="flex flex-col">
             <div className="relative flex justify-center items-center">
-                <div className={cn("w-full rounded-lg hover:cursor-pointer relative", isMobile ? "min-h-[9.75rem] max-h-[9.75rem]" : "min-h-[16.563rem] max-h-[16.563rem]")}>
+                <div className={cn("w-full rounded-lg hover:cursor-pointer relative", isMobile ? "min-h-[9.75rem] max-h-[9.75rem]" : "min-h-[16.563rem] max-h-[16.563rem]")} onClick={() => {
+                    if(isMobile) {
+                        onLihatGambar()
+                    }
+                }}>
                     <Image
                         quality={50} placeholder="blur"
                         blurDataURL={image}
-                        style={{ objectFit: "cover" }}
+                        style={{ objectFit: "scale-down" }}
                         alt="document_img"
                         className="rounded-lg" src={image} fill onMouseEnter={() => {
                             setHoveredItem(true)
                         }} />
                 </div>
-                {hoveredItem && <>
+                {!isMobile && hoveredItem && <>
                     <div className="w-full h-[16.563rem] rounded-lg opacity-60 z-9 absolute top-0 bg-overlay" onMouseLeave={() => {
                         setHoveredItem(false)
                     }} />

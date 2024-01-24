@@ -11,6 +11,7 @@ const FocusBisnis = ({ data }) => {
     const [language, setLanguage] = useState("")
     const { isMobile } = useResponsive()
     useEffect(() => {
+        console.log(data)
         function setLanguageOnStorageChange() {
             setLanguage(localStorage.getItem(LANGUAGE))
         }

@@ -41,7 +41,7 @@ const Awards = ({ data }) => {
         <>
             <Container className="pt-[3.75rem] pb-[2.875rem]">
                 <div className="flex flex-col items-center">
-                    <div className="w-text-headline-1 text-sooty font-bold pb-[3rem]">Our Awards & Commitment</div>
+                    <div className="w-text-headline-1 text-sooty font-bold pb-[3rem]">{language == ENGLISH ? "Our Awards & Commitment" : "Penghargaan & Komitmen Kami"}</div>
                     <div className={cn(isMobile ? "grid grid-cols-3 gap-x-[2.063rem]" : "flex flex-row gap-x-[5rem]")}>
                         <AwardsItem logo="/images/illust_awards.svg" desc={language == ENGLISH ? data[0].award_text_en : data[0].award_text} />
                         <AwardsItem logo="/images/illust_iso.svg" desc={language == ENGLISH ? data[1].award_text_en : data[1].award_text} />

@@ -112,7 +112,7 @@ const PenghargaanSertifikat = ({ sertifikat = [], penghargaan = [] }) => {
                     <div className={cn("flex w-full relative rounded-lg", isMobile ? "min-h-[12.438rem] max-h-[12.438rem] " : "min-h-[29.438rem] max-h-[29.438rem]")}>
                         <Image quality={100}
                             alt={selectedItem.name}
-                            src={selectedItem.foto} fill className="rounded-lg" />
+                            src={selectedItem.foto} fill className="rounded-lg" style={{objectFit: "scale-down"}} />
                     </div>
                 </div>
             </dialog>

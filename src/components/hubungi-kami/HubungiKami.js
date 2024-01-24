@@ -115,7 +115,7 @@ const HubungiKami = () => {
                 <div className="flex flex-col col-span-1">
                     <div className={cn("text-sooty", isMobile ? "gap-y-[0.5rem] mb-[0.5rem] w-text-body-2 font-semibold" : "w-text-headline-1 ")}>{language == ENGLISH ? "Office Locations and Contacts" : "Lokasi Kantor dan Kontak"}</div>
                     <InformationItem
-                        title="Kantor Pusat"
+                        title={language == ENGLISH ? "Head Office" : "Kantor Pusat"}
                         description="WIKA Tower 1, 7th-10th Floor, 
                             JL. D.I. Panjaitan Kav.9, Jakarta Timur 
                             13340"

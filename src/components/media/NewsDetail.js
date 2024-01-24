@@ -69,7 +69,7 @@ const NewsDetail = ({ data, news }) => {
                 </div>
                 <div className={cn("flex flex-col", isMobile ? "mt-[1.5rem]" : "mt-[2.5rem]")}>
                     <div className={cn(isMobile ? "px-[1rem]" : "min-h-[34.375rem] relative")}>
-                        <img src={data.image_url} className={cn("rounded-lg relative", isMobile ? "w-full min-h-[20.438rem]" : "w-full min-h-[34.375rem]")} />
+                        <img src={data.image_url} className={cn("rounded-lg relative", isMobile ? "w-full" : "w-full")} />
                         {/* <Image
                                 quality={50} placeholder="blur"
                                 blurDataURL={data.image_url}

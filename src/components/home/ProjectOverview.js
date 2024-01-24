@@ -42,7 +42,7 @@ const ProjectOverview = ({ data }) => {
         <>
             <div className={cn("flex flex-col z-10", isMobile ? "px-[1rem] py-[2rem]" : "px-[2.5rem] pt-[2.5rem] pb-[3.75rem]")}>
                 <img src="/images/bg_project_overview.svg" className={cn("absolute bottom-0 right-0 z-[-1]", isMobile ? "h-[9.5rem]" : "h-full")} />
-                <div className={cn("text-neutral text-center", isMobile ? "w-text-body-2 font-semibold mb-[1.5rem]" : "w-text-headline-1 mb-[2.5rem]")}>Project Overview</div>
+                <div className={cn("text-neutral text-center", isMobile ? "w-text-body-2 font-semibold mb-[1.5rem]" : "w-text-headline-1 mb-[2.5rem]")}>{language == ENGLISH ? "Project Overview" : "Ikhtisar Proyek"}</div>
                 <div className={cn("flex justify-between", isMobile ? "flex-col gap-y-[1.5rem]" : "flex-row")}>
                     <ProjectOverviewItem url="/icons/ic_building_project.svg" title={language == ENGLISH ? data[0].project_ovw_text_en : data[0].project_ovw_text} desc={language == ENGLISH ? data[0].project_ovw_value_en : data[0].project_ovw_value} />
                     <ProjectOverviewItem url="/icons/ic_toll.svg" title={language == ENGLISH ? data[1].project_ovw_text_en : data[1].project_ovw_text} desc={language == ENGLISH ? data[1].project_ovw_value_en : data[1].project_ovw_value} />

@@ -79,31 +79,32 @@ const Sitemap = ({ menu }) => {
     }
 
     return (
-        <div className="w-full px-[6.25rem]">
-            <div className="py-[2.5rem] w-text-display-4 text-sooty">Sitemap</div>
-            <div className="flex flex-col gap-y-[2.5rem]">
+        <div className={cn("w-full", isMobile ? "px-[1rem] py-[2.5rem]" : "px-[6.25rem]")}>
+
+            <div className={cn(isMobile ? "w-text-title-1 text-sooty font-bold" : "py-[2.5rem] w-text-display-4 text-sooty")}>Sitemap</div>
+            <div className={cn("flex flex-col", isMobile ? "" : "gap-y-[2.5rem]")}>
                 {
                     parsedMenu.map((item, key) => {
                         return (
-                            <div key={key} className="w-full grid grid-cols-3">
+                            <div key={key} className={cn(isMobile ? "w-full flex flex-col" : "w-full grid grid-cols-3")}>
                                 {
                                     item.map((menu, key) => {
                                         return (
                                             <div key={key} className="flex flex-col">
-                                                {menu.child && <div className="w-text-headline-1 text-sooty capitalize font-bold mb-[1rem]">{language == ENGLISH ? menu.menu_name_en.toLowerCase() : menu.menu_name.toLowerCase()}</div>}
-                                                {!menu.child && <Link href={menu.alias} className=" cursor-pointer hover:text-primary w-text-headline-1 text-sooty capitalize font-bold mb-[1rem]">{language == ENGLISH ? menu.menu_name_en.toLowerCase() : menu.menu_name.toLowerCase()}</Link>}
+                                                {menu.child && <div className={cn("text-sooty capitalize font-bold mb-[1rem]", isMobile ? "w-text-subhead-1 mt-[1.5rem]" : "w-text-headline-1")}>{language == ENGLISH ? menu.menu_name_en.toLowerCase() : menu.menu_name.toLowerCase()}</div>}
+                                                {!menu.child && <Link href={menu.alias} className={cn("text-sooty capitalize font-bold mb-[1rem] cursor-pointer hover:text-primary", isMobile ? "w-text-subhead-1 mt-[1.5rem]" : "w-text-headline-1")}>{language == ENGLISH ? menu.menu_name_en.toLowerCase() : menu.menu_name.toLowerCase()}</Link>}
                                                 <hr className="mb-[0.75rem]" />
                                                 {
                                                     menu.child && menu.child.map((child, key) => {
                                                         return (
                                                             <div key={key} className="flex flex-col">
-                                                                {child.child && <div className="w-text-subhead-1 text-sooty py-[0.625rem]">{language == ENGLISH ? child.menu_name_en : child.menu_name}</div>}
-                                                                {!child.child && <Link href={getHrefForChildMenu(child)} className="cursor-pointer hover:text-primary w-text-subhead-1 text-sooty py-[0.625rem]">{language == ENGLISH ? child.menu_name_en : child.menu_name}</Link>}
+                                                                {child.child && <div className={cn("text-sooty py-[0.625rem]", isMobile ? "w-text-body-1 font-medium" : "w-text-subhead-1")}>{language == ENGLISH ? child.menu_name_en : child.menu_name}</div>}
+                                                                {!child.child && <Link href={getHrefForChildMenu(child)} className={cn("text-sooty py-[0.625rem] cursor-pointer hover:text-primary", isMobile ? "w-text-body-1 font-medium" : "w-text-subhead-1")}>{language == ENGLISH ? child.menu_name_en : child.menu_name}</Link>}
                                                                 <div className="flex flex-col">
                                                                     {
                                                                         child.child && child.child.map((child, key) => {
                                                                             return (
-                                                                                <Link key={key} href={getHrefForChildMenu(child)} className="cursor-pointer hover:text-primary py-[0.625rem] w-text-body-2 text-sooty ml-[1rem]">{child.menu_name}</Link>
+                                                                                <Link key={key} href={getHrefForChildMenu(child)} className={cn("text-sooty py-[0.625rem] cursor-pointer hover:text-primary", isMobile ? "w-text-body-1" : "w-text-body-2")}>{child.menu_name}</Link>
                                                                             )
                                                                         })
                                                                     }

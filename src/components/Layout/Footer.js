@@ -1,7 +1,22 @@
 import useResponsive from "@/utils/media-query"
 import cn from 'classnames'
+import { useState, useEffect } from "react"
+import { LANGUAGE, ENGLISH } from "@/utils/constants"
 const Footer = ({ data }) => {
+    const [language, setLanguage] = useState("")
     const { isMobile } = useResponsive()
+    useEffect(() => {
+
+        function setLanguageOnStorageChange() {
+            setLanguage(localStorage.getItem(LANGUAGE))
+        }
+        setLanguageOnStorageChange()
+
+        window.addEventListener('storage', setLanguageOnStorageChange)
+        return () => {
+            window.removeEventListener('storage', setLanguageOnStorageChange)
+        }
+    }, [])
     return (
         <div className={cn(isMobile ? "mt-[2rem]" : "mt-[5rem]")}>
             <div className={cn("w-full bg-primary", isMobile ? "px-[0.875rem] py-[1.375rem]" : "px-[6.25rem] py-[4.969rem]")}>
@@ -13,7 +28,7 @@ const Footer = ({ data }) => {
 
                 <div className={cn("grid", isMobile ? "grid-cols-2" : "grid-cols-5")}>
                     <div className="col-span-2 flex flex-col">
-                        <div className={cn("text-white", isMobile ? "w-text-caption font-bold" : "w-text-subhead-2")}>Kantor Pusat</div>
+                        <div className={cn("text-white", isMobile ? "w-text-caption font-bold" : "w-text-subhead-2")}>{language == ENGLISH ? "Head Office" : "Kantor Pusat"}</div>
                         <div className={cn("text-white font-normal mt-[0.625rem]", isMobile ? "w-text-caption" : "w-text-body-2")}>{data.name}</div>
                     </div>
                     <div className="col-span-1 flex flex-col">

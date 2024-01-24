@@ -73,6 +73,16 @@ const ChildMenu = (props) => {
         return href
     }
 
+    function replaceGcgBim(inputString) {
+        // Replace "Gcg" with "GCG"
+        let modifiedString = inputString.replace(/Gcg/g, 'GCG');
+    
+        // Replace "Bim" with "BIM"
+        modifiedString = modifiedString.replace(/Bim/g, 'BIM');
+    
+        return modifiedString;
+    }
+
     const Menu = ({ index, item, expand, onExpand }) => {
         const isExpand = expand[index]
         return (
@@ -81,7 +91,7 @@ const ChildMenu = (props) => {
                     <div className="flex flex-row justify-between items-center">
                         {!item.child &&
                             <Link href={item.alias} className="z-[3] capitalize cursor-pointer min-h-fit p-0 w-text-body-2 text-sooty font-medium h-[2.5rem] flex items-center group-focus:text-orange hover:text-orange">
-                                {language == ENGLISH ? item.menu_name_en.toLowerCase() : item.menu_name.toLowerCase()}
+                                {language == ENGLISH ? replaceGcgBim(item.menu_name_en) : replaceGcgBim(item.menu_name)}
                             </Link>
                         }
                         {item.child && item.child.length > 0 &&
